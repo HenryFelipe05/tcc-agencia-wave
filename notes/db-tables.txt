@@ -30,7 +30,7 @@ StatusAssinatura: CodigoStatusAssinatura, Descricao
 
 *Tabelas Galeria*
 ------------------------------------------------------------
-TipoGaleria: CodigoTipoGaleria, Descricao, DataCadastro
+Galeria: CodigoGaleria, Descricao
 
 ItemGaleria: CodigoItemGaleria, CodigoTipoGaleria, Titulo, Descricao, ExtensaoArquivo, URLArquivo, URLMiniatura, DataCadastro
 
