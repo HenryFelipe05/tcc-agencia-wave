@@ -1,6 +1,6 @@
 # Projeto WAVE - Agência de Marketing
 
-Este repositório contém o código-fonte do site da WAVE, uma agência de marketing especializada em criação de templates e soluções para profissionais da área. O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) da ETEC Comendador João Rays.
+Este repositório contém o código-fonte do site da WAVE, uma agência de marketing digital. O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) da ETEC Comendador João Rays.
 
 ## Ferramentas Utilizadas para Desenvolver o Projeto
 
