@@ -2,6 +2,10 @@
 
 Este repositório contém o código-fonte do site da WAVE, uma agência de marketing digital. O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) da ETEC Comendador João Rays.
 
+# Arquitetura do Projeto
+
+Este projeto segue os princípios da **Arquitetura Limpa (Clean Architecture)**, com uma separação clara de responsabilidades em camadas.
+
 ## Requisitos
 ### Sistema de Login e Registro com Autenticação JWT
 
