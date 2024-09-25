@@ -16,7 +16,7 @@ Genero: CodigoGenero, DescricaoGenero, Ativo, DataCadastro
 
 EnderecoPessoa: CodigoEndereco, CodigoPessoa, Ativo
 
-Endereco: CodigoEndereco, Pais, Estado, Cidade, Bairro, Rua, Numero, Complemento, CEP, Ativo, DataCadastro
+Endereco: CodigoEndereco, Pais, Estado, Cidade, Bairro, Rua, Numero, Complemento, CEP, DataCadastro
 
 TipoAssinatura: CodigoTipoAssinatura, DescricaoAssinatura, Preco, Ativo, DataCadastro
 ------------------------------------------------------------
