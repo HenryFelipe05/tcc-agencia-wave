@@ -5,13 +5,10 @@ Este repositório contém o código-fonte do site da WAVE, uma agência de marke
 ## Requisitos
 ### Sistema de Login e Registro com Autenticação JWT
 
-O sistema permite que os usuários acessem diversas funcionalidades do site, incluindo a página **Home**, a página de **Assinaturas**, a galeria gratuita de **mockups e PSD**, e o formulário de **Contato**, sem a necessidade de estar logado ou ter uma conta cadastrada. 
-
-Os usuários podem acessar a página de assinaturas sem estar logados, mas ao clicar para assinar, serão redirecionados para a autenticação antes de prosseguir. Usuários cadastrados terão o perfil **"usuário"** e iniciarão com um **plano gratuito**, podendo alterar para uma assinatura paga a qualquer momento.
-
-Usuários com o perfil **"admin"** terão acesso a telas de **gerenciamento de usuários** e suas assinaturas, podendo alterar, excluir ou incluir. Esses usuários também poderão gerenciar os **mockups e PSDs** das galerias.
-
-Os usuários podem realizar login utilizando **email** ou **NomeUsuario**, ambos únicos.
+- O sistema permite que os usuários acessem diversas funcionalidades do site, incluindo a página **Home**, a página de **Assinaturas**, a galeria gratuita de **mockups e PSD**, e o formulário de **Contato**, sem a necessidade de estar logado ou ter uma conta cadastrada. 
+- Os usuários podem acessar a página de assinaturas sem estar logados, mas ao clicar para assinar, serão redirecionados para a autenticação antes de prosseguir. Usuários cadastrados terão o perfil **"usuário"** e iniciarão com um **plano gratuito**, podendo alterar para uma assinatura paga a qualquer momento.
+- Usuários com o perfil **"admin"** terão acesso a telas de **gerenciamento de usuários** e suas assinaturas, podendo alterar, excluir ou incluir. Esses usuários também poderão gerenciar os **mockups e PSDs** das galerias.
+- Os usuários podem realizar login utilizando **email** ou **NomeUsuario**, ambos únicos.
 
 ### Sistema de Planos por Assinatura
 
@@ -46,7 +43,8 @@ Os usuários podem realizar login utilizando **email** ou **NomeUsuario**, ambos
 
 ### Formulário de Contato com a Agência
 
-Qualquer pessoa pode entrar em contato com a **WAVE** através do formulário de contato, **sem necessidade de autenticação**. As mensagens serão recebidas e respondidas por **email**.
+- Qualquer pessoa pode entrar em contato com a **WAVE** através do formulário de contato, **sem necessidade de autenticação**.
+- As mensagens serão recebidas e respondidas por **email**.
 
 ### Telas Necessárias
 
