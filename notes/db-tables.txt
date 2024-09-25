@@ -1,0 +1,23 @@
+Tabelas necessarias para a criação do banco de dados do website da WAVE.
+
+Modelo - Tabela: campo1, campo2...
+
+*Tabelas Usuario/Pessoa*
+------------------------------------------------------------
+Pessoa: CodigoPessoa, Nome, Sobrenome, Email, Telefone, Documento, DataNascimento, CodigoGenero, CodigoTipoPessoa, Ativo, DataCadastro
+
+TipoPessoa: CodigoTipoPessoa, DescricaoTipoPessoa, Ativo, DataCadastro
+
+Usuario: CodigoUsuario, CodigoPessoa, NomeUsuario, SenhaHash, CodigoTipoAssinatura, CodigoPerfil, Ativo, DataCadastro
+
+Perfil: CodigoPerfil, DescricaoPerfil, Ativo, DataCadastro
+
+Genero: CodigoGenero, DescricaoGenero, Ativo, DataCadastro
+
+EnderecoPessoa: CodigoEndereco, CodigoPessoa, Ativo
+
+Endereco: CodigoEndereco, Pais, Estado, Cidade, Bairro, Rua, Numero, Complemento, CEP, Ativo, DataCadastro
+
+TipoAssinatura: CodigoTipoAssinatura, DescricaoAssinatura, Preco, Ativo, DataCadastro
+------------------------------------------------------------
+

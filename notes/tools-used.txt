@@ -1,0 +1,49 @@
+*Ferramentas utilizadas para desenvolver o projeto*
+
+Design e prototipação
+------------------------
+Figma
+Photoshop
+------------------------
+
+Banco de dados
+------------------------
+ER/Studio
+Sql Server
+SSMS
+------------------------
+
+Back-end - Web API
+------------------------
+Dapper
+Dapper Contrib
+Entity Framework
+JWT
+C#
+ASP.NET
+------------------------
+
+Front-end
+------------------------
+Angular
+Typescript
+HTML
+CSS
+------------------------
+
+Teste de API
+------------------------
+Swagger
+Postman
+------------------------
+
+IDEs
+------------------------
+Visual Studio Code 
+Visual Studio Community 2022
+------------------------
+
+SO utilizado para desenvolver
+------------------------
+Windows 11
+------------------------
