@@ -4,20 +4,42 @@ Modelo - Tabela: campo1, campo2...
 
 *Tabelas Usuario/Pessoa*
 ------------------------------------------------------------
-Pessoa: CodigoPessoa, Nome, Sobrenome, Email, Telefone, Documento, DataNascimento, CodigoGenero, CodigoTipoPessoa, Ativo, DataCadastro
+Pessoa: CodigoPessoa, Nome, Sobrenome, Email, Telefone, Documento, DataNascimento, CodigoGenero, CodigoTipoPessoa
 
-TipoPessoa: CodigoTipoPessoa, DescricaoTipoPessoa, Ativo, DataCadastro
+TipoPessoa: CodigoTipoPessoa, Descricao
 
-Usuario: CodigoUsuario, CodigoPessoa, NomeUsuario, SenhaHash, CodigoTipoAssinatura, CodigoPerfil, Ativo, DataCadastro
+Usuario: CodigoUsuario, CodigoPessoa, NomeUsuario, SenhaHash, SenhaSalt, CodigoPerfil, Ativo, DataCadastro
 
-Perfil: CodigoPerfil, DescricaoPerfil, Ativo, DataCadastro
+Perfil: CodigoPerfil, Descricao, DataCadastro
 
-Genero: CodigoGenero, DescricaoGenero, Ativo, DataCadastro
+Genero: CodigoGenero, Descricao
 
 EnderecoPessoa: CodigoEndereco, CodigoPessoa, Ativo
 
 Endereco: CodigoEndereco, Pais, Estado, Cidade, Bairro, Rua, Numero, Complemento, CEP, DataCadastro
-
-TipoAssinatura: CodigoTipoAssinatura, DescricaoAssinatura, Preco, Ativo, DataCadastro
 ------------------------------------------------------------
 
+*Tabelas Assinatura*
+------------------------------------------------------------
+Assinatura: CodigoAssinatura, CodigoUsuario, CodigoTipoAssinatura, CodigoStatusAssinatura, DataCadastro
+
+TipoAssinatura: CodigoTipoAssinatura, Descricao, Preco, DataCadastro
+
+StatusAssinatura: CodigoStatusAssinatura, Descricao
+------------------------------------------------------------
+
+*Tabelas Galeria*
+------------------------------------------------------------
+TipoGaleria: CodigoTipoGaleria, Descricao, DataCadastro
+
+ItemGaleria: CodigoItemGaleria, CodigoTipoGaleria, Titulo, Descricao, ExtensaoArquivo, URLArquivo, URLMiniatura, DataCadastro
+
+Favorito: CodigoFavorito, CodigoUsuario, CodigoItemGaleria, DataCadastro
+------------------------------------------------------------
+
+*Tabelas Contato*
+------------------------------------------------------------
+Contato: CodigoContato, Nome, Email, Mensagem, DataContato, CodigoSituacaoContato
+
+SituacaoContato: CodigoSituacaoContato, Descricao
+------------------------------------------------------------
