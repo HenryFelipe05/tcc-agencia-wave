@@ -1,0 +1,13 @@
+###Autenticacao
+POST - login (valida as credenciais e autentica o usuario)
+POST - registrar (adiciona um novo usuario e o autentica)
+
+###Usuario
+GET - usuario/codigoUsuario (recupera usuario pelo codigo que é recuperado da query)
+GET - usuarios (recupera todos os usuarios)
+POST - novo-usuario (adiciona um novo usuario, apenas admin)
+PUT - alterar-senha/codigoUsuario (altera a senha do usuario)
+PUT - alterar-dados/codigoUsuario (altera os dados cadastrais do usario)
+PUT - desativar/codigoUsuario (desativa o usuario)
+PUT - alterar-perfil/codigoUsuario (altera o perfil de permissões do usuario)
+DELETE - deletar/codigoUsuario (deleta o usuario do banco de dados)
