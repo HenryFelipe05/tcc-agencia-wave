@@ -3,11 +3,34 @@ POST - login (valida as credenciais e autentica o usuario)
 POST - registrar (adiciona um novo usuario e o autentica)
 
 ###Usuario
-GET - usuario/codigoUsuario (recupera usuario pelo codigo que é recuperado da query)
+GET - usuario (recupera usuario pelo codigo que é recuperado da query)
 GET - usuarios (recupera todos os usuarios)
 POST - novo-usuario (adiciona um novo usuario, apenas admin)
-PUT - alterar-senha/codigoUsuario (altera a senha do usuario)
-PUT - alterar-dados/codigoUsuario (altera os dados cadastrais do usario)
-PUT - desativar/codigoUsuario (desativa o usuario)
-PUT - alterar-perfil/codigoUsuario (altera o perfil de permissões do usuario)
-DELETE - deletar/codigoUsuario (deleta o usuario do banco de dados)
+PUT - alterar-senha (altera a senha do usuario)
+PUT - alterar-dados (altera os dados cadastrais do usario)
+PUT - desativar (desativa o usuario)
+PUT - alterar-perfil (altera o perfil de permissões do usuario)
+DELETE - deletar (deleta o usuario do banco de dados)
+
+###Galeria
+GET - recuperar-itens (recupera os itens da galeria com base nos filtros aplicados)
+GET - recuperar-item (recupera os dados de um item pelo codigo)
+GET - baixar-item (faz o download do arquivo do item)
+POST - novo-item (adiciona um novo item à galeria)
+POST - favoritar (adiciona o item aos favoritos)
+POST - desfavoritar (romeve o item dos favoritos)
+PUT - editar (altera os dados do item)
+DELETE - deletar (deleta o item do banco de dados)
+
+###Assinatura
+GET - recuperar-assinaturas (recupera todas as assinaturas)
+GET - recuperar-assinatura (recupera todas a assinatura pelo codigo)
+GET - assinatura-atual (recupera a assinatura atual do usuario)
+POST - nova-assinatura (gera a assinatura do usuario)
+PUT - alterar-assinatura (altera o tipo de assinatura do usuario)
+PUT - alterar-status (altera o status da assinatura. ex: cancelado, ativo...)
+DELETE - deletar (deleta a assinatura do banco de dados)
+
+###Formulario
+POST - enviar-form (envia o formulario de contato)
+
