@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Wave.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Wave.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Wave.Domain.dll": {}
+        }
+      },
+      "Wave.Infra/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Wave.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Wave.Infra.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Wave.Infra.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Wave.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Wave.Domain/Wave.Domain.csproj",
+      "msbuildProject": "../Wave.Domain/Wave.Domain.csproj"
+    },
+    "Wave.Infra/1.0.0": {
+      "type": "project",
+      "path": "../Wave.Infra/Wave.Infra.csproj",
+      "msbuildProject": "../Wave.Infra/Wave.Infra.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Wave.Domain >= 1.0.0",
+      "Wave.Infra >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\inliv\\.nuget\\packages\\": {},
@@ -39,7 +77,14 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\OneDrive\\Área de Trabalho\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
+              "projectPath": "C:\\OneDrive\\Área de Trabalho\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
+            },
+            "C:\\OneDrive\\Área de Trabalho\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj": {
+              "projectPath": "C:\\OneDrive\\Área de Trabalho\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

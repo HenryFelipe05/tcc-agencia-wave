@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Wave.Domain\Wave.Domain.csproj" />
+    <ProjectReference Include="..\Wave.Infra\Wave.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
