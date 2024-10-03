@@ -8,9 +8,7 @@ GO
 -- Tabela Genero
 CREATE TABLE Genero (
     CodigoGenero INT PRIMARY KEY IDENTITY,
-    DescricaoGenero VARCHAR(50) NOT NULL,
-    Ativo BIT NOT NULL,
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+    Descricao VARCHAR(50) NOT NULL,
 );
 
 -- Tabela TipoPessoa
@@ -32,30 +30,10 @@ CREATE TABLE Pessoa (
     CodigoTipoPessoa INT FOREIGN KEY REFERENCES TipoPessoa(CodigoTipoPessoa)
 );
 
--- Tabela Endereco
-CREATE TABLE Endereco (
-    CodigoEndereco INT PRIMARY KEY IDENTITY,
-    Pais VARCHAR(50),
-    Estado VARCHAR(50),
-    Cidade VARCHAR(50),
-    Bairro VARCHAR(50),
-    CEP VARCHAR(20),
-    Ativo BIT NOT NULL,
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
-);
-
--- Tabela EnderecoPessoa
-CREATE TABLE EnderecoPessoa (
-    CodigoEnderecoPessoa INT PRIMARY KEY IDENTITY,
-    CodigoEndereco INT FOREIGN KEY REFERENCES Endereco(CodigoEndereco),
-    CodigoPessoa INT FOREIGN KEY REFERENCES Pessoa(CodigoPessoa)
-);
-
 -- Tabela Perfil
 CREATE TABLE Perfil (
     CodigoPerfil INT PRIMARY KEY IDENTITY,
-    DescricaoPerfil VARCHAR(50),
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+    Descricao VARCHAR(50)
 );
 
 -- Tabela Usuario
@@ -79,9 +57,10 @@ CREATE TABLE Galeria (
 CREATE TABLE ItemGaleria (
     CodigoItemGaleria INT PRIMARY KEY IDENTITY,
     CodigoGaleria INT FOREIGN KEY REFERENCES Galeria(CodigoGaleria),
-    Titulo VARCHAR(255),
-    ExtensaoArquivo VARCHAR(10),
-    URLMiniatura VARCHAR(255),
+    Titulo VARCHAR(255) NOT NULL,
+    ExtensaoArquivo VARCHAR(10) NOT NULL,
+    Arquivo VARBINARY(MAX) NOT NULL,
+    URLMiniatura VARCHAR(255) NOT NULL,
     Ativo BIT NOT NULL,
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
 );
@@ -91,7 +70,7 @@ CREATE TABLE Favorito (
     CodigoFavorito INT PRIMARY KEY IDENTITY,
     CodigoUsuario INT FOREIGN KEY REFERENCES Usuario(CodigoUsuario),
     CodigoItemGaleria INT FOREIGN KEY REFERENCES ItemGaleria(CodigoItemGaleria),
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+    DataFavorito DATETIME NOT NULL DEFAULT GETDATE()
 );
 
 -- Tabela StatusAssinatura
@@ -104,17 +83,22 @@ CREATE TABLE StatusAssinatura (
 CREATE TABLE TipoAssinatura (
     CodigoTipoAssinatura INT PRIMARY KEY IDENTITY,
     Descricao VARCHAR(100) NOT NULL,
-    Preco DECIMAL(18, 2) NOT NULL,
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+    Preco DECIMAL(18, 2) NOT NULL
 );
 
 -- Tabela Assinatura
 CREATE TABLE Assinatura (
-    CodigoAssinatura INT PRIMARY KEY IDENTITY,
+    CodigoAssinatura UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
     CodigoTipoAssinatura INT FOREIGN KEY REFERENCES TipoAssinatura(CodigoTipoAssinatura),
     CodigoUsuario INT FOREIGN KEY REFERENCES Usuario(CodigoUsuario),
     CodigoStatusAssinatura INT FOREIGN KEY REFERENCES StatusAssinatura(CodigoStatusAssinatura),
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+);
+
+-- Tabela SituacaoContato
+CREATE TABLE StatusContato (
+    CodigoStatusContato INT PRIMARY KEY IDENTITY,
+    Descricao VARCHAR(100) NOT NULL
 );
 
 -- Tabela Contato
@@ -124,11 +108,20 @@ CREATE TABLE Contato (
     Email VARCHAR(100) NOT NULL,
     Mensagem VARCHAR(MAX),
     DataContato DATETIME NOT NULL DEFAULT GETDATE(),
-    CodigoStatusContato INT FOREIGN KEY REFERENCES StatusAssinatura(CodigoStatusAssinatura)
+    CodigoStatusContato INT FOREIGN KEY REFERENCES StatusContato(CodigoStatusContato)
 );
 
--- Tabela SituacaoContato
-CREATE TABLE SituacaoContato (
-    CodigoStatusContato INT PRIMARY KEY IDENTITY,
-    Descricao VARCHAR(100) NOT NULL
-);
+INSERT INTO Genero (Descricao) VALUES ('Masculino');
+INSERT INTO Genero (Descricao) VALUES ('Feminino');
+INSERT INTO Genero (Descricao) VALUES ('Não Binário');
+INSERT INTO Genero (Descricao) VALUES ('Não Informar');
+
+INSERT INTO TipoPessoa (Descricao) VALUES ('Física');
+INSERT INTO TipoPessoa (Descricao) VALUES ('Jurídica');
+
+INSERT INTO Perfil (Descricao) VALUES ('Administrador');
+INSERT INTO Perfil (Descricao) VALUES ('Operador');
+INSERT INTO Perfil (Descricao) VALUES ('Usuario');
+
+
+

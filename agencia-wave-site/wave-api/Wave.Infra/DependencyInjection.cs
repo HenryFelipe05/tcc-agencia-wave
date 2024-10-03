@@ -1,7 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Wave.Application.Interfaces.Repository;
+using Wave.Application.Interfaces.Service;
+using Wave.Application.Services;
 using Wave.Infra.Data.Context;
+using Wave.Infra.Repositories;
 
 namespace Wave.Infra
 {
@@ -15,14 +19,14 @@ namespace Wave.Infra
             });
 
             #region [ Repositories ]
+            services.AddScoped<IPessoaRepository, PessoaRepository>();
+			#endregion
 
-            #endregion
+			#region [ Services ]
+			services.AddScoped<IPessoaService, PessoaService>();
+			#endregion
 
-            #region [ Services ]
-
-            #endregion
-
-            return services;
+			return services;
         }
     }
 }

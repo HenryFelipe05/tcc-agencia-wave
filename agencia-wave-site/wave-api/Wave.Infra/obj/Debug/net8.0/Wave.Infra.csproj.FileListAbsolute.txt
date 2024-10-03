@@ -1,0 +1,6 @@
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.csproj.AssemblyReference.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.AssemblyInfoInputs.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.AssemblyInfo.cs
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.csproj.CoreCompileInputs.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.sourcelink.json

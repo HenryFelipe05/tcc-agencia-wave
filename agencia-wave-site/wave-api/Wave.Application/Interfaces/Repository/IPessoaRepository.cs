@@ -1,14 +1,14 @@
-﻿using Wave.Application.Command;
+﻿using Wave.Application.Commands;
 using Wave.Application.Queries;
 
 namespace Wave.Application.Interfaces.Repository
 {
-    public interface IPessoaRepository
-    {
-        Task<PessoaQuery> RecuperarPessoa(int codigoPessoa);
-        Task<IEnumerable<PessoaQuery>> RecuperarListaPessoas();
-        Task<PessoaQuery> AdicionarPessoa(PessoaCommand pessoaCommand);
-        Task<PessoaQuery> AlterarPessoa(PessoaCommand pessoaCommand);
-        Task<bool> DeletarPessoa(int codigoPessoa);
-    }
+	public interface IPessoaRepository
+	{
+		Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa);
+		Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync();
+		Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand);
+		Task<PessoaQuery> AlterarPessoaAsync(PessoaCommand pessoaCommand);
+		Task<bool> DeletarPessoaAsync(int codigoPessoa);
+	}
 }

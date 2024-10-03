@@ -142,3 +142,14 @@ C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\D
 C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.pdb
 C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.genruntimeconfig.cache
 C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\ref\Wave.API.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.csproj.AssemblyReference.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.AssemblyInfoInputs.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.AssemblyInfo.cs
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.csproj.CoreCompileInputs.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.MvcApplicationPartsAssemblyInfo.cs
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.MvcApplicationPartsAssemblyInfo.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.sourcelink.json
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\refint\Wave.API.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.API\obj\Debug\net8.0\Wave.API.pdb

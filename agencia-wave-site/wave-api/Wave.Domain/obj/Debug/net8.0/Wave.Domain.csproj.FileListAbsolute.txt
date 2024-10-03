@@ -1,0 +1,15 @@
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\bin\Debug\net8.0\Wave.Domain.deps.json
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\bin\Debug\net8.0\Wave.Domain.runtimeconfig.json
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\bin\Debug\net8.0\Wave.Domain.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\bin\Debug\net8.0\Wave.Domain.pdb
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.csproj.AssemblyReference.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.AssemblyInfoInputs.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.AssemblyInfo.cs
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.csproj.CoreCompileInputs.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.sourcelink.json
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\refint\Wave.Domain.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.pdb
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\Wave.Domain.genruntimeconfig.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Domain\obj\Debug\net8.0\ref\Wave.Domain.dll
