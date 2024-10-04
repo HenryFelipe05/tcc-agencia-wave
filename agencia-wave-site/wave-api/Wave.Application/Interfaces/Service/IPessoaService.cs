@@ -7,8 +7,8 @@ namespace Wave.Application.Interfaces.Service
 	{
 		Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa);
 		Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync();
-		Task AdicionarPessoaAsync(PessoaCommand pessoaCommand);
-		Task AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa);
+		Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand);
+		Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa);
 		Task<bool> DeletarPessoaAsync(int codigoPessoa);
 	}
 }

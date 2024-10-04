@@ -24,8 +24,6 @@ namespace Wave.API.Controllers
             {
                 Nome = novoUsuarioCommand.Nome,
                 Sobrenome = novoUsuarioCommand.Sobrenome,
-                Email = novoUsuarioCommand.Email,
-                Telefone = novoUsuarioCommand.Telefone,
                 Documento = novoUsuarioCommand.Documento,
                 DataNascimento = novoUsuarioCommand.DataNascimento,
                 CodigoGenero = novoUsuarioCommand.CodigoGenero,

@@ -17,7 +17,7 @@ namespace Wave.Infra.Repositories
 			_context = context;
         }
 
-        public async Task AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+        public async Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
         {
             #region [ SQL ]
             var sql = new StringBuilder();
@@ -43,25 +43,23 @@ namespace Wave.Infra.Repositories
             using (var connection = _context.GetDbConnection())
             {
                 if (connection.State == ConnectionState.Closed)
-                {
                     connection.Open();
-                }
-
-                await connection.ExecuteAsync(sql.ToString(), new
-                { 
+                
+                var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
+                {
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
-                    Email = pessoaCommand.Email,
-                    Telefone = pessoaCommand.Telefone,
                     Documento = pessoaCommand.Documento,
                     DataNascimento = pessoaCommand.DataNascimento,
                     CodigoGenero = pessoaCommand.CodigoGenero,
                     CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
                 });
-            }
+
+				return linhasAfetadas > 0;
+			}
         }
 
-        public async Task AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
+        public async Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
         {
             #region [ SQL ]
             var sql = new StringBuilder();
@@ -80,23 +78,21 @@ namespace Wave.Infra.Repositories
             using (var connection = _context.GetDbConnection())
             {
                 if (connection.State == ConnectionState.Closed)
-                {
                     connection.Open();
-                }
-
-                await connection.ExecuteAsync(sql.ToString(), new
+                
+				var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
                 {
                     CodigoPessoa = codigoPessoa,
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
-                    Email = pessoaCommand.Email,
-                    Telefone = pessoaCommand.Telefone,
                     Documento = pessoaCommand.Documento,
                     DataNascimento = pessoaCommand.DataNascimento,
                     CodigoGenero = pessoaCommand.CodigoGenero,
                     CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
                 });
-            }
+
+				return linhasAfetadas > 0;
+			}
         }
 
         public async Task<bool> DeletarPessoaAsync(int codigoPessoa)
@@ -111,16 +107,14 @@ namespace Wave.Infra.Repositories
             using (var connection = _context.GetDbConnection())
             {
                 if (connection.State == ConnectionState.Closed)
-                {
                     connection.Open();
-                }
-
-                var rowsAffected = await connection.ExecuteAsync(sql.ToString(), new
+                
+                var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
                 {
                     CodigoPessoa = codigoPessoa,
                 });
 
-                return rowsAffected > 0;
+                return linhasAfetadas > 0;
             }
         }
 
@@ -147,9 +141,7 @@ namespace Wave.Infra.Repositories
             using (var connection = _context.GetDbConnection())
 			{
 				if (connection.State == ConnectionState.Closed)
-				{
 					connection.Open();
-				}
 
 				return await connection.QueryAsync<PessoaQuery>(sql.ToString());
 			}
@@ -178,9 +170,7 @@ namespace Wave.Infra.Repositories
             using (var connection = _context.GetDbConnection())
 			{
 				if (connection.State == ConnectionState.Closed)
-				{
 					connection.Open();
-				}
 
 				return await connection.QueryFirstOrDefaultAsync<PessoaQuery>(sql.ToString(), new { CodigoPessoa = codigoPessoa });
 			}

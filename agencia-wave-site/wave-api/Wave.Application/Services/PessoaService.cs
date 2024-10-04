@@ -14,14 +14,14 @@ namespace Wave.Application.Services
             _pessoaRepository = pessoaRepository;
         }
 
-        public async Task AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+        public async Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
 		{
-			await _pessoaRepository.AdicionarPessoaAsync(pessoaCommand);
+			return await _pessoaRepository.AdicionarPessoaAsync(pessoaCommand);
 		}
 
-		public async Task AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
+		public async Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
 		{
-			await _pessoaRepository.AlterarPessoaAsync(pessoaCommand, codigoPessoa);
+			return await _pessoaRepository.AlterarPessoaAsync(pessoaCommand, codigoPessoa);
 		}
 
 		public async Task<bool> DeletarPessoaAsync(int codigoPessoa)

@@ -22,8 +22,7 @@ CREATE TABLE Pessoa (
     CodigoPessoa INT PRIMARY KEY IDENTITY,
     Nome VARCHAR(100) NOT NULL,
     Sobrenome VARCHAR(100),
-    Email VARCHAR(100) UNIQUE,
-    Telefone VARCHAR(20),
+    ,
     Documento VARCHAR(20),
     DataNascimento DATE,
     CodigoGenero INT FOREIGN KEY REFERENCES Genero(CodigoGenero),
@@ -40,8 +39,9 @@ CREATE TABLE Perfil (
 CREATE TABLE Usuario (
     CodigoUsuario INT PRIMARY KEY IDENTITY,
     NomeUsuario VARCHAR(50) UNIQUE NOT NULL,
+	Email VARCHAR(100) UNIQUE NOT NULL,
+	Telefone VARCHAR(20),
     Senha VARCHAR(255) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
     Ativo BIT NOT NULL,
     CodigoPerfil INT FOREIGN KEY REFERENCES Perfil(CodigoPerfil),
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()

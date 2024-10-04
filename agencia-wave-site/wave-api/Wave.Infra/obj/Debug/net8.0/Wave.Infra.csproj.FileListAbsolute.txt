@@ -24,3 +24,17 @@ C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj
 C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.pdb
 C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.genruntimeconfig.cache
 C:\Users\etec\Desktop\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\ref\Wave.Infra.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Infra.deps.json
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Infra.runtimeconfig.json
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Infra.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Infra.pdb
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Application.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Domain.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Application.pdb
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\bin\Debug\net8.0\Wave.Domain.pdb
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.csproj.CopyComplete
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\refint\Wave.Infra.dll
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.pdb
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\Wave.Infra.genruntimeconfig.cache
+C:\OneDrive\Área de Trabalho\tcc-agencia-wave\agencia-wave-site\wave-api\Wave.Infra\obj\Debug\net8.0\ref\Wave.Infra.dll

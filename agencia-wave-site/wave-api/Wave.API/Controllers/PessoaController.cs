@@ -42,18 +42,21 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<PessoaQuery>> AdicionarPessoa([FromBody] PessoaCommand pessoaCommand)
+        public async Task<ActionResult<bool>> AdicionarPessoa([FromBody] PessoaCommand pessoaCommand)
         {
             if (pessoaCommand == null)
                 return BadRequest("Pessoa inválida.");
 
-            await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
+            var result = await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
 
-            return Created();
+            if (result == false)
+                return BadRequest();
+            else
+                return CreatedAtAction("Adicionar Pessoa", result);
         }
 
         [HttpPut("{codigoPessoa}")]
-        public async Task<ActionResult> AlterarPessoa([FromBody] PessoaCommand pessoaCommand, [FromRoute] int codigoPessoa)
+        public async Task<ActionResult<bool>> AlterarPessoa([FromRoute] int codigoPessoa, [FromBody] PessoaCommand pessoaCommand)
         {
             if (codigoPessoa == 0)
                 return BadRequest("CodigoPessoa inválido.");
@@ -61,9 +64,12 @@ namespace Wave.API.Controllers
             if (pessoaCommand == null)
                 return BadRequest("Pessoa inválida.");
 
-            await _pessoaService.AlterarPessoaAsync(pessoaCommand, codigoPessoa);
+            var result = await _pessoaService.AlterarPessoaAsync(pessoaCommand, codigoPessoa);
 
-            return Ok();
+			if (result == false)
+				return BadRequest();
+			else
+				return Ok($"Resultado: {result}\nPessoa alterada com sucesso!");
         }
 
         [HttpDelete("{codigoPessoa}")]
