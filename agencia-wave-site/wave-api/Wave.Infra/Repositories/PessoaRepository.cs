@@ -4,54 +4,147 @@ using System.Text;
 using Wave.Application.Commands;
 using Wave.Application.Interfaces.Repository;
 using Wave.Application.Queries;
-using Wave.Domain.Entities;
 using Wave.Infra.Data.Context;
 
 namespace Wave.Infra.Repositories
 {
-	public class PessoaRepository : IPessoaRepository
+    public class PessoaRepository : IPessoaRepository
 	{
 		private readonly WaveDbContext _context;
 
 		public PessoaRepository(WaveDbContext context)
 		{
 			_context = context;
-		}
+        }
 
-		public Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+        public async Task AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+        {
+            #region [ SQL ]
+            var sql = new StringBuilder();
+
+            sql.AppendLine(" INSERT INTO Pessoa(Nome, ");
+            sql.AppendLine("					Sobrenome, ");
+            sql.AppendLine("					Email, ");
+            sql.AppendLine("					Telefone, ");
+            sql.AppendLine("					Documento, ");
+            sql.AppendLine("					DataNascimento, ");
+            sql.AppendLine("					CodigoGenero, ");
+            sql.AppendLine("					CodigoTipoPessoa) ");
+            sql.AppendLine("	  VALUES (@Nome, ");
+            sql.AppendLine("			  @Sobrenome, ");
+            sql.AppendLine("			  @Email, ");
+            sql.AppendLine("			  @Telefone, ");
+            sql.AppendLine("			  @Documento, ");
+            sql.AppendLine("			  @DataNascimento, ");
+            sql.AppendLine("			  @CodigoGenero, ");
+            sql.AppendLine("			  @CodigoTipoPessoa) ");
+            #endregion
+
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                await connection.ExecuteAsync(sql.ToString(), new
+                { 
+                    Nome = pessoaCommand.Nome,
+                    Sobrenome = pessoaCommand.Sobrenome,
+                    Email = pessoaCommand.Email,
+                    Telefone = pessoaCommand.Telefone,
+                    Documento = pessoaCommand.Documento,
+                    DataNascimento = pessoaCommand.DataNascimento,
+                    CodigoGenero = pessoaCommand.CodigoGenero,
+                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
+                });
+            }
+        }
+
+        public async Task AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
+        {
+            #region [ SQL ]
+            var sql = new StringBuilder();
+
+            sql.AppendLine(" UPDATE Pessoa ");
+            sql.AppendLine("    SET Nome = @Nome, ");
+            sql.AppendLine("        Sobrenome = @Sobrenome, ");
+            sql.AppendLine("        Email = @Email, ");
+            sql.AppendLine("        Telefone = @Telefone, ");
+            sql.AppendLine("        Documento = @Documento, ");
+            sql.AppendLine("        DataNascimento = @DataNascimento, ");
+            sql.AppendLine("        CodigoTipoPessoa = @CodigoTipoPessoa ");
+            sql.AppendLine("  WHERE CodigoPessoa = @CodigoPessoa ");
+            #endregion
+
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                await connection.ExecuteAsync(sql.ToString(), new
+                {
+                    CodigoPessoa = codigoPessoa,
+                    Nome = pessoaCommand.Nome,
+                    Sobrenome = pessoaCommand.Sobrenome,
+                    Email = pessoaCommand.Email,
+                    Telefone = pessoaCommand.Telefone,
+                    Documento = pessoaCommand.Documento,
+                    DataNascimento = pessoaCommand.DataNascimento,
+                    CodigoGenero = pessoaCommand.CodigoGenero,
+                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
+                });
+            }
+        }
+
+        public async Task<bool> DeletarPessoaAsync(int codigoPessoa)
+        {
+            #region [ SQL ]
+            var sql = new StringBuilder();
+
+            sql.AppendLine(" DELETE FROM Pessoa ");
+            sql.AppendLine("       WHERE CodigoPessoa = @CodigoPessoa ");
+            #endregion
+
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                var rowsAffected = await connection.ExecuteAsync(sql.ToString(), new
+                {
+                    CodigoPessoa = codigoPessoa,
+                });
+
+                return rowsAffected > 0;
+            }
+        }
+
+        public async Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync()
 		{
-			throw new NotImplementedException();
-		}
+            #region [ SQL ]
+            var sql = new StringBuilder();
 
-		public Task<PessoaQuery> AlterarPessoaAsync(PessoaCommand pessoaCommand)
-		{
-			throw new NotImplementedException();
-		}
+            sql.AppendLine(" SELECT p.CodigoPessoa,  ");
+            sql.AppendLine("		p.Nome, ");
+            sql.AppendLine("		p.Sobrenome, ");
+            sql.AppendLine("		p.Email, ");
+            sql.AppendLine("		p.Telefone, ");
+            sql.AppendLine("		p.Documento, ");
+            sql.AppendLine("		p.DataNascimento, ");
+            sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
+            sql.AppendLine("		g.Descricao AS Genero ");
+            sql.AppendLine("   FROM Pessoa p ");
+            sql.AppendLine("  INNER JOIN Genero g ON(g.CodigoGenero = p.CodigoGenero) ");
+            sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
+            sql.AppendLine("  ORDER BY p.Nome ");
+            #endregion
 
-		public Task<bool> DeletarPessoaAsync(int codigoPessoa)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync()
-		{
-			var sql = new StringBuilder();
-
-			sql.AppendLine(" SELECT p.CodigoPessoa,  ");
-			sql.AppendLine("		p.Nome, ");
-			sql.AppendLine("		p.Sobrenome, ");
-			sql.AppendLine("		p.Email, ");
-			sql.AppendLine("		p.Telefone, ");
-			sql.AppendLine("		p.Documento, ");
-			sql.AppendLine("		p.DataNascimento, ");
-			sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
-			sql.AppendLine("		g.Descricao AS Genero ");
-			sql.AppendLine("   FROM Pessoa p ");
-			sql.AppendLine("  INNER JOIN Genero g ON(g.CodigoGenero = p.CodigoGenero) ");
-			sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
-			sql.AppendLine("  ORDER BY p.Nome ");
-
-			using (var connection = _context.GetDbConnection())
+            using (var connection = _context.GetDbConnection())
 			{
 				if (connection.State == ConnectionState.Closed)
 				{
@@ -64,23 +157,25 @@ namespace Wave.Infra.Repositories
 
 		public async Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa)
 		{
-			var sql = new StringBuilder();
+            #region [ SQL ]
+            var sql = new StringBuilder();
 
-			sql.AppendLine(" SELECT p.CodigoPessoa,  ");
-			sql.AppendLine("		p.Nome, ");
-			sql.AppendLine("		p.Sobrenome, ");
-			sql.AppendLine("		p.Email, ");
-			sql.AppendLine("		p.Telefone, ");
-			sql.AppendLine("		p.Documento, ");
-			sql.AppendLine("		p.DataNascimento, ");
-			sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
-			sql.AppendLine("		g.Descricao AS Genero ");
-			sql.AppendLine("   FROM Pessoa p ");
-			sql.AppendLine("  INNER JOIN Genero g ON(g.CodigoGenero = p.CodigoGenero) ");
-			sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
-			sql.AppendLine("  WHERE p.CodigoPessoa = @CodigoPessoa ");
-
-			using (var connection = _context.GetDbConnection())
+            sql.AppendLine(" SELECT p.CodigoPessoa,  ");
+            sql.AppendLine("		p.Nome, ");
+            sql.AppendLine("		p.Sobrenome, ");
+            sql.AppendLine("		p.Email, ");
+            sql.AppendLine("		p.Telefone, ");
+            sql.AppendLine("		p.Documento, ");
+            sql.AppendLine("		p.DataNascimento, ");
+            sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
+            sql.AppendLine("		g.Descricao AS Genero ");
+            sql.AppendLine("   FROM Pessoa p ");
+            sql.AppendLine("  INNER JOIN Genero g ON(g.CodigoGenero = p.CodigoGenero) ");
+            sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
+            sql.AppendLine("  WHERE p.CodigoPessoa = @CodigoPessoa ");
+            #endregion
+			
+            using (var connection = _context.GetDbConnection())
 			{
 				if (connection.State == ConnectionState.Closed)
 				{

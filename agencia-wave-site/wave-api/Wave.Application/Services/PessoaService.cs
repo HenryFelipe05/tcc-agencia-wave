@@ -1,4 +1,5 @@
 ﻿using Wave.Application.Commands;
+using Wave.Application.Interfaces.Repository;
 using Wave.Application.Interfaces.Service;
 using Wave.Application.Queries;
 
@@ -6,29 +7,36 @@ namespace Wave.Application.Services
 {
 	public class PessoaService : IPessoaService
 	{
-		public Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+		private readonly IPessoaRepository _pessoaRepository;
+
+        public PessoaService(IPessoaRepository pessoaRepository)
+        {
+            _pessoaRepository = pessoaRepository;
+        }
+
+        public async Task AdicionarPessoaAsync(PessoaCommand pessoaCommand)
 		{
-			throw new NotImplementedException();
+			await _pessoaRepository.AdicionarPessoaAsync(pessoaCommand);
 		}
 
-		public Task<PessoaQuery> AlterarPessoaAsync(PessoaCommand pessoaCommand)
+		public async Task AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
 		{
-			throw new NotImplementedException();
+			await _pessoaRepository.AlterarPessoaAsync(pessoaCommand, codigoPessoa);
 		}
 
-		public Task<bool> DeletarPessoaAsync(int codigoPessoa)
+		public async Task<bool> DeletarPessoaAsync(int codigoPessoa)
 		{
-			throw new NotImplementedException();
+			return await _pessoaRepository.DeletarPessoaAsync(codigoPessoa);
 		}
 
-		public Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync()
+		public async Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync()
 		{
-			throw new NotImplementedException();
-		}
+            return await _pessoaRepository.RecuperarListaPessoasAsync();
+        }
 
-		public Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa)
+		public async Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa)
 		{
-			throw new NotImplementedException();
+			return await _pessoaRepository.RecuperarPessoaAsync(codigoPessoa);
 		}
 	}
 }

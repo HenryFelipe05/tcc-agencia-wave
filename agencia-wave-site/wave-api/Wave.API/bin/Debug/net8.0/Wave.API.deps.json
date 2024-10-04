@@ -8,11 +8,14 @@
     ".NETCoreApp,Version=v8.0": {
       "Wave.API/1.0.0": {
         "dependencies": {
+          "Dapper": "2.1.35",
+          "Dapper.Contrib": "2.0.78",
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
           "Swashbuckle.AspNetCore": "6.4.0",
-          "Wave.Application": "1.0.0"
+          "Wave.Application": "1.0.0",
+          "Wave.Infra": "1.0.0"
         },
         "runtime": {
           "Wave.API.dll": {}
@@ -49,6 +52,25 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.10.3.0",
             "fileVersion": "1.1000.323.51804"
+          }
+        }
+      },
+      "Dapper/2.1.35": {
+        "runtime": {
+          "lib/net7.0/Dapper.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.35.13827"
+          }
+        }
+      },
+      "Dapper.Contrib/2.0.78": {
+        "dependencies": {
+          "Dapper": "2.1.35"
+        },
+        "runtime": {
+          "lib/net5.0/Dapper.Contrib.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.78.45418"
           }
         }
       },
@@ -914,9 +936,8 @@
       },
       "Wave.Application/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
-          "Wave.Domain": "1.0.0",
-          "Wave.Infra": "1.0.0"
+          "Dapper": "2.1.35",
+          "Dapper.Contrib": "2.0.78"
         },
         "runtime": {
           "Wave.Application.dll": {}
@@ -924,6 +945,8 @@
       },
       "Wave.Domain/1.0.0": {
         "dependencies": {
+          "Dapper": "2.1.35",
+          "Dapper.Contrib": "2.0.78",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8"
         },
         "runtime": {
@@ -932,9 +955,12 @@
       },
       "Wave.Infra/1.0.0": {
         "dependencies": {
+          "Dapper": "2.1.35",
+          "Dapper.Contrib": "2.0.78",
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Wave.Application": "1.0.0",
           "Wave.Domain": "1.0.0"
         },
         "runtime": {
@@ -962,6 +988,20 @@
       "sha512": "sha512-l1Xm2MWOF2Mzcwuarlw8kWQXLZk3UeB55aQXVyjj23aBfDwOZ3gu5GP2kJ6KlmZeZv2TCzw7x4L3V36iNr3gww==",
       "path": "azure.identity/1.10.3",
       "hashPath": "azure.identity.1.10.3.nupkg.sha512"
+    },
+    "Dapper/2.1.35": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YKRwjVfrG7GYOovlGyQoMvr1/IJdn+7QzNXJxyMh0YfFF5yvDmTYaJOVYWsckreNjGsGSEtrMTpnzxTUq/tZQw==",
+      "path": "dapper/2.1.35",
+      "hashPath": "dapper.2.1.35.nupkg.sha512"
+    },
+    "Dapper.Contrib/2.0.78": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sUfDVIf8LlHNiz3MfUFodeyRiemfN1JFkPxYjCxFWlwNPg1iQ49mB+0E89TkywWs4X8fiRWOVDQgtH5FtzK5Kw==",
+      "path": "dapper.contrib/2.0.78",
+      "hashPath": "dapper.contrib.2.0.78.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",

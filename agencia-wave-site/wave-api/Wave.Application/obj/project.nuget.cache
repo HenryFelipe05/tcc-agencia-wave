@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MoC+DKp17JlAIINIQ6kMtiGiGoAYxGA7nHeQo8OuU0YVCSk68NdPnTlEBLbg95PCBgY15DbHYvxvZokTHzmd6A==",
+  "dgSpecHash": "Xw9VinXQc2pW9zByX7/6JIktkc7rJvcp0sevroBL+2Rr1IVNaa89TV2FoxyJpe17ww6oKYd6CUaMJ9uy3taxDA==",
   "success": true,
-  "projectFilePath": "C:\\OneDrive\\Área de Trabalho\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
+  "projectFilePath": "C:\\Users\\etec\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\inliv\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
-    "C:\\Users\\inliv\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512"
+    "C:\\Users\\etec\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\etec\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512"
   ],
   "logs": []
 }
