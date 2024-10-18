@@ -22,7 +22,6 @@ CREATE TABLE Pessoa (
     CodigoPessoa INT PRIMARY KEY IDENTITY,
     Nome VARCHAR(100) NOT NULL,
     Sobrenome VARCHAR(100),
-    ,
     Documento VARCHAR(20),
     DataNascimento DATE,
     CodigoGenero INT FOREIGN KEY REFERENCES Genero(CodigoGenero),
@@ -44,6 +43,7 @@ CREATE TABLE Usuario (
     Senha VARCHAR(255) NOT NULL,
     Ativo BIT NOT NULL,
     CodigoPerfil INT FOREIGN KEY REFERENCES Perfil(CodigoPerfil),
+	CodigoPessoa INT FOREIGN KEY REFERENCES Pessoa(CodigoPessoa),
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
 );
 
@@ -58,6 +58,7 @@ CREATE TABLE ItemGaleria (
     CodigoItemGaleria INT PRIMARY KEY IDENTITY,
     CodigoGaleria INT FOREIGN KEY REFERENCES Galeria(CodigoGaleria),
     Titulo VARCHAR(255) NOT NULL,
+	Descricao VARCHAR(255) NULL,
     ExtensaoArquivo VARCHAR(10) NOT NULL,
     Arquivo VARBINARY(MAX) NOT NULL,
     URLMiniatura VARCHAR(255) NOT NULL,
@@ -122,6 +123,3 @@ INSERT INTO TipoPessoa (Descricao) VALUES ('Jurídica');
 INSERT INTO Perfil (Descricao) VALUES ('Administrador');
 INSERT INTO Perfil (Descricao) VALUES ('Operador');
 INSERT INTO Perfil (Descricao) VALUES ('Usuario');
-
-
-
