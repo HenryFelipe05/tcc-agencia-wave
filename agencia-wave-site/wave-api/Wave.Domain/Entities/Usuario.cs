@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Principal;
+using Microsoft.AspNetCore.Identity;
 
 namespace Wave.Domain.Entities
 {
-    [Table("Usuario")]
-    public class Usuario
+    [Table("Usuario")]        
+    public class Usuario : IdentityUser
     {
         [Key]
         public int CodigoUsuario { get; set; }
@@ -20,5 +22,6 @@ namespace Wave.Domain.Entities
 
         [ForeignKey("Perfil")]
         public int CodigoPerfil { get; set; }
+
     }
 }

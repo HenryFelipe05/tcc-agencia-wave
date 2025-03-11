@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Wave.Application.Commands;
-using Wave.Application.Interfaces.Service;
-using Wave.Application.Queries;
+using Wave.Application.Services.Interfaces;
+using Wave.Domain.Commands;
+using Wave.Domain.Queries;
 
 namespace Wave.API.Controllers
 {

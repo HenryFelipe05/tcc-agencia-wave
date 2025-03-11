@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Wave.Application.Commands;
-using Wave.Application.Interfaces.Service;
-using Wave.Application.Queries;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Wave.Application.Services.Interfaces;
+using Wave.Domain.Commands;
+using Wave.Domain.Queries;
 
 namespace Wave.API.Controllers
 {
@@ -17,6 +18,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<PessoaQuery>>> RecuperarListaPessoas()
         {
             var pessoas = await _pessoaService.RecuperarListaPessoasAsync();

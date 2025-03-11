@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using System.Data;
 using System.Text;
-using Wave.Application.Commands;
-using Wave.Application.Interfaces.Repository;
-using Wave.Application.Queries;
+using Wave.Domain.Commands;
+using Wave.Domain.Queries;
+using Wave.Domain.Repository;
 using Wave.Infra.Data.Context;
 
 namespace Wave.Infra.Repositories

@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wave.Application.Interfaces.Repository;
-using Wave.Application.Interfaces.Service;
 using Wave.Application.Services;
+using Wave.Application.Services.Interfaces;
 using Wave.Infra.Data.Context;
 using Wave.Infra.Repositories;
 
@@ -25,7 +25,7 @@ namespace Wave.Infra
 			#region [ Services ]
 			services.AddScoped<IPessoaService, PessoaService>();
 			#endregion
-
+         
 			return services;
         }
     }

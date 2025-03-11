@@ -1,11 +1,11 @@
-﻿using Wave.Application.Commands;
-using Wave.Application.Interfaces.Repository;
-using Wave.Application.Interfaces.Service;
-using Wave.Application.Queries;
+﻿using Wave.Application.Services.Interfaces;
+using Wave.Domain.Commands;
+using Wave.Domain.Queries;
+using Wave.Domain.Repository;
 
 namespace Wave.Application.Services
 {
-	public class PessoaService : IPessoaService
+    public class PessoaService : IPessoaService
 	{
 		private readonly IPessoaRepository _pessoaRepository;
 
