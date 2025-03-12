@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Wave.Application.Services;
+using Wave.Application.Services.Interfaces;
 using Wave.Domain.Entities;
 using Wave.Infra;
 using Wave.Infra.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddDbContext<WaveDbContext>(options =>
 			options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
