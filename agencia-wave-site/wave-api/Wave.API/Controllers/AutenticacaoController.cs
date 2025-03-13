@@ -15,17 +15,17 @@ namespace Wave.API.Controllers
     {
         private readonly IPessoaService _pessoaService;
         private readonly AuthenticationService _authenticationService; // Serviço de autenticação
-        private readonly TokenService _tokenService; // Serviço para gerar JWT
+        private readonly JwtService _jwtService; // Serviço para gerar JWT
         private readonly UserManager<Usuario> _userManager; // Para gerenciar usuários com Identity
 
         public AutenticacaoController(IPessoaService pessoaService,
                                       AuthenticationService authenticationService,
-                                      TokenService tokenService,
+                                      JwtService jwtService,
                                       UserManager<Usuario> userManager)
         {
             _pessoaService = pessoaService;
             _authenticationService = authenticationService;
-            _tokenService = tokenService;
+            _jwtService = jwtService;
             _userManager = userManager;
         }
 
