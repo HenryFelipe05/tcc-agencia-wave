@@ -1,41 +1,44 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Wave.Application.Services;
 using Wave.Domain.Entities;
 
-namespace Wave.Application.Services
+public class AuthenticationService
 {
-    internal class AuthenticationService
+    private readonly UserManager<Usuario> _userManager;
+    private readonly SignInManager<Usuario> _signInManager;
+    private readonly JwtService _jwtService;
+
+    public AuthenticationService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, JwtService tokenService)
     {
-        private readonly UserManager<Usuario> _userManager;
-        private readonly SignInManager<Usuario> _signInManager;
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _jwtService = tokenService;
+    }
 
-        public AuthenticationService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager)
+    public async Task<IdentityResult> RegisterUserAsync(Usuario user, string password)
+    {
+        return await _userManager.CreateAsync(user, password);
+    }
+
+    public async Task<string> LoginUserAsync(string userName, string password)
+    {
+        var user = await _userManager.FindByNameAsync(userName);
+        if (user == null || !(await _userManager.CheckPasswordAsync(user, password)))
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            return null; 
         }
 
-        public async Task<IdentityResult> RegisterUserAsync(Usuario user, string password, CancellationToken cancellationToken)
+        var result = await _signInManager.PasswordSignInAsync(user, password, false, false);
+        if (result.Succeeded)
         {
-            var result = await _userManager.CreateAsync(user, password);
-            return result;
+            return _jwtService.GenerateToken(user); 
         }
 
-        public async Task<SignInResult> LoginUserAsync(string userName, string password, bool rememberMe, CancellationToken cancellationToken)
-        {
-            var user = await _userManager.FindByNameAsync(userName);
-            if (user == null)
-            {
-                return SignInResult.Failed;
-            }
+        return null; 
+    }
 
-            var result = await _signInManager.PasswordSignInAsync(user, password, rememberMe, false);
-            return result;
-        }
-
-        public async Task LogoutUserAsync(CancellationToken cancellationToken)
-        {
-            await _signInManager.SignOutAsync();
-        }
-
+    public async Task LogoutUserAsync()
+    {
+        await _signInManager.SignOutAsync();
     }
 }
