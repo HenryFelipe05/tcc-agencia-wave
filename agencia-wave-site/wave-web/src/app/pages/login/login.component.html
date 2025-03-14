@@ -1,0 +1,30 @@
+<div class="login-container">
+    <div class="form-container">
+        <div class="login-header">
+            <h1>Login</h1>
+            <div class="criar-conta">
+                <p>Não possui uma conta? </p><a href="">Criar Conta</a>
+            </div>
+        </div>
+        <form id="formLogin">
+            <div class="input-user">
+                <label for="inputEmail">Email</label>
+                <input type="email" placeholder="Email" id="inputEmail">
+            </div>
+            <div class="input-password">
+                <label for="inputPassword">Senha</label>
+                <input type="password" placeholder="Senha" id="inputPassword">
+            </div>
+
+            <button type="button" (click)="onLoginSubmit()">Entrar</button>
+            <a href="/login" class="forgot-password">Esqueceu sua senha?</a>
+        </form>
+        <div class="user-terms-container">
+            <p>Ao acessar, você concorda com nossos</p>
+            <a href="" class="user-terms">termos de uso.</a>
+        </div>
+    </div>
+    <div class="logo-container">
+        <img src="/LogoLogin.png" alt="">
+    </div>
+</div>

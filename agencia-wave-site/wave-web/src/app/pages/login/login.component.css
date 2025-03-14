@@ -1,0 +1,39 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.form-container {
+    width: 70vw;
+    background-color: #fff;
+    gap: 200px;
+}
+
+#formLogin,
+.login-header,
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.criar-conta {
+    display: flex;
+    gap: 5px;
+}
+
+.logo-container {
+    width: 100vw;
+    background-image: linear-gradient(to right, #AC8FD1, #5CA3DA);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-terms-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
