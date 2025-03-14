@@ -12,6 +12,6 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
   /* Mostra o nome da página no title */
   constructor(private titleService: TitleService) {
-    this.titleService.updateTitle('Home');
+    this.titleService.updateTitle('');
   }
 }
