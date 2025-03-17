@@ -15,6 +15,21 @@
     align-items: center;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #5CA3DA;
+    border-radius: 8px;
+    font-size: 14pt;
+    font-weight: 600;
+    transition: 0.4s;
+}
+
+.btn-primary:hover {
+    background-color: #3F90CE;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
 .btn-outline {
     color: #fff;
     background-color: transparent;
@@ -27,10 +42,28 @@
 
 .btn-outline:hover {
     background-color: #fff;
-    color: transparent; 
+    cursor: pointer;
     color: #333;
     transition: 0.4s;
 }
 
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 400px;
+    padding: 15px;
+    margin-top: 5px;
+    font-size: 12pt;
+    background-color: #F6F6F6;
+    color: #333;
+    border-radius: 8px;
+    outline: 1px solid transparent; 
+    transition: .15s; 
+}
 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: 2px solid #5CA3DA; 
+}
 

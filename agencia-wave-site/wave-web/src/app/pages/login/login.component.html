@@ -7,16 +7,16 @@
             </div>
         </div>
         <form id="formLogin">
-            <div class="input-user">
+            <div class="input-user input-container">
                 <label for="inputEmail">Email</label>
                 <input type="email" placeholder="Email" id="inputEmail">
             </div>
-            <div class="input-password">
+            <div class="input-password input-container">
                 <label for="inputPassword">Senha</label>
                 <input type="password" placeholder="Senha" id="inputPassword">
             </div>
 
-            <button type="button" (click)="onLoginSubmit()">Entrar</button>
+            <button type="button" (click)="onLoginSubmit()" class="btn btn-primary">Entrar</button>
             <a href="/login" class="forgot-password">Esqueceu sua senha?</a>
         </form>
         <div class="user-terms-container">
