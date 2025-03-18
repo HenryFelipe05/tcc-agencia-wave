@@ -67,3 +67,12 @@ input[type="password"]:focus {
     outline: 2px solid #5CA3DA; 
 }
 
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.30);
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+}
+

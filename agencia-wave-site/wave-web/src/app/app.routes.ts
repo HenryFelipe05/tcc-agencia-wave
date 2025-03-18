@@ -4,6 +4,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { GaleryComponent } from './pages/galery/galery.component';
 import { SubscriptionComponent } from './pages/subscription/subscription.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SingupComponent } from './pages/singup/singup/singup.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path: 'galeria', component: GaleryComponent },
     { path: 'assinaturas', component: SubscriptionComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'criar-conta', component: SingupComponent },
     { path: '**', redirectTo: '' }
 ];

@@ -1,4 +1,4 @@
-.login-container {
+.singup-container {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -8,15 +8,15 @@
     width: 70vw;
     background-color: #fff;
     box-shadow: 25px 0px 10px 0px rgba(0, 0, 0, 0.384);
-    gap: 100px;
+    gap: 50px;
 }
 
 .form-container a {
     color: #AC8FD1;
 }
 
-#formLogin,
-.login-header,
+#formSingup,
+.singup-header,
 .form-container {
     display: flex;
     flex-direction: column;
@@ -24,27 +24,27 @@
     align-items: center;
 }
 
-#formLogin button{
+#formSingup button{
     margin: 20px 0 20px 0;
     width: 100%;
     height: 50px;
 }
 
-#formLogin a{
+#formSingup a{
     color: #5CA3DA;
 }
 
-.login-header {
+.singup-header {
     gap: 10px;
 }
 
-.login-header h1 {
+.singup-header h1 {
     color: #333;
     font-weight: 800;
     cursor: default;
 }
 
-.criar-conta {
+.login {
     display: flex;
     cursor: default;
     gap: 5px;
@@ -69,7 +69,8 @@
     gap: 5px;
 }
 
-.input-user,
+.input-name,
+.input-email,
 .input-password {
     display: flex;
     flex-direction: column;

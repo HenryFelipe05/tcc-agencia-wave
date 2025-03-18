@@ -1,0 +1,37 @@
+<div class="singup-container">
+    <div class="form-container">
+        <div class="singup-header">
+            <h1>Criar Conta</h1>
+            <div class="login">
+                <p>Já possui uma conta? </p><a routerLink="/login">Login</a>
+            </div>
+        </div>
+        <form id="formSingup">
+            <div class="input-name input-container">
+                <label for="inputName">Nome completo</label>
+                <input type="text" placeholder="e.g João da Silva" id="inputName">
+            </div>
+            <div class="input-email input-container">
+                <label for="inputEmail">Email</label>
+                <input type="email" placeholder="exemplo@email.com" id="inputEmail">
+            </div>
+            <div class="input-password input-container">
+                <label for="inputPassword">Senha</label>
+                <input type="password" id="inputPassword">
+            </div>
+            <div class="input-password input-container">
+                <label for="inputPassword">Confirmar senha</label>
+                <input type="password" id="inputPassword">
+            </div>
+
+            <button type="button" (click)="onCreateAcountSubmit()" class="btn btn-primary">Criar Conta</button>
+        </form>
+        <div class="user-terms-container">
+            <p>Ao acessar, você concorda com nossos</p>
+            <a href="" class="user-terms">termos de uso.</a>
+        </div>
+    </div>
+    <div class="logo-container">
+        <img src="/LogoLogin.png" alt="">
+    </div>
+</div>

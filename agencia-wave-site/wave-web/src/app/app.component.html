@@ -1,7 +1,7 @@
 <div class="page-container">
-    <app-navbar *ngIf="!routeChecker.isLoginRoute()"></app-navbar>
+    <app-navbar *ngIf="!routeChecker.isLoginRoute() && !routeChecker.isCreateAccountRoute()"></app-navbar>
     <div class="content-wrap">
         <router-outlet></router-outlet>
     </div>
-    <app-footer *ngIf="!routeChecker.isLoginRoute()"></app-footer>
+    <app-footer *ngIf="!routeChecker.isLoginRoute() && !routeChecker.isCreateAccountRoute()"></app-footer>
 </div>
