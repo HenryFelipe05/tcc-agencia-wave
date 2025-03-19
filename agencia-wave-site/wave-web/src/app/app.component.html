@@ -1,8 +1,7 @@
-<nav>
-    <h2>Wave</h2>
-    <a routerLink="/">Agência</a> 
-    <a>Assinaturas</a> 
-    <a>Galeria</a> 
-    <a routerLink="/contato">Contato</a> 
-</nav>
-<router-outlet></router-outlet>
+<div class="page-container">
+    <app-navbar *ngIf="!routeChecker.isLoginRoute() && !routeChecker.isCreateAccountRoute()"></app-navbar>
+    <div class="content-wrap">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer *ngIf="!routeChecker.isLoginRoute() && !routeChecker.isCreateAccountRoute()"></app-footer>
+</div>

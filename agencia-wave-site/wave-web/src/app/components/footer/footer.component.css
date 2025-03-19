@@ -1,0 +1,57 @@
+.footer-container {
+    width: 100vw;
+}
+
+.contato-section {
+    width: 100vw;
+    height: 30vh;
+    background-image: linear-gradient(to right, #AC8FD1, #5CA3DA);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 0 30px;
+}
+
+.contato-section h3 {
+    color: #fff;
+    width: 30%;
+    font-size: 2em;
+    font-weight: 800;
+    text-align: right;
+}
+
+.solicitar-orcamento {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.solicitar-orcamento a {
+    width: 50%;
+    height: 50px;
+}
+
+.solicitar-orcamento p {
+    color: #fff;
+    width: 50%;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.footer-itens {
+    background-color: #fff;
+    display: flex;
+    height: 15vh;
+}
+
+.footer-itens {
+    padding: 10px 30px 10px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-footer {
+    height: 64px;
+}

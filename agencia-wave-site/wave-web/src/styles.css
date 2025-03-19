@@ -1,11 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     border: 0;
+    text-decoration: none;
     box-sizing: border-box;
     font-family: 'Inter';
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #5CA3DA;
+    border-radius: 8px;
+    font-size: 14pt;
+    font-weight: 600;
+    transition: 0.4s;
+}
+
+.btn-primary:hover {
+    background-color: #3F90CE;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-outline {
+    color: #fff;
+    background-color: transparent;
+    border: solid 2px #fff;
+    border-radius: 8px;
+    font-size: 14pt;
+    font-weight: 600;
+    transition: 0.4s;
+}
+
+.btn-outline:hover {
+    background-color: #fff;
+    cursor: pointer;
+    color: #333;
+    transition: 0.4s;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 400px;
+    padding: 15px;
+    margin-top: 5px;
+    font-size: 12pt;
+    background-color: #F6F6F6;
+    color: #333;
+    border-radius: 8px;
+    outline: 1px solid transparent; 
+    transition: .15s; 
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: 2px solid #5CA3DA; 
+}
+
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.30);
+}
+
+label {
+    font-weight: 600;
+    color: #333;
 }
 

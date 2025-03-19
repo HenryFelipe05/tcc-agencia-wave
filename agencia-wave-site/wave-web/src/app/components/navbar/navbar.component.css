@@ -1,0 +1,54 @@
+nav {
+    background-color: #333;
+    width: 100vw;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.150);
+}
+
+.nav-item {
+    position: relative;
+    color: #e6e6e6;
+    transition: all .8s;
+}
+
+.nav-item:hover {
+    color: #fff;
+}
+
+.nav-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width .8s;
+}
+
+.nav-item:hover::before,
+.nav-item.active::before {
+    width: 100%;
+}
+
+.opcoes {
+    display: flex;
+    gap: 25px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.userIcon {
+    width: 36px;
+    height: 36sspx;
+}
+
+.userIcon:hover {
+    cursor: pointer;
+}

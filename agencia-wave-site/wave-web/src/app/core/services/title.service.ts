@@ -10,6 +10,9 @@ export class TitleService {
   constructor(private title: Title) {}
 
   updateTitle(pageTitle: string) {
-    this.title.setTitle(`${this.defaultTitle} | ${pageTitle}`);
+    if(pageTitle == "" || pageTitle == null) 
+      this.title.setTitle(`${this.defaultTitle}`);
+    else 
+      this.title.setTitle(`${this.defaultTitle} | ${pageTitle}`);
   }
 }
