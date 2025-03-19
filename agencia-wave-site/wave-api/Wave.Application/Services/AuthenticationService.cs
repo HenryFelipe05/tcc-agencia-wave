@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Wave.Application.Services;
+using Wave.Application.Services.Interfaces;
 using Wave.Domain.Entities;
 
-public class AuthenticationService
+public class AuthenticationService : IAutenticationService
 {
     private readonly UserManager<Usuario> _userManager;
     private readonly SignInManager<Usuario> _signInManager;

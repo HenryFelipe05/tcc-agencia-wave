@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Wave.Application.Interfaces.Repository;
 using Wave.Application.Services;
 using Wave.Application.Services.Interfaces;
+using Wave.Domain.Repository;
 using Wave.Infra.Data.Context;
 using Wave.Infra.Repositories;
 
@@ -24,6 +25,7 @@ namespace Wave.Infra
 
 			#region [ Services ]
 			services.AddScoped<IPessoaService, PessoaService>();
+            services.AddScoped<IAutenticationService, AuthenticationService>();
 			#endregion
          
 			return services;
