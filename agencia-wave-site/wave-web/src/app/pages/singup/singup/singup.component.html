@@ -1,11 +1,11 @@
 <div class="singup-container">
     <div class="form-container">
-        <div class="singup-header">
+        <header class="singup-header">
             <h1>Criar Conta</h1>
             <div class="login">
                 <p>Já possui uma conta? </p><a routerLink="/login">Login</a>
             </div>
-        </div>
+        </header>
         <form id="formSingup">
             <div class="input-name input-container">
                 <label for="inputName">Nome completo</label>
@@ -20,8 +20,8 @@
                 <input type="password" id="inputPassword">
             </div>
             <div class="input-password input-container">
-                <label for="inputPassword">Confirmar senha</label>
-                <input type="password" id="inputPassword">
+                <label for="inputConfirmPassword">Confirmar senha</label>
+                <input type="password" id="inputConfirmPassword">
             </div>
 
             <button type="button" (click)="onCreateAcountSubmit()" class="btn btn-primary">Criar Conta</button>
