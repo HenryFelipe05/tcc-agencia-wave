@@ -24,16 +24,12 @@ namespace Wave.Infra.Repositories
 
             sql.AppendLine(" INSERT INTO Pessoa(Nome, ");
             sql.AppendLine("					Sobrenome, ");
-            sql.AppendLine("					Email, ");
-            sql.AppendLine("					Telefone, ");
             sql.AppendLine("					Documento, ");
             sql.AppendLine("					DataNascimento, ");
             sql.AppendLine("					CodigoGenero, ");
             sql.AppendLine("					CodigoTipoPessoa) ");
             sql.AppendLine("	  VALUES (@Nome, ");
             sql.AppendLine("			  @Sobrenome, ");
-            sql.AppendLine("			  @Email, ");
-            sql.AppendLine("			  @Telefone, ");
             sql.AppendLine("			  @Documento, ");
             sql.AppendLine("			  @DataNascimento, ");
             sql.AppendLine("			  @CodigoGenero, ");

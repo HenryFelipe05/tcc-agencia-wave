@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Wave.Application.Services;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Entities;

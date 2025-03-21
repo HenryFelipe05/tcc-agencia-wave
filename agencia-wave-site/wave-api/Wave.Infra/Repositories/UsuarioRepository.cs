@@ -15,21 +15,20 @@ namespace Wave.Infra.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        private readonly WaveDbContext _waveDbContext;
 
-        private readonly UserManager<Usuario> _userManager;
-        private readonly IUserStore<Usuario> _userStore;
-
-        public UsuarioRepository(UserManager<Usuario> userManager, IUserStore<Usuario> userStore)
+       public UsuarioRepository(WaveDbContext waveDbContext)
         {
-            _userManager = userManager;
-            _userStore = userStore;
+            _waveDbContext = waveDbContext;
         }
+       
 
-        public async Task<IdentityResult> CreateAsync(Usuario user, CancellationToken cancellationToken)
+        public  async Task<IdentityResult> CreateAsync(Usuario user, CancellationToken cancellationToken)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
-            return await _userManager.CreateAsync(user, user.Senha);
+            await _waveDbContext.AddAsync(user);
+            return IdentityResult.Success;
         }
 
 
@@ -40,9 +39,9 @@ namespace Wave.Infra.Repositories
                 throw new ArgumentNullException(nameof(user));
             }
 
-            var result = await _userManager.DeleteAsync(user);
+             _waveDbContext.Remove(user);
 
-            return result;
+            return IdentityResult.Success;
         }
 
         public void Dispose()
@@ -57,20 +56,21 @@ namespace Wave.Infra.Repositories
                 return null;
             }
 
-            var user = await _userManager.Users
+            var user = await _waveDbContext.Usuarios
                 .FirstOrDefaultAsync(u => u.Email == normalizedEmail, cancellationToken);
 
             return user;
         }
 
-        public async Task<Usuario> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public  Task<Usuario> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(userId))
             {
                 return null;
             }
 
-            return await _userManager.FindByIdAsync(userId);
+             return _waveDbContext.FindAsync<Usuario>(userId).AsTask();
+            
         }
 
         public async Task<Usuario> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
@@ -80,8 +80,10 @@ namespace Wave.Infra.Repositories
                 return null;
             }
 
-            return await _userManager.FindByNameAsync(normalizedUserName);
+            return await _waveDbContext.Usuarios
+                                       .SingleOrDefaultAsync(u => u.NormalizedUserName == normalizedUserName, cancellationToken);
         }
+
 
         public async Task<string> GetEmailAsync(Usuario user, CancellationToken cancellationToken)
         {
@@ -188,15 +190,15 @@ namespace Wave.Infra.Repositories
 
             user.Email = email;
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
                 throw new InvalidOperationException("Falha ao atualizar o email do usuário");
             }
         }
-
-            
 
         public async Task SetEmailConfirmedAsync(Usuario user, bool confirmed, CancellationToken cancellationToken)
         {
@@ -207,13 +209,16 @@ namespace Wave.Infra.Repositories
 
             user.EmailConfirmed = confirmed;
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
                 throw new InvalidOperationException("Falha ao atualizar a confirmação do email do usuário");
             }
         }
+
 
         public async Task SetNormalizedEmailAsync(Usuario user, string normalizedEmail, CancellationToken cancellationToken)
         {
@@ -229,9 +234,11 @@ namespace Wave.Infra.Repositories
 
             user.NormalizedEmail = normalizedEmail.ToLowerInvariant().Trim();
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
                 throw new InvalidOperationException("Falha ao atualizar o email normalizado do usuário.");
             }
@@ -251,9 +258,11 @@ namespace Wave.Infra.Repositories
 
             user.NormalizedUserName = normalizedName.ToLowerInvariant().Trim();
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext?.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
                 throw new InvalidOperationException("Falha ao atualizar o nome normalizado do usuário.");
             }
@@ -273,9 +282,11 @@ namespace Wave.Infra.Repositories
 
             user.PasswordHash = passwordHash;
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
                 throw new InvalidOperationException("Falha ao atualizar o hash da senha do usuário.");
             }
@@ -295,9 +306,11 @@ namespace Wave.Infra.Repositories
 
             user.UserName = userName;
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext?.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
                 throw new InvalidOperationException("Falha ao atualizar o nome do usuário.");
             }
@@ -310,14 +323,20 @@ namespace Wave.Infra.Repositories
                 throw new ArgumentNullException(nameof(user));
             }
 
-            var result = await _userManager.UpdateAsync(user);
+            _waveDbContext.Usuarios.Update(user);
 
-            if (!result.Succeeded)
+            var result = await _waveDbContext.SaveChangesAsync(cancellationToken);
+
+            if (result == 0)
             {
-                throw new InvalidOperationException("Falha ao atualizar o usuário.");
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Falha ao atualizar o usuário."
+                });
             }
 
-            return result;
+            return IdentityResult.Success;
         }
+
     }
 }

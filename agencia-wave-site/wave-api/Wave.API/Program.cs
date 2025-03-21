@@ -5,24 +5,23 @@ using Wave.Application.Services.Interfaces;
 using Wave.Domain.Entities;
 using Wave.Infra;
 using Wave.Infra.Data.Context;
+using Wave.Infra.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<JwtService>();
 
-builder.Services.AddDbContext<WaveDbContext>(options =>
-			options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddIdentity<Usuario, IdentityRole>().
-	AddEntityFrameworkStores<WaveDbContext>()
-	.AddDefaultTokenProviders();
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+        .AddEntityFrameworkStores<WaveDbContext>()
+        .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<UserManager<Usuario>>();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 builder.Services.AddAuthorization();
 
 
-builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

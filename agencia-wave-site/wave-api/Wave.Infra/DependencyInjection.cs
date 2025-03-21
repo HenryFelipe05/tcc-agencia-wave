@@ -26,9 +26,11 @@ namespace Wave.Infra
 			#region [ Services ]
 			services.AddScoped<IPessoaService, PessoaService>();
             services.AddScoped<IAutenticationService, AuthenticationService>();
-			#endregion
-         
-			return services;
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<JwtService>();
+            #endregion
+
+            return services;
         }
     }
 }
