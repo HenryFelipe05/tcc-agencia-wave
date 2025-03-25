@@ -15,6 +15,10 @@
     color: #AC8FD1;
 }
 
+#formSingup {
+    width: 70%;
+}
+
 #formSingup,
 .singup-header,
 .form-container {
@@ -72,6 +76,7 @@
 .input-name,
 .input-email,
 .input-password {
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: left;
