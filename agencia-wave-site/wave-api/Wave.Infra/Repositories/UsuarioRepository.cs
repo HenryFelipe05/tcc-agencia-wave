@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Wave.Domain.Commands;
 using Wave.Domain.Entities;
-using Wave.Domain.Queries;
 using Wave.Domain.Repository;
 using Wave.Infra.Data.Context;
 
@@ -46,7 +40,6 @@ namespace Wave.Infra.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public async Task<Usuario> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
@@ -138,7 +131,7 @@ namespace Wave.Infra.Repositories
 
             var password = user.Senha;
 
-            var passwordHasher = new PasswordHasher<Usuario>();
+            var passwordHasher = new PasswordHasher<Usuario>(); //BCrypt futuramente
             var hash = passwordHasher.HashPassword(user, password);
 
             return Task.FromResult(hash);

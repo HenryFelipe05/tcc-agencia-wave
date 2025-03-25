@@ -14,13 +14,15 @@ namespace Wave.Infra
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            var teste = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<WaveDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(teste);
             });
 
             #region [ Repositories ]
             services.AddScoped<IPessoaRepository, PessoaRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 			#endregion
 
 			#region [ Services ]

@@ -10,17 +10,20 @@ using Wave.Infra.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddIdentity<Usuario, IdentityRole>()
-        .AddEntityFrameworkStores<WaveDbContext>()
-        .AddDefaultTokenProviders();
+
+builder.Services.AddIdentityCore<Usuario>()
+		.AddUserStore<UsuarioRepository>()
+		.AddDefaultTokenProviders()
+		.AddSignInManager<SignInManager<Usuario>>();
 
 builder.Services.AddScoped<UserManager<Usuario>>();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 builder.Services.AddAuthorization();
-
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
