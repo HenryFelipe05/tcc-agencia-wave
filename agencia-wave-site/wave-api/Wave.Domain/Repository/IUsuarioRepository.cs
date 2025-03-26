@@ -19,6 +19,6 @@ namespace Wave.Domain.Repository
         //Task<bool> AlterarSenhaUsuarioAsync(int codigoUsuario, string senha);
         //Task<bool> AlterarPerfilUsuarioAsync(int codigoUsuario, int codigoPerfil);
         //Task<bool> DeletarUsuarioAsync(int codigoUsuario);
-        Task<IdentityResult> CreateAsync(Usuario user, CancellationToken cancellationToken);
+        Task<IdentityResult>CreateAsync (Usuario user, CancellationToken cancellationToken);
     }
 }

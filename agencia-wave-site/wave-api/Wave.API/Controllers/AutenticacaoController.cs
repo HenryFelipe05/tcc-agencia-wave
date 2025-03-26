@@ -41,11 +41,10 @@ namespace Wave.API.Controllers
             await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
 
             // Agora, crie o usuário e adicione ele ao sistema
-            var usuario = new Usuario
+            var usuario = new Usuario()
             {
                 UserName = novoUsuarioCommand.NomeUsuario,
-                Email = novoUsuarioCommand.Email,
-                
+                Email = novoUsuarioCommand.Email
             };
 
             var resultado = await _authenticationService.RegisterUserAsync(usuario, novoUsuarioCommand.Senha);

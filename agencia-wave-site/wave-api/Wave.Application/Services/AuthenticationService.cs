@@ -9,19 +9,31 @@ public class AuthenticationService : IAutenticationService
     private readonly UserManager<Usuario> _userManager;
     private readonly SignInManager<Usuario> _signInManager;
     private readonly JwtService _jwtService;
-    private readonly IUsuarioRepository _usuarioRepository;
 
-    public AuthenticationService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, JwtService tokenService,IUsuarioRepository usuarioRepository)
+    public AuthenticationService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, JwtService tokenService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _jwtService = tokenService;
-        _usuarioRepository = usuarioRepository;
     }
 
-    public async Task<IdentityResult> RegisterUserAsync(Usuario user,string password)
+    public async Task<IdentityResult> RegisterUserAsync(Usuario user, string password)
     {
-        return await _userManager.CreateAsync(user,password);
+        var usuario = Activator.CreateInstance<Usuario>();
+        usuario.UserName = user.UserName;
+        usuario.NormalizedUserName = user.UserName.ToUpper();
+        usuario.Email = user.Email;
+        usuario.NormalizedEmail = user.Email.ToUpper();
+
+        var result = await _userManager.CreateAsync(usuario);
+
+        if (result.Succeeded)
+        {
+            // Após a criação do usuário, adicionar a senha
+            result = await _userManager.AddPasswordAsync(user, password);
+        }
+
+        return result;
     }
 
     public async Task<string> LoginUserAsync(string userName, string password)
