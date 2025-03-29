@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
+using Wave.Domain.Account;
 using Wave.Domain.Commands;
-using Wave.Application.Services;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using Wave.Domain.Entities;
-using Microsoft.AspNetCore.Authentication;
+using Wave.Domain.Queries;
 
 namespace Wave.API.Controllers
 {
@@ -13,72 +11,37 @@ namespace Wave.API.Controllers
     [ApiController]
     public class AutenticacaoController : ControllerBase
     {
-        private readonly IPessoaService _pessoaService;
-        private readonly IAutenticationService _authenticationService; // Serviço de autenticação
+        private readonly IUsuarioService _usuararioService;
 
-        public AutenticacaoController(IPessoaService pessoaService,
-                                      IAutenticationService authenticationService)
+        public AutenticacaoController(IUsuarioService usuararioService)
         {
-            _pessoaService = pessoaService;
-            _authenticationService = authenticationService;
+            _usuararioService = usuararioService;
         }
 
-        // Método para registrar um novo usuário
         [HttpPost("registrar")]
-        public async Task<ActionResult> AdicionarNovoUsuario([FromBody] NovoUsuarioCommand novoUsuarioCommand)
+        public async Task<ActionResult<UsuarioQuery>> AdicionarUsuario([FromBody] UsuarioCommand usuarioCommand)
         {
-            // Adiciona a pessoa (caso necessário)
-            PessoaCommand pessoaCommand = new PessoaCommand
-            {
-                Nome = novoUsuarioCommand.Nome,
-                Sobrenome = novoUsuarioCommand.Sobrenome,
-                Documento = novoUsuarioCommand.Documento,
-                DataNascimento = novoUsuarioCommand.DataNascimento,
-                CodigoGenero = novoUsuarioCommand.CodigoGenero,
-                CodigoTipoPessoa = novoUsuarioCommand.CodigoTipoPessoa
-            };
+            //if (usuarioCommand == null)
+            //    return BadRequest("Dados inválidos.");
 
-            await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
+            //var emailExiste = await _authenticate.UsuarioExiste(usuarioCommand.Email);
 
-            // Agora, crie o usuário e adicione ele ao sistema
-            var usuario = new Usuario()
-            {
-                UserName = novoUsuarioCommand.NomeUsuario,
-                Email = novoUsuarioCommand.Email
-            };
+            //if (emailExiste)
+            //    return BadRequest("Esse e-mail já possui uma conta vinculada.");
 
-            var resultado = await _authenticationService.RegisterUserAsync(usuario, novoUsuarioCommand.Senha);
+            var usuario = await _usuararioService.AdicionarUsuarioAsync(usuarioCommand);
 
-            if (!resultado.Succeeded)
-            {
-                return BadRequest(new { mensagem = "Erro ao registrar usuário", detalhes = resultado.Errors });
-            }
+            if (usuario == null)
+                return BadRequest("Ocorreu um erro ao cadastrar o usuário.");
+            else
+                return Ok(usuario);
 
-            return Ok(new { mensagem = "Usuário registrado com sucesso!" });
-        }
+            //var token = _authenticate.GerarToken(usuario.CodigoUsuario, usuario.Email);
 
-        // Método para login (gerar token)
-        [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] LoginCommand loginCommand)
-        {
-            // Verifica se o usuário e a senha são válidos
-            var token = await _authenticationService.LoginUserAsync(loginCommand.UserName, loginCommand.Password);
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return Unauthorized(new { mensagem = "Credenciais inválidas!" });
-            }
-
-            // Retorna o token JWT gerado
-            return Ok(new { message = "Login bem-sucedido", token });
-        }
-
-        // Método para logout
-        [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
-        {
-            await _authenticationService.LogoutUserAsync();
-            return Ok(new { mensagem = "Logout bem-sucedido!" });
+            //return new TokenUsuarioQuery
+            //{
+            //    Token = token
+            //};
         }
     }
 }

@@ -2,10 +2,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
+using Wave.Domain.Commands;
+using Wave.Domain.Queries;
 
 namespace Wave.Domain.Entities
 {
-    [Table("Usuario")]        
+    [Table("Usuario")]
     public class Usuario : IdentityUser
     {
         [Key]
@@ -23,5 +25,13 @@ namespace Wave.Domain.Entities
         [ForeignKey("Perfil")]
         public int CodigoPerfil { get; set; }
 
+        public static UsuarioQuery MapearDadosUsuario(UsuarioCommand usuarioCommand)
+        {
+            return new UsuarioQuery
+            {
+                NomeUsuario = usuarioCommand.NomeUsuario,
+                Email = usuarioCommand.Email
+            };
+        }
     }
 }

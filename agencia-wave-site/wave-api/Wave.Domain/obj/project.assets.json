@@ -4355,11 +4355,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\etec\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
       "projectName": "Wave.Domain",
-      "projectPath": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
+      "projectPath": "C:\\Users\\etec\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
       "packagesPath": "C:\\Users\\etec\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\obj\\",
+      "outputPath": "C:\\Users\\etec\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
