@@ -45,10 +45,8 @@ namespace Wave.Infra.Repositories
                 {
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
-                    Documento = pessoaCommand.Documento,
                     DataNascimento = pessoaCommand.DataNascimento,
-                    CodigoGenero = pessoaCommand.CodigoGenero,
-                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
+                    CodigoGenero = pessoaCommand.CodigoGenero
                 });
 
 				return linhasAfetadas > 0;
@@ -81,10 +79,8 @@ namespace Wave.Infra.Repositories
                     CodigoPessoa = codigoPessoa,
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
-                    Documento = pessoaCommand.Documento,
                     DataNascimento = pessoaCommand.DataNascimento,
-                    CodigoGenero = pessoaCommand.CodigoGenero,
-                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
+                    CodigoGenero = pessoaCommand.CodigoGenero
                 });
 
 				return linhasAfetadas > 0;

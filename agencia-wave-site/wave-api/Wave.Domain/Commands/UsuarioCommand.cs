@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Wave.Domain.Commands
+﻿namespace Wave.Domain.Commands
 {
     public class UsuarioCommand
     {
@@ -14,6 +7,8 @@ namespace Wave.Domain.Commands
         public string Email { get; set; }
         public string Telefone { get; set; }
         public string Senha { get; set; }
+        public string SenhaConfirmada { get; set; }
+        public bool Ativo { get; set; }
         public int CodigoPerfil { get; set; }
     }
 }

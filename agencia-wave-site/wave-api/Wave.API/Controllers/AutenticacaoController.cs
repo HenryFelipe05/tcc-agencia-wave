@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Account;
 using Wave.Domain.Commands;
+using Wave.Domain.Enums;
 using Wave.Domain.Queries;
 
 namespace Wave.API.Controllers
@@ -12,36 +13,45 @@ namespace Wave.API.Controllers
     public class AutenticacaoController : ControllerBase
     {
         private readonly IUsuarioService _usuararioService;
+        private readonly IPessoaService _pessoaService;
 
-        public AutenticacaoController(IUsuarioService usuararioService)
+        public AutenticacaoController(IUsuarioService usuararioService, 
+                                      IPessoaService pessoaService)
         {
             _usuararioService = usuararioService;
+            _pessoaService = pessoaService; 
         }
 
         [HttpPost("registrar")]
-        public async Task<ActionResult<UsuarioQuery>> AdicionarUsuario([FromBody] UsuarioCommand usuarioCommand)
+        public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] PessoaCommand pessoaCommand, [FromBody] UsuarioCommand usuarioCommand)
         {
-            //if (usuarioCommand == null)
-            //    return BadRequest("Dados inválidos.");
+            var pessoaAdicionada = await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
 
-            //var emailExiste = await _authenticate.UsuarioExiste(usuarioCommand.Email);
+            if (pessoaAdicionada)
+            {
+                IEnumerable<PessoaQuery> listaPessoas = await _pessoaService.RecuperarListaPessoasAsync();
+                var ultimaPessoa = listaPessoas.OrderByDescending(p => p.CodigoPessoa).FirstOrDefault();
 
-            //if (emailExiste)
-            //    return BadRequest("Esse e-mail já possui uma conta vinculada.");
+                if (ultimaPessoa != null)
+                {
+                    usuarioCommand.CodigoPessoa = ultimaPessoa.CodigoPessoa;
+                    usuarioCommand.CodigoPerfil = (int)PerfilEnum.Perfis.Usuario;
+                    usuarioCommand.Ativo = true;
 
-            var usuario = await _usuararioService.AdicionarUsuarioAsync(usuarioCommand);
+                    var usuarioAdicionado = await _usuararioService.AdicionarUsuarioAsync(usuarioCommand);
 
-            if (usuario == null)
-                return BadRequest("Ocorreu um erro ao cadastrar o usuário.");
+                    // Autenticação e autorização 
+                    return Ok(); 
+                }
+                else
+                {
+                    return StatusCode(500, "Erro ao recuperar o código da pessoa adicionada.");
+                }
+            }
             else
-                return Ok(usuario);
-
-            //var token = _authenticate.GerarToken(usuario.CodigoUsuario, usuario.Email);
-
-            //return new TokenUsuarioQuery
-            //{
-            //    Token = token
-            //};
+            {
+                return BadRequest("Erro ao adicionar a pessoa.");
+            }
         }
     }
 }

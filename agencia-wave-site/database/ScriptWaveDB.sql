@@ -11,21 +11,13 @@ CREATE TABLE Genero (
     Descricao VARCHAR(50) NOT NULL,
 );
 
--- Tabela TipoPessoa
-CREATE TABLE TipoPessoa (
-    CodigoTipoPessoa INT PRIMARY KEY IDENTITY,
-    Descricao VARCHAR(100) NOT NULL
-);
-
 -- Tabela Pessoa
 CREATE TABLE Pessoa (
     CodigoPessoa INT PRIMARY KEY IDENTITY,
     Nome VARCHAR(100) NOT NULL,
     Sobrenome VARCHAR(100),
-    Documento VARCHAR(20),
-    DataNascimento DATE,
-    CodigoGenero INT FOREIGN KEY REFERENCES Genero(CodigoGenero),
-    CodigoTipoPessoa INT FOREIGN KEY REFERENCES TipoPessoa(CodigoTipoPessoa)
+    DataNascimento DATE NULL,
+    CodigoGenero INT FOREIGN KEY REFERENCES Genero(CodigoGenero) NULL,
 );
 
 -- Tabela Perfil
@@ -39,7 +31,7 @@ CREATE TABLE Usuario (
     CodigoUsuario INT PRIMARY KEY IDENTITY,
     NomeUsuario VARCHAR(50) UNIQUE NOT NULL,
 	Email VARCHAR(100) UNIQUE NOT NULL,
-	Telefone VARCHAR(20),
+	Telefone VARCHAR(20) NULL,
     Senha VARCHAR(255) NOT NULL,
     Ativo BIT NOT NULL,
     CodigoPerfil INT FOREIGN KEY REFERENCES Perfil(CodigoPerfil),
@@ -116,9 +108,6 @@ INSERT INTO Genero (Descricao) VALUES ('Masculino');
 INSERT INTO Genero (Descricao) VALUES ('Feminino');
 INSERT INTO Genero (Descricao) VALUES ('Não Binário');
 INSERT INTO Genero (Descricao) VALUES ('Não Informar');
-
-INSERT INTO TipoPessoa (Descricao) VALUES ('Física');
-INSERT INTO TipoPessoa (Descricao) VALUES ('Jurídica');
 
 INSERT INTO Perfil (Descricao) VALUES ('Administrador');
 INSERT INTO Perfil (Descricao) VALUES ('Operador');

@@ -7,7 +7,6 @@
         public string Sobrenome { get; set; }
         public string Documento { get; set; }
         public DateTime DataNascimento { get; set; }
-        public string TipoPessoa { get; set; }
         public string Genero { get; set; }
     }
 }
