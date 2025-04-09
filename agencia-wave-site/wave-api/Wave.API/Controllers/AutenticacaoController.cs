@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Account;
 using Wave.Domain.Commands;
+using Wave.Domain.Entities;
 using Wave.Domain.Enums;
 using Wave.Domain.Queries;
 
@@ -15,16 +16,36 @@ namespace Wave.API.Controllers
         private readonly IUsuarioService _usuararioService;
         private readonly IPessoaService _pessoaService;
 
-        public AutenticacaoController(IUsuarioService usuararioService, 
+        public AutenticacaoController(IUsuarioService usuararioService,
                                       IPessoaService pessoaService)
         {
             _usuararioService = usuararioService;
-            _pessoaService = pessoaService; 
+            _pessoaService = pessoaService;
         }
 
         [HttpPost("registrar")]
-        public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] PessoaCommand pessoaCommand, [FromBody] UsuarioCommand usuarioCommand)
+        public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] RegistrarUsuarioCommand registrarUsuarioCommand)
         {
+            var pessoaCommand = Pessoa.MapearCommandPessoa
+            (
+                registrarUsuarioCommand.Nome,
+                registrarUsuarioCommand.Sobrenome,
+                registrarUsuarioCommand.DataNascimento,
+                registrarUsuarioCommand.CodigoGenero
+            );
+   
+            var usuarioCommand = Usuario.MapearCommandUsuario
+            (
+                registrarUsuarioCommand.CodigoPessoa,
+                registrarUsuarioCommand.NomeUsuario,
+                registrarUsuarioCommand.Email,
+                registrarUsuarioCommand.Telefone,
+                registrarUsuarioCommand.Senha,
+                registrarUsuarioCommand.SenhaConfirmada,
+                registrarUsuarioCommand.Ativo,
+                registrarUsuarioCommand.CodigoPerfil
+            );
+
             var pessoaAdicionada = await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
 
             if (pessoaAdicionada)
@@ -39,9 +60,8 @@ namespace Wave.API.Controllers
                     usuarioCommand.Ativo = true;
 
                     var usuarioAdicionado = await _usuararioService.AdicionarUsuarioAsync(usuarioCommand);
-
                     // Autenticação e autorização 
-                    return Ok(); 
+                    return Ok();
                 }
                 else
                 {

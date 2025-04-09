@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wave.Infra")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5c3ff379aec272001ecf926138c58dc636a6742")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18b24a5e917b6087a834ab77e73c3d2ceb6743c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wave.Infra")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wave.Infra")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

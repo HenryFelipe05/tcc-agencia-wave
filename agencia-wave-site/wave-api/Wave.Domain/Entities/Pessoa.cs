@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Wave.Domain.Commands;
 
 namespace Wave.Domain.Entities
 {
@@ -18,5 +19,16 @@ namespace Wave.Domain.Entities
 
         [ForeignKey("Genero")]
         public int CodigoGenero { get; set; }
+
+        public static PessoaCommand MapearCommandPessoa(string Nome, string Sobrenome, DateTime dataNascimento, int codigoGenero)
+        {
+            return new PessoaCommand
+            {
+                CodigoGenero = codigoGenero,
+                Nome = Nome,
+                Sobrenome = Sobrenome,
+                DataNascimento = dataNascimento,
+            };
+        }
     }
 }

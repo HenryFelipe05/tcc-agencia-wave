@@ -33,5 +33,20 @@ namespace Wave.Domain.Entities
                 Email = usuarioCommand.Email
             };
         }
+
+        public static UsuarioCommand MapearCommandUsuario(int codigoPessoa, string nomeUsuario, string email, string telefone, string senha, string senhaConfirmada, bool ativo, int codigoPerfil)
+        {
+            return new UsuarioCommand
+            {
+                CodigoPessoa = codigoPessoa,
+                NomeUsuario = nomeUsuario,
+                Email = email,
+                Telefone = telefone,  
+                Senha = senha,
+                SenhaConfirmada = senhaConfirmada,
+                Ativo = ativo,
+                CodigoPerfil = codigoPerfil,
+            };
+        }
     }
 }
