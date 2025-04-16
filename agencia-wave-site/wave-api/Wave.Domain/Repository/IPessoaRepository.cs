@@ -9,6 +9,6 @@ namespace Wave.Domain.Repository
 		Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync();
 		Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand);
 		Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa);
-		Task<bool> DeletarPessoaAsync(int codigoPessoa);
+		Task<bool> DeletarPessoaAsync(int codigoPessoa);		
 	}
 }
