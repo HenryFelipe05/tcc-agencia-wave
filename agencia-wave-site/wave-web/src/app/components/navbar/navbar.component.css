@@ -46,9 +46,41 @@ nav {
 
 .userIcon {
     width: 36px;
-    height: 36sspx;
+    height: 36px;
 }
 
 .userIcon:hover {
     cursor: pointer;
+}
+
+.list-dropdown {
+    display: none;
+    position: absolute;
+    top: 7%;        
+    right: 5px;
+    padding: 20px;   
+    background-color: #444;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.150);
+}
+
+.list-item {
+    display: flex;
+}
+
+.list-item a {
+    width: 150px;
+    height: 40px;
+}
+
+.user-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
