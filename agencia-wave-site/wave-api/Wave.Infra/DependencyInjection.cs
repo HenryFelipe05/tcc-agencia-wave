@@ -23,11 +23,13 @@ namespace Wave.Infra
             #region [ Repositories ]
             services.AddScoped<IPessoaRepository, PessoaRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IAssinaturaRepository, AssinaturaRepository>();
 			#endregion
 
 			#region [ Services ]
 			services.AddScoped<IPessoaService, PessoaService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IAssinaturaService, AssinaturaService>();
             #endregion
 
             return services;

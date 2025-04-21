@@ -16,6 +16,7 @@ namespace Wave.Infra.Data.Context
         public virtual DbSet<Pessoa> Pessoas { get; set; }
         public virtual DbSet<TipoPessoa> TiposPessoa { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Assinatura> Assinaturas { get; set; }
 
 		public DbConnection GetDbConnection()
 		{

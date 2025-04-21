@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wave.Infra")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ad89ca091576b1defffdf34b3206edfeda50485")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+344df3e9db2ea2891ffb39a49b044de848af99c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wave.Infra")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wave.Infra")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
