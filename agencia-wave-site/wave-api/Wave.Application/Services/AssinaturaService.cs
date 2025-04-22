@@ -21,9 +21,9 @@ namespace Wave.Application.Services
         {
             return await _assinaturaRepository.ObterTodasAsync();
         }
-        public async Task<Assinatura> ObterPorIdAsync(int CodigoAssinatura)
+        public async Task<Assinatura> ObterPorIdAsync(Guid codigoAssinatura)
         {
-            return await _assinaturaRepository.ObterPorIdAsync(CodigoAssinatura);
+            return await _assinaturaRepository.ObterPorIdAsync(codigoAssinatura);
         }
         public async Task<Assinatura> CriarAssinaturaAsync(Assinatura assinatura)
         {
@@ -35,9 +35,9 @@ namespace Wave.Application.Services
             return await _assinaturaRepository.AtualizarAssinaturaAsync(assinatura);
         }
 
-        public async Task<Assinatura> RemoverAssinaturaAsync(int CodigoAssinatura)
+        public async Task<Assinatura> RemoverAssinaturaAsync(Guid codigoAssinatura)
         {
-            return await _assinaturaRepository.RemoverAssinaturaAsync(CodigoAssinatura);
+            return await _assinaturaRepository.RemoverAssinaturaAsync(codigoAssinatura);
         }
     }
 }

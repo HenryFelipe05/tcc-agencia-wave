@@ -19,9 +19,9 @@ namespace Wave.Infra.Repositories
             return await _context.Assinaturas.ToListAsync();
         }
 
-        public async Task<Assinatura> ObterPorIdAsync(int CodigoAssinatura)
+        public async Task<Assinatura> ObterPorIdAsync(Guid codigoAssinatura)
         {
-            return await _context.Assinaturas.FindAsync(CodigoAssinatura);
+            return await _context.Assinaturas.FindAsync(codigoAssinatura);
         }
 
         public async Task<Assinatura> CriarAssinaturaAsync(Assinatura assinatura)
@@ -42,9 +42,9 @@ namespace Wave.Infra.Repositories
             return assinaturaExistente;
         }
 
-        public async Task<Assinatura> RemoverAssinaturaAsync(int CodigoAssinatura)
+        public async Task<Assinatura> RemoverAssinaturaAsync(Guid codigoAssinatura)
         {
-            var assinatura = await _context.Assinaturas.FindAsync(CodigoAssinatura);
+            var assinatura = await _context.Assinaturas.FindAsync(codigoAssinatura);
             if (assinatura is null)
                 return null;
 
