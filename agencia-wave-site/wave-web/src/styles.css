@@ -29,7 +29,7 @@ li {
 }
 
 .btn-primary:hover {
-    background-color: #FFF;
+    background-color: #3882bb;
     cursor: pointer;
     transition: 0.4s;
 }
@@ -117,9 +117,10 @@ textarea:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    padding: 10px 20px;
+    width: 150px;
+    padding: 20px 20px;
     border-radius: 10px;
+    font-size: 16pt;
 }
 
 .badge-primary {
