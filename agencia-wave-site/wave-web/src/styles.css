@@ -113,4 +113,27 @@ textarea:focus {
     outline: 2px solid #4e91c4; 
 }
 
+.badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #5CA3DA;
+}
+
+.badge-secondary {
+    color: #fff;
+    background-color: #333;
+}
+
+.badge-pink {
+    color: #fff;
+    background-color: #BDA3E2;
+}
 
