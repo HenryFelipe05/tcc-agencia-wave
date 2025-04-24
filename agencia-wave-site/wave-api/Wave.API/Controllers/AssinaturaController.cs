@@ -17,6 +17,26 @@ namespace Wave.API.Controllers
             _assinaturaService = assinaturaService;
         }
 
+        [HttpGet("Usuario/{codigoUsuario}")]
+        public async Task<ActionResult<IEnumerable<Assinatura>>> ObterPorUsuario(int codigoUsuario)
+        {
+            var assinaturas = await _assinaturaService.ObterPorUsuarioIdAsync(codigoUsuario);
+            if (!assinaturas.Any())
+                return NoContent();
+
+            return Ok(assinaturas);
+        }
+
+        [HttpGet("Usuario/{codigoUsuario}/historico")]
+        public async Task<ActionResult<IEnumerable<Assinatura>>> ObterGHistorico(int codigoUsuario)
+        {
+            var historico = await _assinaturaService.ObterHistoricoDeAssinaturasAsync(codigoUsuario);
+            if(!historico.Any())
+                return NoContent();
+
+            return Ok(historico);
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Assinatura>>> ObterAssinaturas()
         {
@@ -47,15 +67,23 @@ namespace Wave.API.Controllers
         [HttpPut("{codigoAssinatura}")]
         public async Task<IActionResult> AtualizarAssinatura(Guid codigoAssinatura, Assinatura assinatura)
         {
-            if(codigoAssinatura != assinatura.CodigoAssinatura)
+            if (codigoAssinatura != assinatura.CodigoAssinatura)
                 return BadRequest();
 
             var resultado = await _assinaturaService.AtualizarAssinaturaAsync(assinatura);
-            if(resultado is null)
+            if (resultado is null)
                 return NotFound();
 
             return Ok(resultado);
         }
+
+        [HttpPut("{codigoAssinatura}/cancelar-assinatura")]
+        public async Task<IActionResult> CancelamentoAssinatura(Guid codigoAssinatura)
+        {
+            var mensagem = await _assinaturaService.CancelarAssinaturaAsync(codigoAssinatura);
+            return Ok(new { mensagem });
+        }
+
 
         [HttpDelete("{codigoAssinatura}")]
         public async Task<IActionResult> RemoverAssinatura(Guid codigoAssinatura)

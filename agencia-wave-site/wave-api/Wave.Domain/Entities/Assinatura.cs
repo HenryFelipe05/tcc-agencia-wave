@@ -10,6 +10,8 @@ namespace Wave.Domain.Entities
         [Key]
         public Guid CodigoAssinatura { get; set; }
         public DateTime DataCadastro { get; set; }
+        public DateTime? DataCancelamento { get; set; }
+        public bool  Ativa { get; set; }
 
         [ForeignKey("TipoAssinatura")]
         public int CodigoTipoAssinatura { get; set; }

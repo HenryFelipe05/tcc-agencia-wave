@@ -14,6 +14,11 @@ namespace Wave.Infra.Repositories
             _context = context;
         }
 
+        public async Task<IEnumerable<Assinatura>> ObterPorUsuarioIdAsync(int CodigoUsuario)
+        {
+            return await _context.Assinaturas.Where(a => a.CodigoUsuario == CodigoUsuario).OrderByDescending(a => a.DataCadastro).ToListAsync();
+        }
+
         public async Task<IEnumerable<Assinatura>> ObterTodasAsync()
         {
             return await _context.Assinaturas.ToListAsync();

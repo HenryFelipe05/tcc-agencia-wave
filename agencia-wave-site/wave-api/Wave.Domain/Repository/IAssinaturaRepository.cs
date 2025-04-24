@@ -9,6 +9,7 @@ namespace Wave.Domain.Repository
         Task<Assinatura> CriarAssinaturaAsync(Assinatura assinatura);
         Task<Assinatura> AtualizarAssinaturaAsync(Assinatura assinatura);
         Task<Assinatura> RemoverAssinaturaAsync(Guid CodigoAssinatura);
-        
+        Task<IEnumerable<Assinatura>> ObterPorUsuarioIdAsync(int CodigoUsuario);
+
     }
 }

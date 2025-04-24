@@ -9,5 +9,8 @@ namespace Wave.Application.Services.Interfaces
         Task<Assinatura> CriarAssinaturaAsync(Assinatura assinatura);
         Task<Assinatura> AtualizarAssinaturaAsync(Assinatura assinatura);
         Task<Assinatura> RemoverAssinaturaAsync(Guid CodigoAssinatura);
+        Task<IEnumerable<Assinatura>> ObterPorUsuarioIdAsync(int CodigoUsuario);
+        Task<IEnumerable<Assinatura>> ObterHistoricoDeAssinaturasAsync(int codigoUsuario);
+        Task<string> CancelarAssinaturaAsync(Guid codigoAssinatura);
     }
 }
