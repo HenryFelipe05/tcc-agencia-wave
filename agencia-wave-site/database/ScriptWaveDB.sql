@@ -85,7 +85,9 @@ CREATE TABLE Assinatura (
     CodigoTipoAssinatura INT FOREIGN KEY REFERENCES TipoAssinatura(CodigoTipoAssinatura),
     CodigoUsuario INT FOREIGN KEY REFERENCES Usuario(CodigoUsuario),
     CodigoStatusAssinatura INT FOREIGN KEY REFERENCES StatusAssinatura(CodigoStatusAssinatura),
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+    DataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
+    DataCancelamento DATETIME NOT NULL DEFAULT GETDATE(),
+    Ativa BIT NOT NULL
 );
 
 -- Tabela SituacaoContato

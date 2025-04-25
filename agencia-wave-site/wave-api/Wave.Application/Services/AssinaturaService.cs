@@ -20,7 +20,7 @@ namespace Wave.Application.Services
 
         public async Task<IEnumerable<Assinatura>> ObterPorUsuarioIdAsync(int codigoUsuario)
         {
-            return await _assinaturaRepository.ObterPorUsuarioIdAsync(codigoUsuario);
+           return  await _assinaturaRepository.ObterPorUsuarioIdAsync(codigoUsuario);               
         }
 
         public async Task<IEnumerable<Assinatura>> ObterTodasAsync()

@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
-using Wave.Domain.Account;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Enums;

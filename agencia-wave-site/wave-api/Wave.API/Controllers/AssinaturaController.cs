@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Entities;
 

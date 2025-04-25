@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Principal;
 using Microsoft.AspNetCore.Identity;
 using Wave.Domain.Commands;
 using Wave.Domain.Queries;
