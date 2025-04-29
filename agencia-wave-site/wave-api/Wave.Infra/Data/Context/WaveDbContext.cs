@@ -19,6 +19,7 @@ namespace Wave.Infra.Data.Context
         public virtual DbSet<Assinatura> Assinaturas { get; set; }
         public virtual DbSet<TipoAssinatura> TiposAssinatura { get; set; }
         public virtual DbSet<StatusAssinatura> StatusAssinaturas { get; set; }
+        public virtual DbSet<ItemGaleria> ItemGalerias { get; set; }
 
         public DbConnection GetDbConnection()
 		{

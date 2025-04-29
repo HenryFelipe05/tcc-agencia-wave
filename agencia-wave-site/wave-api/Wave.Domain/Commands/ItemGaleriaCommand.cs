@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Wave.Domain.Entities
+﻿namespace Wave.Domain.Commands
 {
-    public class ItemGaleria
+    internal class ItemGaleriaCommand
     {
-        [Key]
         public int CodigoItemGaleria { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
@@ -14,8 +10,7 @@ namespace Wave.Domain.Entities
         public string URLMiniatura { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
-
-        [ForeignKey("Galeria")]
         public int CodigoGaleria { get; set; }
+        public bool Exclusivo { get; set; }
     }
 }
