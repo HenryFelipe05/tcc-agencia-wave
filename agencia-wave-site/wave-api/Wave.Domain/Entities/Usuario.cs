@@ -24,6 +24,8 @@ namespace Wave.Domain.Entities
         [ForeignKey("Perfil")]
         public int CodigoPerfil { get; set; }
 
+        public  Perfil Perfil { get; set; }
+
         public static UsuarioQuery MapearDadosUsuario(UsuarioCommand usuarioCommand)
         {
             return new UsuarioQuery
@@ -40,7 +42,7 @@ namespace Wave.Domain.Entities
                 CodigoPessoa = codigoPessoa,
                 NomeUsuario = nomeUsuario,
                 Email = email,
-                Telefone = telefone,  
+                Telefone = telefone,
                 Senha = senha,
                 SenhaConfirmada = senhaConfirmada,
                 Ativo = ativo,

@@ -5,11 +5,11 @@ using Wave.Infra.Data.Context;
 
 namespace Wave.Infra.Repositories
 {
-    public class ItemGaleriaRepesitory : IItemGaleriaRepository
+    public class ItemGaleriaRepository : IItemGaleriaRepository
     {
         private readonly WaveDbContext _context;
 
-        public ItemGaleriaRepesitory(WaveDbContext context)
+        public ItemGaleriaRepository(WaveDbContext context)
         {
             _context = context;
         }

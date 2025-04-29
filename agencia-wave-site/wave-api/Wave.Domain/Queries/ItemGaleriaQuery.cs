@@ -1,6 +1,6 @@
 ﻿namespace Wave.Domain.Queries
 {
-    internal class ItemGaleriaQuery
+    public class ItemGaleriaQuery
     {
         public string TipoArquivo { get; set; }
         public bool? Exclusivo { get; set; }

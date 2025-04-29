@@ -9,5 +9,7 @@ namespace Wave.Domain.Entities
         [Key]
         public int CodigoPerfil { get; set; }
         public string Descricao { get; set; }
+
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

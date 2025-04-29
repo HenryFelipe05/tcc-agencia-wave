@@ -1,6 +1,6 @@
 ﻿namespace Wave.Domain.Commands
 {
-    internal class ItemGaleriaCommand
+    public class ItemGaleriaCommand
     {
         public int CodigoItemGaleria { get; set; }
         public string Titulo { get; set; }
