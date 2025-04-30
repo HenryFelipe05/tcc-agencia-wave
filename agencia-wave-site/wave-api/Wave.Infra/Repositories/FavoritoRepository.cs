@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Wave.Domain.Entities;
 using Wave.Domain.Repositories;
 using Wave.Infra.Data.Context;
@@ -27,14 +22,35 @@ namespace Wave.Infra.Repositories
                 .ToListAsync();
         }
 
-        public Task CriarAsync(Favorito favorito)
+        public async Task CriarAsync(Favorito favorito)
         {
-            throw new NotImplementedException();
+            var favoritoExistente = await _context.Favoritos
+                .FirstOrDefaultAsync(x => x.CodigoUsuario == favorito.CodigoUsuario && x.CodigoItemGaleria == favorito.CodigoItemGaleria);
+
+            if (favoritoExistente != null)
+            {
+                throw new InvalidOperationException("Este item já foi favoritado.");
+            }
+
+            await _context.Favoritos.AddAsync(favorito);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task RemoverAsync(int codigoFavorito)
+        public async Task RemoverAsync(int codigoFavorito)
         {
-            throw new NotImplementedException();
+            var favorito = await _context.Favoritos
+                .FirstOrDefaultAsync(f => f.CodigoFavorito == codigoFavorito);
+
+            if (favorito == null)
+            {
+                throw new InvalidOperationException("Favorito não encontrado.");
+            }
+
+            _context.Favoritos.Remove(favorito);
+
+            await _context.SaveChangesAsync();
         }
+
     }
 }

@@ -6,10 +6,10 @@ namespace Wave.Application.Services
 {
     public interface IGaleriaService
     {
-        Task SalvarItemAsync(ItemGaleriaCommand command);
+        Task SalvarItemAsync(ItemGaleriaCommand command, int codigoUsuario);
         Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query);
-        Task FavoritarItemAsync(int codigoItemGaleria);
-        Task<byte[]> BaixarItemAsync(int codigoItemGaleria);
+        Task FavoritarItemAsync(int codigoItemGaleria, int codigoUsuario);
+        Task<byte[]> BaixarItemAsync(ItemGaleriaCommand itemGaleriaCommand);
         Task ExcluirItemAsync(int codigoItemGaleria);
     }
 }

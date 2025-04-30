@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wave.Domain.Commands;
+﻿using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Queries;
 using Wave.Domain.Repositories;
@@ -11,7 +6,7 @@ using Wave.Domain.Repository;
 
 namespace Wave.Application.Services
 {
-    internal class GaleriaService : IGaleriaService
+    public class GaleriaService : IGaleriaService
     {
         private readonly IItemGaleriaRepository _itemRepository;
         private readonly IFavoritoRepository _favoriteRepository;
@@ -24,35 +19,64 @@ namespace Wave.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public Task<byte[]> BaixarItemAsync(int codigoItemGaleria)
+        public async Task<byte[]> BaixarItemAsync(ItemGaleriaCommand Command)
         {
-            throw new NotImplementedException();
+            var item = await _itemRepository.ObterPorIdAsync(Command.CodigoItemGaleria);
+            if (item == null)
+                throw new InvalidOperationException("Item da galeria não encontrado.");
+
+            if (item.Arquivo == null || item.Arquivo.Length == 0)
+                throw new InvalidOperationException("Arquivo não disponível para este item.");
+
+            return item.Arquivo; // Agora retornamos o arquivo após verificar se não é nulo
         }
 
-        public Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query)
+        
+        public async Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query)
         {
-            throw new NotImplementedException();
+            var item = await _itemRepository.ListarTodosAsync();
+
+            if (item is null || !item.Any())
+                throw new InvalidOperationException("Itens não encontrados");
+
+            return item.ToList();
         }
 
         public Task ExcluirItemAsync(int codigoItemGaleria)
         {
-            throw new NotImplementedException();
+            var itemExcluido = _itemRepository.DeletarAsync(codigoItemGaleria);
+
+            if (itemExcluido is null)
+                throw new InvalidOperationException("Item nao encontrado");
+
+            return itemExcluido;
         }
 
-        public Task FavoritarItemAsync(int codigoItemGaleria)
+        public async Task FavoritarItemAsync(int codigoItemGaleria, int codigoUsuario)
         {
-            throw new NotImplementedException();
+            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
+
+            if (usuario is null)
+                throw new InvalidOperationException("Usuario não encontrado");
+
+            var favorito = new Favorito
+            {
+                CodigoUsuario = codigoUsuario,
+                CodigoItemGaleria = codigoItemGaleria,
+                DataFavorito = DateTime.UtcNow
+            };
+
+            await _favoriteRepository.CriarAsync(favorito);
         }
 
-
-        public async Task SalvarItemAsync(ItemGaleriaCommand command, int usuarioId)
+        public async Task SalvarItemAsync(ItemGaleriaCommand command, int codigoUsuario)
         {
-            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(usuarioId);
+            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
 
             if (usuario == null || usuario.Perfil != "Suporte")
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
-            if (command.CodigoItemGaleria == null )
+            if (command.CodigoItemGaleria != 0)
             {
                 var existente = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
                 if (existente == null) throw new Exception("Item não encontrado.");
