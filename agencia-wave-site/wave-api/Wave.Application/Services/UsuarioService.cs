@@ -24,14 +24,14 @@ namespace Wave.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync()
+        public async Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync()
         {
-            throw new NotImplementedException();
+            return await _usuarioRepository.RecuperarTodosUsuariosAsync();
         }
 
-        public Task<UsuarioQuery> RecuperarUsuarioAsync(int codigoUsuario)
+        public async Task<UsuarioQuery> RecuperarUsuarioAsync(int codigoUsuario)
         {
-            throw new NotImplementedException();
+            return await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
         }
     }
 }

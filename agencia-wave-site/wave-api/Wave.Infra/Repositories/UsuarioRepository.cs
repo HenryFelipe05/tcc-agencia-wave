@@ -53,7 +53,7 @@ namespace Wave.Infra.Repositories
                     CodigoPessoa = usuarioCommand.CodigoPessoa
                 });
 
-                if(linhasAfetadas > 0)
+                if (linhasAfetadas > 0)
                 {
                     var usuarioCriado = Usuario.MapearDadosUsuario(usuarioCommand);
                     return usuarioCriado;
@@ -62,19 +62,90 @@ namespace Wave.Infra.Repositories
             }
         }
 
-        public Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario)
+        public async Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario)
         {
-            throw new NotImplementedException();
+            var sql = new StringBuilder();
+
+            #region[SQL]
+            sql.AppendLine("UPDATE Usuario SET ");
+            sql.AppendLine("    NomeUsuario = @NomeUsuario, ");
+            sql.AppendLine("    Email = @Email, ");
+            sql.AppendLine("    Telefone = @Telefone, ");
+            sql.AppendLine("    Senha = @Senha, ");
+            sql.AppendLine("    CodigoPerfil = @CodigoPerfil, ");
+            sql.AppendLine("    Ativo = @Ativo ");
+            sql.AppendLine("WHERE CodigoUsuario = @CodigoUsuario");
+            #endregion
+
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+
+                await connection.ExecuteAsync(sql.ToString(), new
+                {
+                    NomeUsuario = usuarioCommand.NomeUsuario,
+                    Email = usuarioCommand.Email,
+                    Telefone = usuarioCommand.Telefone,
+                    Senha = usuarioCommand.Senha,
+                    CodigoPerfil = usuarioCommand.CodigoPerfil,
+                    Ativo = usuarioCommand.Ativo,
+                    CodigoUsuario = codigoUsuario
+                });
+            }
         }
 
-        public Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync()
+        public async Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync()
         {
-            throw new NotImplementedException();
+            var sql = new StringBuilder();
+
+            #region[SQL]
+            sql.AppendLine("SELECT ");
+            sql.AppendLine("    CodigoUsuario, ");
+            sql.AppendLine("    NomeUsuario, ");
+            sql.AppendLine("    Email, ");
+            sql.AppendLine("    CodigoPerfil, ");
+            sql.AppendLine("    Ativo ");
+            sql.AppendLine("FROM Usuario");
+            #endregion
+
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+
+                var usuarios = await connection.QueryAsync<UsuarioQuery>(sql.ToString());
+                return usuarios;
+            }
         }
 
-        public Task<UsuarioQuery> RecuperarUsuarioAsync(int codigoUsuario)
+        public async Task<UsuarioQuery> RecuperarUsuarioAsync(int codigoUsuario)
         {
-            throw new NotImplementedException();
+            var sql = new StringBuilder();
+
+            #region[SQL]
+            sql.AppendLine("SELECT ");
+            sql.AppendLine("    CodigoUsuario, ");
+            sql.AppendLine("    NomeUsuario, ");
+            sql.AppendLine("    Email, ");
+            sql.AppendLine("    CodigoPerfil, ");
+            sql.AppendLine("    Ativo ");
+            sql.AppendLine("FROM Usuario ");
+            sql.AppendLine("WHERE CodigoUsuario = @CodigoUsuario");
+            #endregion
+
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+
+                var usuario = await connection.QueryFirstOrDefaultAsync<UsuarioQuery>(sql.ToString(), new
+                {
+                    CodigoUsuario = codigoUsuario
+                });
+
+                return usuario;
+            }
         }
     }
 }
