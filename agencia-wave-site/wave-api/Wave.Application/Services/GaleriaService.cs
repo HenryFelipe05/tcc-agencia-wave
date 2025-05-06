@@ -81,6 +81,7 @@ namespace Wave.Application.Services
                 var existente = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
                 if (existente == null) throw new Exception("Item não encontrado.");
 
+
                 existente.Titulo = command.Titulo;
                 existente.Descricao = command.Descricao;
                 existente.ExtensaoArquivo = command.ExtensaoArquivo;

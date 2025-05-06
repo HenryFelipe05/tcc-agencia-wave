@@ -114,3 +114,6 @@ INSERT INTO Genero (Descricao) VALUES ('Não Informar');
 INSERT INTO Perfil (Descricao) VALUES ('Administrador');
 INSERT INTO Perfil (Descricao) VALUES ('Operador');
 INSERT INTO Perfil (Descricao) VALUES ('Usuario');
+
+INSERT INTO StatusAssinatura (CodigoStatusAssinatura, Descricao) VALUES (1, 'Ativa');
+INSERT INTO TipoAssinatura (CodigoTipoAssinatura, Descricao, Preco) VALUES (1, 'Premium', 49.99);
