@@ -4,10 +4,11 @@ using System.Text.Json.Serialization;
 
 namespace Wave.Domain.Entities
 {
+    [Table("ItemGaleria")]
     public class ItemGaleria
     {
         [Key]
-        public int? CodigoItemGaleria { get; set; }
+        public int CodigoItemGaleria { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string ExtensaoArquivo { get; set; }

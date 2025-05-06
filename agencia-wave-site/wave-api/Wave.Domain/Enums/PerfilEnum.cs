@@ -5,7 +5,7 @@
         public enum Perfis
         {
             Administrador = 1,
-            Operador = 2,
+            Suporte = 2,
             Usuario = 3
         }
     }

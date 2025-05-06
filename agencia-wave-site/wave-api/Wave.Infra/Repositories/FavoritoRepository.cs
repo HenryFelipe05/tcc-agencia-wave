@@ -25,7 +25,8 @@ namespace Wave.Infra.Repositories
         public async Task CriarAsync(Favorito favorito)
         {
             var favoritoExistente = await _context.Favoritos
-                .FirstOrDefaultAsync(x => x.CodigoUsuario == favorito.CodigoUsuario && x.CodigoItemGaleria == favorito.CodigoItemGaleria);
+                .Where(x => x.CodigoUsuario == favorito.CodigoUsuario && x.CodigoItemGaleria == favorito.CodigoItemGaleria)
+                .FirstOrDefaultAsync();
 
             if (favoritoExistente != null)
             {

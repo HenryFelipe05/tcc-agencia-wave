@@ -1,4 +1,6 @@
-﻿namespace Wave.Domain.Queries
+﻿using Wave.Domain.Entities;
+
+namespace Wave.Domain.Queries
 {
     public class UsuarioQuery
     {

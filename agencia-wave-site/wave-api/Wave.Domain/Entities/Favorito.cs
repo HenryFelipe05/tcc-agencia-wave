@@ -15,5 +15,6 @@ namespace Wave.Domain.Entities
 
         [ForeignKey("ItemGaleria")]
         public int CodigoItemGaleria { get; set; }
+
     }
 }

@@ -101,12 +101,14 @@ namespace Wave.Infra.Repositories
 
             #region[SQL]
             sql.AppendLine("SELECT ");
-            sql.AppendLine("    CodigoUsuario, ");
-            sql.AppendLine("    NomeUsuario, ");
-            sql.AppendLine("    Email, ");
-            sql.AppendLine("    CodigoPerfil, ");
-            sql.AppendLine("    Ativo ");
-            sql.AppendLine("FROM Usuario");
+            sql.AppendLine("    u.CodigoUsuario, ");
+            sql.AppendLine("    u.NomeUsuario, ");
+            sql.AppendLine("    u.Email, ");
+            sql.AppendLine("    u.CodigoPerfil, ");
+            sql.AppendLine("    u.Ativo ");
+            sql.AppendLine("FROM Usuario u");
+            sql.AppendLine("INNER JOIN Perfil p ON u.CodigoPerfil = p.CodigoPerfil ");
+            sql.AppendLine("WHERE u.CodigoUsuario = @CodigoUsuario");
             #endregion
 
             using (var connection = _context.GetDbConnection())
@@ -124,14 +126,17 @@ namespace Wave.Infra.Repositories
             var sql = new StringBuilder();
 
             #region[SQL]
+
             sql.AppendLine("SELECT ");
-            sql.AppendLine("    CodigoUsuario, ");
-            sql.AppendLine("    NomeUsuario, ");
-            sql.AppendLine("    Email, ");
-            sql.AppendLine("    CodigoPerfil, ");
-            sql.AppendLine("    Ativo ");
-            sql.AppendLine("FROM Usuario ");
-            sql.AppendLine("WHERE CodigoUsuario = @CodigoUsuario");
+            sql.AppendLine("    u.CodigoUsuario, ");
+            sql.AppendLine("    u.NomeUsuario, ");
+            sql.AppendLine("    u.Email, ");
+            sql.AppendLine("    u.CodigoPerfil, ");
+            sql.AppendLine("    p.Descricao AS Perfil, ");  // <- aqui traz o nome do perfil
+            sql.AppendLine("    u.Ativo ");
+            sql.AppendLine("FROM Usuario u ");
+            sql.AppendLine("INNER JOIN Perfil p ON u.CodigoPerfil = p.CodigoPerfil ");
+            sql.AppendLine("WHERE u.CodigoUsuario = @CodigoUsuario");
             #endregion
 
             using (var connection = _context.GetDbConnection())

@@ -9,13 +9,13 @@ namespace Wave.Application.Services
     public class GaleriaService : IGaleriaService
     {
         private readonly IItemGaleriaRepository _itemRepository;
-        private readonly IFavoritoRepository _favoriteRepository;
+        private readonly IFavoritoRepository _favoritoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
 
         public GaleriaService(IItemGaleriaRepository itemRepository, IFavoritoRepository favoriteRepository, IUsuarioRepository usuarioRepository)
         {
             _itemRepository = itemRepository;
-            _favoriteRepository = favoriteRepository;
+            _favoritoRepository = favoriteRepository;
             _usuarioRepository = usuarioRepository;
         }
 
@@ -66,47 +66,51 @@ namespace Wave.Application.Services
                 DataFavorito = DateTime.UtcNow
             };
 
-            await _favoriteRepository.CriarAsync(favorito);
+            await _favoritoRepository.CriarAsync(favorito);
         }
 
         public async Task SalvarItemAsync(ItemGaleriaCommand command, int codigoUsuario)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
-
             if (usuario == null || usuario.Perfil != "Suporte")
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
             if (command.CodigoItemGaleria != 0)
             {
-                var existente = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
-                if (existente == null) throw new Exception("Item não encontrado.");
+                var itemExistente = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
+                if (itemExistente == null)
+                    throw new InvalidOperationException("Item não encontrado.");
 
+                // Atualiza os dados do item
+                itemExistente.Titulo = command.Titulo;
+                itemExistente.Descricao = command.Descricao;
+                itemExistente.ExtensaoArquivo = command.ExtensaoArquivo;
+                itemExistente.Arquivo = !string.IsNullOrEmpty(command.ArquivoBase64)
+                    ? Convert.FromBase64String(command.ArquivoBase64)
+                    : itemExistente.Arquivo;
+                itemExistente.URLMiniatura = command.URLMiniatura;
+                itemExistente.Ativo = command.Ativo;
+                itemExistente.CodigoGaleria = command.CodigoGaleria;
 
-                existente.Titulo = command.Titulo;
-                existente.Descricao = command.Descricao;
-                existente.ExtensaoArquivo = command.ExtensaoArquivo;
-                existente.Arquivo = command.Arquivo;
-                existente.URLMiniatura = command.URLMiniatura;
-                existente.Ativo = command.Ativo;
-                existente.CodigoGaleria = command.CodigoGaleria;
-
-                await _itemRepository.AtualizarAsync(existente);
+                await _itemRepository.AtualizarAsync(itemExistente);
             }
             else
             {
-                var novo = new ItemGaleria
+                var novoItem = new ItemGaleria
                 {
                     Titulo = command.Titulo,
                     Descricao = command.Descricao,
                     ExtensaoArquivo = command.ExtensaoArquivo,
-                    Arquivo = command.Arquivo,
+                    Arquivo = !string.IsNullOrEmpty(command.ArquivoBase64)
+                        ? Convert.FromBase64String(command.ArquivoBase64)
+                        : null,
                     URLMiniatura = command.URLMiniatura,
                     Ativo = command.Ativo,
                     CodigoGaleria = command.CodigoGaleria,
                     DataCadastro = DateTime.UtcNow
                 };
 
-                await _itemRepository.CriarAsync(novo);
+                await _itemRepository.CriarAsync(novoItem);
             }
         }
     }
