@@ -102,3 +102,72 @@
 .service-text p {
     font-size: 14pt;
 }
+
+#teamSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 80px 0;
+}
+
+.team-section-header {
+    width: 70%;
+    margin: 20px 0 20px 0;
+}
+
+.team-section-header h1 {
+    font-size: 30pt;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.team-section-header p {
+    font-size: 14pt;
+    color: rgba(3, 3, 3, 0.8)
+}
+
+.members {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.member-container {
+    background-image: linear-gradient(to right, #AC8FD1, #5CA3DA);
+    border-radius: 50px;
+    width: 420px;
+    height: 480px;
+    margin: 20px;
+    color: #fff;
+}
+
+.member-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.member-social {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.member-social ng-icon {
+    color: #fff;
+    font-size: 30pt;
+    transition: .3s;
+}
+
+.member-social ng-icon:hover {
+    transform: scale(1.1);
+    transition: .3s;
+    cursor: pointer;
+}
