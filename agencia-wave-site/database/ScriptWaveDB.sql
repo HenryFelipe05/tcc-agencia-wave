@@ -115,5 +115,12 @@ INSERT INTO Perfil (Descricao) VALUES ('Administrador');
 INSERT INTO Perfil (Descricao) VALUES ('Operador');
 INSERT INTO Perfil (Descricao) VALUES ('Usuario');
 
-INSERT INTO StatusAssinatura (CodigoStatusAssinatura, Descricao) VALUES (1, 'Ativa');
-INSERT INTO TipoAssinatura (CodigoTipoAssinatura, Descricao, Preco) VALUES (1, 'Premium', 49.99);
+INSERT INTO StatusAssinatura (Descricao) VALUES ('Ativa');
+INSERT INTO TipoAssinatura (Descricao, Preco) VALUES ('Premium', 49.99);
+
+INSERT INTO Galeria (Descricao) VALUES ('testando');
+
+INSERT INTO Pessoa (Nome, Sobrenome, DataNascimento, CodigoGenero) VALUES ('vinicius', 'boti', '06-09-2002', 2);
+
+INSERT INTO Usuario (NomeUsuario, Email, Telefone, Senha, Ativo, CodigoPerfil, CodigoPessoa, DataCadastro)
+VALUES ('teste', 'teste@gmail.com', '14988090807', '123', 'true', 1,1,'06-05-2025')

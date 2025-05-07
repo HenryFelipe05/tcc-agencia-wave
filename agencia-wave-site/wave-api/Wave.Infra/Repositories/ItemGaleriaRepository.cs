@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Repositories;
 using Wave.Infra.Data.Context;
@@ -44,10 +46,17 @@ namespace Wave.Infra.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task CriarAsync(ItemGaleria itemGaleria)
+        public async Task<ItemGaleria> CriarAsync(ItemGaleria itemGaleria)
         {
-            await _context.ItemGalerias.AddAsync(itemGaleria);
+            if (_context == null)
+            {
+                throw new InvalidOperationException("O contexto do banco de dados não foi inicializado.");
+            }
+
+            _context.ItemGalerias.Add(itemGaleria);
             await _context.SaveChangesAsync();
+
+            return itemGaleria;
         }
 
         public async Task AtualizarAsync(ItemGaleria itemGaleria)

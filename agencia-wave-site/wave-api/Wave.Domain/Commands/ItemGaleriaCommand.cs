@@ -24,6 +24,5 @@ namespace Wave.Domain.Commands
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
         public int CodigoGaleria { get; set; }
-        public bool Exclusivo { get; set; }
     }
 }

@@ -75,22 +75,31 @@ namespace Wave.Application.Services
             if (usuario == null || usuario.Perfil != "Suporte")
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
+            byte[] arquivo = null;
+
+            // Converte o base64 para byte[] se fornecido
+            if (!string.IsNullOrEmpty(command.ArquivoBase64))
+            {
+                arquivo = Convert.FromBase64String(command.ArquivoBase64);
+                ImagemStorage.Imagem = arquivo; // opcional: armazenar na classe estática
+            }
+
             if (command.CodigoItemGaleria != 0)
             {
                 var itemExistente = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
                 if (itemExistente == null)
                     throw new InvalidOperationException("Item não encontrado.");
 
-                // Atualiza os dados do item
+                // Atualiza os dados do item existente
                 itemExistente.Titulo = command.Titulo;
                 itemExistente.Descricao = command.Descricao;
                 itemExistente.ExtensaoArquivo = command.ExtensaoArquivo;
-                itemExistente.Arquivo = !string.IsNullOrEmpty(command.ArquivoBase64)
-                    ? Convert.FromBase64String(command.ArquivoBase64)
-                    : itemExistente.Arquivo;
                 itemExistente.URLMiniatura = command.URLMiniatura;
                 itemExistente.Ativo = command.Ativo;
                 itemExistente.CodigoGaleria = command.CodigoGaleria;
+
+                if (arquivo != null)
+                    itemExistente.Arquivo = arquivo;
 
                 await _itemRepository.AtualizarAsync(itemExistente);
             }
@@ -101,17 +110,16 @@ namespace Wave.Application.Services
                     Titulo = command.Titulo,
                     Descricao = command.Descricao,
                     ExtensaoArquivo = command.ExtensaoArquivo,
-                    Arquivo = !string.IsNullOrEmpty(command.ArquivoBase64)
-                        ? Convert.FromBase64String(command.ArquivoBase64)
-                        : null,
                     URLMiniatura = command.URLMiniatura,
                     Ativo = command.Ativo,
                     CodigoGaleria = command.CodigoGaleria,
-                    DataCadastro = DateTime.UtcNow
+                    DataCadastro = DateTime.UtcNow,
+                    Arquivo = arquivo // pode ser null, se base64 não foi enviado
                 };
 
                 await _itemRepository.CriarAsync(novoItem);
             }
         }
+
     }
 }
