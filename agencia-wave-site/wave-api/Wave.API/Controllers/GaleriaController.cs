@@ -65,7 +65,6 @@ namespace Wave.API.Controllers
         [HttpPost("salvar")]
         public async Task<IActionResult> SalvarItemAsync([FromBody] ItemGaleriaCommand command, [FromQuery] int codigoUsuario)
         {
-        //salvar
             try
             {
                 await _galeriaService.SalvarItemAsync(command, codigoUsuario);
