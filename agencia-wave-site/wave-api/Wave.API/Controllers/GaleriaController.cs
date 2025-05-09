@@ -18,6 +18,12 @@ namespace Wave.API.Controllers
             _galeriaService = galeriaService;
         }
 
+        [HttpPost("Criar")]
+        public async Task<ActionResult<ItemGaleria>> CriarItem(ItemGaleria itemGaleria, int codigoUsuario)
+        {
+            return await _galeriaService.CriarItemGaleria(itemGaleria, codigoUsuario);
+        }
+
         [HttpGet("baixar/{codigoItemGaleria}")]
         public async Task<IActionResult> BaixarItemAsync(int codigoItemGaleria)
         {
@@ -62,13 +68,27 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpPost("salvar")]
-        public async Task<IActionResult> SalvarItemAsync([FromBody] ItemGaleriaCommand command, [FromQuery] int codigoUsuario)
+        [HttpPost("Alterar Item")]
+        public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleria itemGaleria, [FromQuery] int codigoUsuario)
         {
             try
             {
-                await _galeriaService.SalvarItemAsync(command, codigoUsuario);
-                return Ok("Item salvo com sucesso.");
+                await _galeriaService.AlterarItemAsync(itemGaleria, codigoUsuario);
+                return Ok("Item Alterado com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("Excluir Item")]
+        public async Task<ActionResult> ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)
+        {
+            try
+            {
+                await _galeriaService.ExcluirItemAsync(codigoItemGaleria, codigoUsuario);
+                return Ok("Item Excluido com exito");
             }
             catch (Exception ex)
             {

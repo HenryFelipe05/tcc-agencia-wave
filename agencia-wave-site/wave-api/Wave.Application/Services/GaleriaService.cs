@@ -19,6 +19,11 @@ namespace Wave.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
+        public async Task<ItemGaleria> CriarItemGaleria(ItemGaleria itemGaleria, int codigoUsuario)
+        {
+            return await _itemRepository.CriarAsync(itemGaleria);
+        }
+
         public async Task<byte[]> BaixarItemAsync(ItemGaleriaCommand Command)
         {
             var item = await _itemRepository.ObterPorIdAsync(Command.CodigoItemGaleria);
@@ -42,16 +47,6 @@ namespace Wave.Application.Services
             return item.ToList();
         }
 
-        public Task ExcluirItemAsync(int codigoItemGaleria)
-        {
-            var itemExcluido = _itemRepository.DeletarAsync(codigoItemGaleria);
-
-            if (itemExcluido is null)
-                throw new InvalidOperationException("Item nao encontrado");
-
-            return itemExcluido;
-        }
-
         public async Task FavoritarItemAsync(int codigoItemGaleria, int codigoUsuario)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
@@ -69,57 +64,34 @@ namespace Wave.Application.Services
             await _favoritoRepository.CriarAsync(favorito);
         }
 
-        public async Task SalvarItemAsync(ItemGaleriaCommand command, int codigoUsuario)
+        public async Task AlterarItemAsync(ItemGaleria itemGaleria, int codigoUsuario)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
             if (usuario == null || usuario.Perfil != "Suporte")
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
-            byte[] arquivo = null;
+            byte[] arquivo = itemGaleria.Arquivo;
 
-            // Converte o base64 para byte[] se fornecido
-            if (!string.IsNullOrEmpty(command.ArquivoBase64))
+
+            if (itemGaleria.CodigoItemGaleria != 0)
             {
-                arquivo = Convert.FromBase64String(command.ArquivoBase64);
-                ImagemStorage.Imagem = arquivo; // opcional: armazenar na classe estática
-            }
-
-            if (command.CodigoItemGaleria != 0)
-            {
-                var itemExistente = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
-                if (itemExistente == null)
-                    throw new InvalidOperationException("Item não encontrado.");
-
-                // Atualiza os dados do item existente
-                itemExistente.Titulo = command.Titulo;
-                itemExistente.Descricao = command.Descricao;
-                itemExistente.ExtensaoArquivo = command.ExtensaoArquivo;
-                itemExistente.URLMiniatura = command.URLMiniatura;
-                itemExistente.Ativo = command.Ativo;
-                itemExistente.CodigoGaleria = command.CodigoGaleria;
-
-                if (arquivo != null)
-                    itemExistente.Arquivo = arquivo;
-
-                await _itemRepository.AtualizarAsync(itemExistente);
-            }
-            else
-            {
-                var novoItem = new ItemGaleria
-                {
-                    Titulo = command.Titulo,
-                    Descricao = command.Descricao,
-                    ExtensaoArquivo = command.ExtensaoArquivo,
-                    URLMiniatura = command.URLMiniatura,
-                    Ativo = command.Ativo,
-                    CodigoGaleria = command.CodigoGaleria,
-                    DataCadastro = DateTime.UtcNow,
-                    Arquivo = arquivo // pode ser null, se base64 não foi enviado
-                };
-
-                await _itemRepository.CriarAsync(novoItem);
+                await _itemRepository.AtualizarAsync(itemGaleria);   
             }
         }
+        public async Task ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)
+        {
+            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
+            if (usuario == null || usuario.Perfil != "Suporte")
+                throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
+            var itemExistente = await _itemRepository.ObterPorIdAsync(codigoItemGaleria);
+
+            if (itemExistente is null)
+                throw new Exception("Item não encontrado");
+            else
+            {
+                await _itemRepository.DeletarAsync(codigoItemGaleria);
+            }        
+        }
     }
 }

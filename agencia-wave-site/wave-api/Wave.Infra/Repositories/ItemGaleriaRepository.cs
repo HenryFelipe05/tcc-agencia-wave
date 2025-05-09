@@ -59,10 +59,12 @@ namespace Wave.Infra.Repositories
             return itemGaleria;
         }
 
-        public async Task AtualizarAsync(ItemGaleria itemGaleria)
+        public async Task<ItemGaleria> AtualizarAsync(ItemGaleria itemGaleria)
         {
            _context.ItemGalerias.Update(itemGaleria);
             await _context.SaveChangesAsync();
+
+            return itemGaleria;
         }
 
         public async Task DeletarAsync(int codigoItemGaleria)
