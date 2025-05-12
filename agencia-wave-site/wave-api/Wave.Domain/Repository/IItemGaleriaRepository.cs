@@ -1,5 +1,4 @@
-﻿using Wave.Domain.Commands;
-using Wave.Domain.Entities;
+﻿using Wave.Domain.Entities;
 
 namespace Wave.Domain.Repositories
 {
@@ -8,8 +7,8 @@ namespace Wave.Domain.Repositories
         Task<ItemGaleria> ObterPorIdAsync(int codigoItemGaleria);
         Task<IEnumerable<ItemGaleria>> ListarTodosAsync();
         Task<IEnumerable<ItemGaleria>> FiltrarAsync(string tipoArquivo, bool? exclusivo, string pesquisa);
-        Task <ItemGaleria> CriarAsync(ItemGaleria itemGaleria);
-        Task <ItemGaleria>AtualizarAsync(ItemGaleria itemGaleria);
-        Task DeletarAsync(int codigoItemGaleria);
+        Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria);
+        Task<ItemGaleria> AtualizarItemAsync(ItemGaleria itemGaleria);
+        Task<ItemGaleria> DeletarItemAsync(ItemGaleria itemGaleria);
     }
 }

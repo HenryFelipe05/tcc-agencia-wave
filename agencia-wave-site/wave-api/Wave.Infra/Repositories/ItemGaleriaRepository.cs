@@ -26,6 +26,28 @@ namespace Wave.Infra.Repositories
             return await _context.ItemGalerias.FirstOrDefaultAsync(x => x.CodigoItemGaleria == codigoItemGaleria);
         }
 
+        public async Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria)
+        {
+            if (_context == null)
+            {
+                throw new InvalidOperationException("O contexto do banco de dados não foi inicializado.");
+            }
+
+            try
+            {
+                _context.ItemGalerias.Add(itemGaleria);
+                await _context.SaveChangesAsync();
+
+                return itemGaleria;
+            }
+            catch
+            {
+            
+                throw new Exception($"Erro ao salvar: {itemGaleria}");
+            }
+          
+        }
+
         public async Task<IEnumerable<ItemGaleria>> FiltrarAsync(string tipoArquivo, bool? exclusivo, string pesquisa)
         {
             var query = _context.ItemGalerias.AsQueryable();
@@ -46,35 +68,23 @@ namespace Wave.Infra.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<ItemGaleria> CriarAsync(ItemGaleria itemGaleria)
+        public async Task<ItemGaleria> AtualizarItemAsync(ItemGaleria itemGaleria)
         {
-            if (_context == null)
-            {
-                throw new InvalidOperationException("O contexto do banco de dados não foi inicializado.");
-            }
-
-            _context.ItemGalerias.Add(itemGaleria);
+            _context.ItemGalerias.Update(itemGaleria);
             await _context.SaveChangesAsync();
 
             return itemGaleria;
         }
 
-        public async Task<ItemGaleria> AtualizarAsync(ItemGaleria itemGaleria)
+        public async Task<ItemGaleria> DeletarItemAsync(ItemGaleria itemGaleria)
         {
-           _context.ItemGalerias.Update(itemGaleria);
+     
+
+            _context.ItemGalerias.Remove(itemGaleria);
             await _context.SaveChangesAsync();
 
             return itemGaleria;
         }
 
-        public async Task DeletarAsync(int codigoItemGaleria)
-        {
-            var item = await ObterPorIdAsync(codigoItemGaleria);
-            if(item != null)
-            {
-                _context.ItemGalerias.Remove(item);
-                await _context.SaveChangesAsync();
-            }
-        }
     }
 }

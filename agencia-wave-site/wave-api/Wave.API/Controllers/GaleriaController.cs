@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services;
+using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Queries;
@@ -19,9 +20,17 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost("Criar")]
-        public async Task<ActionResult<ItemGaleria>> CriarItem(ItemGaleria itemGaleria, int codigoUsuario)
+        public async Task<ActionResult<ItemGaleria>> CriarItem([FromBody] CriarItemGaleriaCommand command)
         {
-            return await _galeriaService.CriarItemGaleria(itemGaleria, codigoUsuario);
+            try
+            {
+                var itemGaleria = await _galeriaService.CriarItemGaleriaAsync(command);
+                return Ok(itemGaleria);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("baixar/{codigoItemGaleria}")]
@@ -68,13 +77,13 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpPost("Alterar Item")]
+        [HttpPut("{codigoItemGaleria}")]
         public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleria itemGaleria, [FromQuery] int codigoUsuario)
         {
             try
             {
                 await _galeriaService.AlterarItemAsync(itemGaleria, codigoUsuario);
-                return Ok("Item Alterado com sucesso.");
+                return Ok(new { message = "Item alterado com sucesso." });
             }
             catch (Exception ex)
             {
@@ -82,13 +91,13 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpDelete("Excluir Item")]
-        public async Task<ActionResult> ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)
+        [HttpDelete("{codigoItemGaleria}")]
+        public async Task<IActionResult> DeletarItemAsync([FromBody] ExcluirItemGaleriaCommand command)
         {
             try
             {
-                await _galeriaService.ExcluirItemAsync(codigoItemGaleria, codigoUsuario);
-                return Ok("Item Excluido com exito");
+                await _galeriaService.ExcluirItemAsync(command);
+                return Ok(new { message = "Item deletado com sucesso." });
             }
             catch (Exception ex)
             {

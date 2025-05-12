@@ -3,6 +3,7 @@ using Wave.Domain.Entities;
 using Wave.Domain.Queries;
 using Wave.Domain.Repositories;
 using Wave.Domain.Repository;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Wave.Application.Services
 {
@@ -19,10 +20,37 @@ namespace Wave.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<ItemGaleria> CriarItemGaleria(ItemGaleria itemGaleria, int codigoUsuario)
+        public async Task<ItemGaleria> CriarItemGaleriaAsync(CriarItemGaleriaCommand command)
         {
-            return await _itemRepository.CriarAsync(itemGaleria);
+            // Verifique se as propriedades essenciais não estão nulas
+            if (string.IsNullOrEmpty(command.Titulo) || string.IsNullOrEmpty(command.Descricao))
+            {
+                throw new ArgumentException("Título e descrição são obrigatórios.");
+            }
+
+            if (command.Arquivo == null || command.Arquivo.Length == 0)
+            {
+                throw new ArgumentException("Arquivo não pode ser nulo ou vazio.");
+            }
+
+            var itemGaleria = new ItemGaleria
+            {
+                Titulo = command.Titulo,
+                Descricao = command.Descricao,
+                ExtensaoArquivo = command.ExtensaoArquivo,
+                Arquivo = command.Arquivo, // Arquivo em byte[]
+                URLMiniatura = command.URLMiniatura,
+                Ativo = command.Ativo,
+                DataCadastro = command.DataCadastro == default ? DateTime.UtcNow : command.DataCadastro,
+                CodigoGaleria = command.CodigoGaleria,
+                CodigoUsuario = command.CodigoUsuario
+            };
+
+            // Salve o item e retorne
+            return await _itemRepository.CriarItemAsync(itemGaleria);
         }
+
+
 
         public async Task<byte[]> BaixarItemAsync(ItemGaleriaCommand Command)
         {
@@ -75,23 +103,22 @@ namespace Wave.Application.Services
 
             if (itemGaleria.CodigoItemGaleria != 0)
             {
-                await _itemRepository.AtualizarAsync(itemGaleria);   
+                await _itemRepository.AtualizarItemAsync(itemGaleria);   
             }
         }
-        public async Task ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)
+        public async Task <ItemGaleria>ExcluirItemAsync(ExcluirItemGaleriaCommand command)
         {
-            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
+            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(command.CodigoUsuario);
             if (usuario == null || usuario.Perfil != "Suporte")
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
-            var itemExistente = await _itemRepository.ObterPorIdAsync(codigoItemGaleria);
 
-            if (itemExistente is null)
-                throw new Exception("Item não encontrado");
-            else
-            {
-                await _itemRepository.DeletarAsync(codigoItemGaleria);
-            }        
+            var item = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
+            if (item == null)
+                throw new InvalidOperationException("Item não encontrado.");
+
+            await _itemRepository.DeletarItemAsync(item);
+            return item;
         }
     }
 }
