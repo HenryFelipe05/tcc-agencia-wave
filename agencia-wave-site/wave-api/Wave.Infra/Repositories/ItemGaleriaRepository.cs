@@ -19,7 +19,8 @@ namespace Wave.Infra.Repositories
 
         public async Task<IEnumerable<ItemGaleria>> ListarTodosAsync()
         {
-            var itens = await _context.ItemGalerias.ToListAsync();
+            var itens = await _context.ItemGalerias.AsNoTracking().ToListAsync();
+
             if (itens == null || !itens.Any())
             {
                 // Verifica se o retorno está vazio

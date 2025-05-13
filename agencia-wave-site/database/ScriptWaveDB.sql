@@ -49,6 +49,7 @@ CREATE TABLE Galeria (
 CREATE TABLE ItemGaleria (
     CodigoItemGaleria INT PRIMARY KEY IDENTITY,
     CodigoGaleria INT FOREIGN KEY REFERENCES Galeria(CodigoGaleria),
+    CodigoUsuario INT FOREIGN KEY REFERENCES Usuario(CodigoUsuario) NOT NULL,
     Titulo VARCHAR(255) NOT NULL,
 	Descricao VARCHAR(255) NULL,
     ExtensaoArquivo VARCHAR(10) NOT NULL,

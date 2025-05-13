@@ -67,12 +67,23 @@ namespace Wave.Application.Services
         
         public async Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query)
         {
-            var item = await _itemRepository.ListarTodosAsync();
+            var itens = await _itemRepository.ListarTodosAsync();
 
-            if (item is null || !item.Any())
+            if (itens is null || !itens.Any())
                 throw new InvalidOperationException("Itens não encontrados");
 
-            return item.ToList();
+            // Aplicar filtros opcionais
+            if (!string.IsNullOrEmpty(query.TipoArquivo))
+                itens = itens.Where(i => i.ExtensaoArquivo.Equals(query.TipoArquivo, StringComparison.OrdinalIgnoreCase));
+
+            if (query.Exclusivo.HasValue && query.Exclusivo.Value)
+                itens = itens.Where(i => i.CodigoUsuario != 0); // ou alguma lógica que defina o que é "exclusivo"
+
+            if (!string.IsNullOrWhiteSpace(query.Pesquisa))
+                itens = itens.Where(i => i.Titulo.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase) ||
+                                         i.Descricao.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase));
+
+            return itens.ToList();
         }
 
         public async Task <ItemGaleria>AlterarItemAsync(ItemGaleria itemGaleria, int codigoUsuario)
