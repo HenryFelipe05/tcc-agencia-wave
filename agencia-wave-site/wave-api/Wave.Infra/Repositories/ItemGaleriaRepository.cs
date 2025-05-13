@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -18,12 +19,22 @@ namespace Wave.Infra.Repositories
 
         public async Task<IEnumerable<ItemGaleria>> ListarTodosAsync()
         {
-            return await _context.ItemGalerias.AsNoTracking().ToListAsync();
+            var itens = await _context.ItemGalerias.ToListAsync();
+            if (itens == null || !itens.Any())
+            {
+                // Verifica se o retorno está vazio
+                Console.WriteLine("Nenhum item encontrado.");
+            }
+            return itens;
         }
+
 
         public async Task<ItemGaleria> ObterPorIdAsync(int codigoItemGaleria)
         {
-            return await _context.ItemGalerias.FirstOrDefaultAsync(x => x.CodigoItemGaleria == codigoItemGaleria);
+            if (codigoItemGaleria == 0)
+                throw new Exception("Erroooooo");
+                
+            return await _context.ItemGalerias.FindAsync(codigoItemGaleria);
         }
 
         public async Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria)

@@ -22,22 +22,6 @@ namespace Wave.Infra.Repositories
                 .ToListAsync();
         }
 
-        public async Task CriarAsync(Favorito favorito)
-        {
-            var favoritoExistente = await _context.Favoritos
-                .Where(x => x.CodigoUsuario == favorito.CodigoUsuario && x.CodigoItemGaleria == favorito.CodigoItemGaleria)
-                .FirstOrDefaultAsync();
-
-            if (favoritoExistente != null)
-            {
-                throw new InvalidOperationException("Este item já foi favoritado.");
-            }
-
-            await _context.Favoritos.AddAsync(favorito);
-
-            await _context.SaveChangesAsync();
-        }
-
         public async Task RemoverAsync(int codigoFavorito)
         {
             var favorito = await _context.Favoritos
@@ -53,5 +37,16 @@ namespace Wave.Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Favorito> AdicionarAsync(Favorito favorito)
+        {
+            _context.Favoritos.Add(favorito);
+            await _context.SaveChangesAsync();
+            return favorito;
+        }
+
+        public async Task<Favorito> BuscarFavoritoAsync(int codigoUsuario, int codigoItemGaleria)
+        {
+            return await _context.Favoritos.FirstOrDefaultAsync(f => f.CodigoUsuario == codigoUsuario && f.CodigoItemGaleria == codigoItemGaleria);
+        }
     }
 }

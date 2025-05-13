@@ -33,6 +33,7 @@ namespace Wave.Infra
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IAssinaturaService, AssinaturaService>();
             services.AddScoped<IGaleriaService, GaleriaService>();
+            services.AddScoped<IFavoritoService, FavoritoService>();
             #endregion
 
             return services;

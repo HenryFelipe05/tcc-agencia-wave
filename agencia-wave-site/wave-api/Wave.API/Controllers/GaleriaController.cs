@@ -49,27 +49,13 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpGet("itens")]
+        [HttpGet("Filtrar")]
         public async Task<IActionResult> BuscarItensAsync([FromQuery] ItemGaleriaQuery itemGaleriaQuery)
         {
             try
             {
                 var itens = await _galeriaService.BuscarItensAsync(itemGaleriaQuery);
                 return Ok(itens);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost("favoritar")]
-        public async Task<IActionResult> FavoritarItemAsync([FromBody] Favorito favorito)
-        {
-            try
-            {
-                await _galeriaService.FavoritarItemAsync(favorito.CodigoItemGaleria, favorito.CodigoUsuario);
-                return Ok("Item favoritado com sucesso.");
             }
             catch (Exception ex)
             {

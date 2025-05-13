@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Wave.Domain.Entities
 {
@@ -12,9 +13,12 @@ namespace Wave.Domain.Entities
 
         [ForeignKey("Usuario")]
         public int CodigoUsuario { get; set; }
+        [JsonIgnore]
+        public Usuario Usuario { get; set; }
 
         [ForeignKey("ItemGaleria")]
         public int CodigoItemGaleria { get; set; }
-
+        [JsonIgnore]
+        public ItemGaleria ItemGaleria { get; set; }
     }
 }

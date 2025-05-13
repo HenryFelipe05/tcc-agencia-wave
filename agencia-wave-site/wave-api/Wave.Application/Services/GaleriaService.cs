@@ -75,24 +75,7 @@ namespace Wave.Application.Services
             return item.ToList();
         }
 
-        public async Task FavoritarItemAsync(int codigoItemGaleria, int codigoUsuario)
-        {
-            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
-
-            if (usuario is null)
-                throw new InvalidOperationException("Usuario não encontrado");
-
-            var favorito = new Favorito
-            {
-                CodigoUsuario = codigoUsuario,
-                CodigoItemGaleria = codigoItemGaleria,
-                DataFavorito = DateTime.UtcNow
-            };
-
-            await _favoritoRepository.CriarAsync(favorito);
-        }
-
-        public async Task AlterarItemAsync(ItemGaleria itemGaleria, int codigoUsuario)
+        public async Task <ItemGaleria>AlterarItemAsync(ItemGaleria itemGaleria, int codigoUsuario)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
             if (usuario == null || usuario.Perfil != "Suporte")
@@ -105,6 +88,7 @@ namespace Wave.Application.Services
             {
                 await _itemRepository.AtualizarItemAsync(itemGaleria);   
             }
+            return itemGaleria;
         }
         public async Task <ItemGaleria>ExcluirItemAsync(ExcluirItemGaleriaCommand command)
         {
