@@ -34,9 +34,9 @@ CREATE TABLE Usuario (
 	Telefone VARCHAR(20) NULL,
     Senha VARCHAR(255) NOT NULL,
     Ativo BIT NOT NULL,
+	DataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
     CodigoPerfil INT FOREIGN KEY REFERENCES Perfil(CodigoPerfil),
-	CodigoPessoa INT FOREIGN KEY REFERENCES Pessoa(CodigoPessoa),
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+	CodigoPessoa INT FOREIGN KEY REFERENCES Pessoa(CodigoPessoa)
 );
 
 -- Tabela Galeria
