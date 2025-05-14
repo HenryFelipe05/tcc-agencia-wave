@@ -1,6 +1,13 @@
-# Projeto WAVE - Agência de Marketing
+<h1 align="center">Website Agencia Wave</h1>
 
-Este repositório contém o código-fonte do site da WAVE, uma agência de marketing digital. O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) da ETEC Comendador João Rays.
+<div align="center">
+  <strong>🚀 Descrição do Repositório 📚</strong>
+</div>
+
+<div align="center">
+  <p>Este repositório contém o código-fonte do site da WAVE!</p>
+  <p>O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) da ETEC Comendador João Rays.</p>
+</div>
 
 ## Arquitetura do Projeto
 
@@ -72,9 +79,9 @@ Este projeto segue os princípios da **Arquitetura Limpa (Clean Architecture)**,
 
 ## Diagrama do Banco de Dados
 
-![Diagrama do Banco de Dados](./diagrams/diagrama-db-wave.jpg)
+![Diagrama do Banco de Dados](./agencia-wave-site/database/diagrams/diagrama-db-wave.jpg)
 
-## Ferramentas Utilizadas para Desenvolver o Projeto
+## 💻 Ferramentas Utilizadas 
 
 ### Design e Prototipação
 - **Figma**: Utilizado para o design e prototipação de interfaces.
