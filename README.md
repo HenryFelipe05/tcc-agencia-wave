@@ -79,7 +79,7 @@ Este projeto segue os princípios da **Arquitetura Limpa (Clean Architecture)**,
 
 ## Diagrama do Banco de Dados
 
-![Diagrama do Banco de Dados](./database/diagrams/diagrama-db-wave.jpg)
+![Diagrama do Banco de Dados](.agencia-wave-site/database/diagrams/diagrama-db-wave.jpg)
 
 ## 💻 Ferramentas Utilizadas 
 
