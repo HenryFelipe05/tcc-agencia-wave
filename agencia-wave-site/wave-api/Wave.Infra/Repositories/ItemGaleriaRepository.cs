@@ -21,7 +21,7 @@ namespace Wave.Infra.Repositories
         {
             var itens = await _context.ItemGalerias.AsNoTracking().ToListAsync();
 
-            if (itens == null || !itens.Any())
+            if (itens == null || itens.Count == 0)
             {
                 // Verifica se o retorno está vazio
                 Console.WriteLine("Nenhum item encontrado.");
@@ -34,8 +34,8 @@ namespace Wave.Infra.Repositories
         {
             if (codigoItemGaleria == 0)
                 throw new Exception("Erroooooo");
-                
-            return await _context.ItemGalerias.FindAsync(codigoItemGaleria);
+
+            return await _context.ItemGalerias.FirstOrDefaultAsync(x => x.CodigoItemGaleria == codigoItemGaleria);
         }
 
         public async Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria)
@@ -90,8 +90,6 @@ namespace Wave.Infra.Repositories
 
         public async Task<ItemGaleria> DeletarItemAsync(ItemGaleria itemGaleria)
         {
-     
-
             _context.ItemGalerias.Remove(itemGaleria);
             await _context.SaveChangesAsync();
 

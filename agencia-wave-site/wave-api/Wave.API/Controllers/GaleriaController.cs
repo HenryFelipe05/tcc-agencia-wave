@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Wave.Application.Services;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -12,7 +11,7 @@ namespace Wave.API.Controllers
     [ApiController]
     public class GaleriaController : ControllerBase
     {
-        private IGaleriaService _galeriaService;
+        private readonly IGaleriaService _galeriaService;
 
         public GaleriaController(IGaleriaService galeriaService)
         {
@@ -63,12 +62,12 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpPut("{codigoItemGaleria}")]
-        public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleria itemGaleria, [FromQuery] int codigoUsuario)
+        [HttpPut("Alterar Item")]
+        public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleriaCommand itemGaleriaCommand)
         {
             try
             {
-                await _galeriaService.AlterarItemAsync(itemGaleria, codigoUsuario);
+                await _galeriaService.AlterarItemAsync(itemGaleriaCommand);
                 return Ok(new { message = "Item alterado com sucesso." });
             }
             catch (Exception ex)
@@ -77,7 +76,8 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpDelete("{codigoItemGaleria}")]
+
+        [HttpDelete("Excluir Item")]
         public async Task<IActionResult> DeletarItemAsync([FromBody] ExcluirItemGaleriaCommand command)
         {
             try

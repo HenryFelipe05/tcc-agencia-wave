@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wave.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d23a27eef866545ee154990c09e31559c75b176d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66919dd8ecc11b0ee1ac22425a5c25ea7c9c473a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wave.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wave.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

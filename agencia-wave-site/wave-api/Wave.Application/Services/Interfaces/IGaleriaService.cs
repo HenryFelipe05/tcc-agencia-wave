@@ -2,12 +2,12 @@
 using Wave.Domain.Commands;
 using Wave.Domain.Queries;
 
-namespace Wave.Application.Services
+namespace Wave.Application.Services.Interfaces
 {
     public interface IGaleriaService
     {
-        Task <ItemGaleria>CriarItemGaleriaAsync(CriarItemGaleriaCommand command);
-        Task <ItemGaleria>AlterarItemAsync(ItemGaleria itemGaleria, int codigoUsuario);
+        Task<ItemGaleria> CriarItemGaleriaAsync(CriarItemGaleriaCommand command);
+        Task<ItemGaleria> AlterarItemAsync(ItemGaleriaCommand command);
         Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query);
         Task<byte[]> BaixarItemAsync(ItemGaleriaCommand itemGaleriaCommand);
         Task<ItemGaleria> ExcluirItemAsync(ExcluirItemGaleriaCommand command);
