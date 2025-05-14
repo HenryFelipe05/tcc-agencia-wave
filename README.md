@@ -97,30 +97,21 @@ Siga as instruções abaixo para executar o projeto em seu ambiente local:
 
 <h2>Projeto wave-api</h2>
 
-2. **Navegue até o diretório do projeto wave-api:**
+1. **Execute o script do banco de dados:**
 
-   ```
-   cd tcc-agencia-wave
-   ```
-   ```
-   cd agencia-wave-site
-   ```
-   ```
-   cd wave-api
-   ```
+   <p>Execute o script que está no diretório abaixo no seu SQL Server:</p>
+   <img src="./readme-img/scriptdb.PNG" alt="conexão com o sql server">  
    
-3. **Execute o script do banco de dados:**
-
-   ```
-   ng serve
-   ```
+2. **Execute a solução do projeto wave-api:**
+   
+   <img src="./readme-img/solution.PNG" alt="solução projeto wave-api">   
    
 4. **Configure a connection string:**
 
-   <img src="./readme-img/appsettings.png" alt="appsettings.json">   
+   <img src="./readme-img/appsettings.PNG" alt="appsettings.json">   
 
    <p>Altere a propriedade server da connection string para o servidor conectado no seu SSMS</p>
-   <img src="./readme-img/serversql.png" alt="conexão com o sql server">  
+   <img src="./readme-img/serversql.PNG" alt="conexão com o sql server">  
 
-**Agora você pode começar a utilizar a aplicação!!**
+**Agora rode a o projeto e você poderá começar a utilizar a aplicação!!**
 
