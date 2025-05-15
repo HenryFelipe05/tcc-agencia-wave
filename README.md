@@ -17,10 +17,6 @@
 
 Este projeto segue os princípios da **Arquitetura Limpa (Clean Architecture)**, com uma separação clara de responsabilidades em camadas.
 
-<h3>Diagrama do Banco de Dados</h3>
-
-![Diagrama do Banco de Dados](./agencia-wave-site/database/diagrams/diagrama-db-wave.jpg)
-
 <h3>Ferramentas Utilizadas </h3>
 
 ### Design e Prototipação
