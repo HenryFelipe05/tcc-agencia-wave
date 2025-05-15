@@ -32,10 +32,11 @@ namespace Wave.Infra.Repositories
 
         public async Task<ItemGaleria> ObterPorIdAsync(int codigoItemGaleria)
         {
-            if (codigoItemGaleria == 0)
-                throw new Exception("Erroooooo");
+            if (codigoItemGaleria <= 0)
+                throw new ArgumentException("O código do item deve ser maior que zero.", nameof(codigoItemGaleria));
 
-            return await _context.ItemGalerias.FirstOrDefaultAsync(x => x.CodigoItemGaleria == codigoItemGaleria);
+            return await _context.ItemGalerias
+                .FirstOrDefaultAsync(x => x.CodigoItemGaleria == codigoItemGaleria);
         }
 
         public async Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria)
@@ -82,18 +83,23 @@ namespace Wave.Infra.Repositories
 
         public async Task<ItemGaleria> AtualizarItemAsync(ItemGaleria itemGaleria)
         {
-            _context.ItemGalerias.Update(itemGaleria);
+            // Nada de Update aqui!
             await _context.SaveChangesAsync();
-
             return itemGaleria;
         }
 
-        public async Task<ItemGaleria> DeletarItemAsync(ItemGaleria itemGaleria)
+
+        public async Task<ItemGaleria> DeletarItemAsync(int codigoItemGaleria)
         {
-            _context.ItemGalerias.Remove(itemGaleria);
+            var itemExcluir = await _context.ItemGalerias.FindAsync(codigoItemGaleria);
+
+            if (itemExcluir == null)
+                throw new InvalidOperationException("Item não encontrado.");
+
+            _context.ItemGalerias.Remove(itemExcluir);
             await _context.SaveChangesAsync();
 
-            return itemGaleria;
+            return itemExcluir;
         }
 
     }

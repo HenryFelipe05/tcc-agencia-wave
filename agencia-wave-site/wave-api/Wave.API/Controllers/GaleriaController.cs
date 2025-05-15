@@ -63,11 +63,11 @@ namespace Wave.API.Controllers
         }
 
         [HttpPut("Alterar Item")]
-        public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleriaCommand itemGaleriaCommand)
+        public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleriaCommand command)
         {
             try
             {
-                await _galeriaService.AlterarItemAsync(itemGaleriaCommand);
+                await _galeriaService.AlterarItemAsync(command);
                 return Ok(new { message = "Item alterado com sucesso." });
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace Wave.API.Controllers
 
 
         [HttpDelete("Excluir Item")]
-        public async Task<IActionResult> DeletarItemAsync([FromBody] ExcluirItemGaleriaCommand command)
+        public async Task<IActionResult> DeletarItemAsync(int codigoItemGaleria)
         {
             try
             {
-                await _galeriaService.ExcluirItemAsync(command);
+                await _galeriaService.ExcluirItemAsync(codigoItemGaleria);
                 return Ok(new { message = "Item deletado com sucesso." });
             }
             catch (Exception ex)

@@ -3,10 +3,13 @@
 * {
     margin: 0;
     padding: 0;
-    border: 0;
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Inter';
+}
+
+body {
+    overflow-x: hidden;
 }
 
 li {

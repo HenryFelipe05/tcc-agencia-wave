@@ -7,9 +7,9 @@ namespace Wave.Application.Services.Interfaces
     public interface IGaleriaService
     {
         Task<ItemGaleria> CriarItemGaleriaAsync(CriarItemGaleriaCommand command);
-        Task<ItemGaleria> AlterarItemAsync(ItemGaleriaCommand command);
+        Task AlterarItemAsync(ItemGaleriaCommand command);
         Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query);
         Task<byte[]> BaixarItemAsync(ItemGaleriaCommand itemGaleriaCommand);
-        Task<ItemGaleria> ExcluirItemAsync(ExcluirItemGaleriaCommand command);
+        Task<ItemGaleria> ExcluirItemAsync(int codigoItemGaleria);
     }
 }

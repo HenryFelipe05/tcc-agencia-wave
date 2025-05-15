@@ -19,10 +19,12 @@ namespace Wave.Domain.Entities
 
         [ForeignKey("Galeria")]
         public int CodigoGaleria { get; set; }
+        [JsonIgnore]
         public Galeria Galeria { get; set; }
 
         [ForeignKey("Usuario")]
         public int CodigoUsuario { get; set; }
+        [JsonIgnore]
         public Usuario Usuario { get; set; }
     }
 }

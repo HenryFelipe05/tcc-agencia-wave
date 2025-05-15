@@ -9,6 +9,6 @@ namespace Wave.Domain.Repositories
         Task<IEnumerable<ItemGaleria>> FiltrarAsync(string tipoArquivo, bool? exclusivo, string pesquisa);
         Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria);
         Task<ItemGaleria> AtualizarItemAsync(ItemGaleria itemGaleria);
-        Task<ItemGaleria> DeletarItemAsync(ItemGaleria itemGaleria);
+        Task<ItemGaleria> DeletarItemAsync(int codigoItemGaleria);
     }
 }
