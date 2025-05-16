@@ -9,12 +9,12 @@ using Wave.Infra.Data.Context;
 namespace Wave.Infra.Repositories
 {
     public class PessoaRepository : IPessoaRepository
-	{
-		private readonly WaveDbContext _context;
+    {
+        private readonly WaveDbContext _context;
 
-		public PessoaRepository(WaveDbContext context)
-		{
-			_context = context;
+        public PessoaRepository(WaveDbContext context)
+        {
+            _context = context;
         }
 
         public async Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
@@ -40,17 +40,19 @@ namespace Wave.Infra.Repositories
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                
+
                 var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
                 {
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
                     DataNascimento = pessoaCommand.DataNascimento,
-                    CodigoGenero = pessoaCommand.CodigoGenero
+                    CodigoGenero = pessoaCommand.CodigoGenero,
+                    Documento = pessoaCommand.Documento,
+                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
                 });
 
-				return linhasAfetadas > 0;
-			}
+                return linhasAfetadas > 0;
+            }
         }
 
         public async Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
@@ -61,9 +63,6 @@ namespace Wave.Infra.Repositories
             sql.AppendLine(" UPDATE Pessoa ");
             sql.AppendLine("    SET Nome = @Nome, ");
             sql.AppendLine("        Sobrenome = @Sobrenome, ");
-            sql.AppendLine("        Email = @Email, ");
-            sql.AppendLine("        Telefone = @Telefone, ");
-            sql.AppendLine("        Documento = @Documento, ");
             sql.AppendLine("        DataNascimento = @DataNascimento, ");
             sql.AppendLine("        CodigoTipoPessoa = @CodigoTipoPessoa ");
             sql.AppendLine("  WHERE CodigoPessoa = @CodigoPessoa ");
@@ -73,18 +72,19 @@ namespace Wave.Infra.Repositories
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                
-				var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
+
+                var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
                 {
                     CodigoPessoa = codigoPessoa,
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
                     DataNascimento = pessoaCommand.DataNascimento,
-                    CodigoGenero = pessoaCommand.CodigoGenero
+                    CodigoGenero = pessoaCommand.CodigoGenero,
+                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
                 });
 
-				return linhasAfetadas > 0;
-			}
+                return linhasAfetadas > 0;
+            }
         }
 
         public async Task<bool> DeletarPessoaAsync(int codigoPessoa)
@@ -100,7 +100,7 @@ namespace Wave.Infra.Repositories
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                
+
                 var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
                 {
                     CodigoPessoa = codigoPessoa,
@@ -111,15 +111,13 @@ namespace Wave.Infra.Repositories
         }
 
         public async Task<IEnumerable<PessoaQuery>> RecuperarListaPessoasAsync()
-		{
+        {
             #region [ SQL ]
             var sql = new StringBuilder();
 
             sql.AppendLine(" SELECT p.CodigoPessoa,  ");
             sql.AppendLine("		p.Nome, ");
             sql.AppendLine("		p.Sobrenome, ");
-            sql.AppendLine("		p.Email, ");
-            sql.AppendLine("		p.Telefone, ");
             sql.AppendLine("		p.Documento, ");
             sql.AppendLine("		p.DataNascimento, ");
             sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
@@ -131,24 +129,22 @@ namespace Wave.Infra.Repositories
             #endregion
 
             using (var connection = _context.GetDbConnection())
-			{
-				if (connection.State == ConnectionState.Closed)
-					connection.Open();
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
 
-				return await connection.QueryAsync<PessoaQuery>(sql.ToString());
-			}
-		}
+                return await connection.QueryAsync<PessoaQuery>(sql.ToString());
+            }
+        }
 
-		public async Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa)
-		{
+        public async Task<PessoaQuery> RecuperarPessoaAsync(int codigoPessoa)
+        {
             #region [ SQL ]
             var sql = new StringBuilder();
 
             sql.AppendLine(" SELECT p.CodigoPessoa,  ");
             sql.AppendLine("		p.Nome, ");
             sql.AppendLine("		p.Sobrenome, ");
-            sql.AppendLine("		p.Email, ");
-            sql.AppendLine("		p.Telefone, ");
             sql.AppendLine("		p.Documento, ");
             sql.AppendLine("		p.DataNascimento, ");
             sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
@@ -158,14 +154,14 @@ namespace Wave.Infra.Repositories
             sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
             sql.AppendLine("  WHERE p.CodigoPessoa = @CodigoPessoa ");
             #endregion
-			
-            using (var connection = _context.GetDbConnection())
-			{
-				if (connection.State == ConnectionState.Closed)
-					connection.Open();
 
-				return await connection.QueryFirstOrDefaultAsync<PessoaQuery>(sql.ToString(), new { CodigoPessoa = codigoPessoa });
-			}
-		}
-	}
+            using (var connection = _context.GetDbConnection())
+            {
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+
+                return await connection.QueryFirstOrDefaultAsync<PessoaQuery>(sql.ToString(), new { CodigoPessoa = codigoPessoa });
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Text;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -139,18 +140,11 @@ namespace Wave.Infra.Repositories
             sql.AppendLine("WHERE u.CodigoUsuario = @CodigoUsuario");
             #endregion
 
-            using (var connection = _context.GetDbConnection())
-            {
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
+            using var connection = new SqlConnection(_context.Database.GetConnectionString());
+            await connection.OpenAsync();
 
-                var usuario = await connection.QueryFirstOrDefaultAsync<UsuarioQuery>(sql.ToString(), new
-                {
-                    CodigoUsuario = codigoUsuario
-                });
+            return await connection.QueryFirstOrDefaultAsync<UsuarioQuery>(sql.ToString(), new { CodigoUsuario = codigoUsuario });
 
-                return usuario;
-            }
         }
     }
 }

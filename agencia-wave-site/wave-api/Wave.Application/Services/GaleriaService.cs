@@ -87,12 +87,12 @@ namespace Wave.Application.Services
 
         public async Task AlterarItemAsync(ItemGaleriaCommand command)
         {
-            var item =  await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria) ?? throw new InvalidOperationException("Item não encontrado.");
-      
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(command.CodigoUsuario);
             if (usuario == null || usuario.Perfil != "Suporte")
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
+            var item =  await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria) ?? throw new InvalidOperationException("Item não encontrado.");
+      
             item.Titulo = command.Titulo;
             item.Descricao = command.Descricao;
             item.ExtensaoArquivo = command.ExtensaoArquivo;
@@ -104,8 +104,12 @@ namespace Wave.Application.Services
             await _itemRepository.AtualizarItemAsync(item);  
         }
 
-        public async Task <ItemGaleria>ExcluirItemAsync(int codigoItemGaleria)
+        public async Task <ItemGaleria>ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)
         {
+            var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
+            if(usuario == null || usuario.Perfil != "Suporte")
+                throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
+
             return await _itemRepository.DeletarItemAsync(codigoItemGaleria);
            
         }

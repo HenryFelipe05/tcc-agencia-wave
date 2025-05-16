@@ -78,11 +78,11 @@ namespace Wave.API.Controllers
 
 
         [HttpDelete("Excluir Item")]
-        public async Task<IActionResult> DeletarItemAsync(int codigoItemGaleria)
+        public async Task<IActionResult> DeletarItemAsync(int codigoItemGaleria, int codigoUsuario)
         {
             try
             {
-                await _galeriaService.ExcluirItemAsync(codigoItemGaleria);
+                await _galeriaService.ExcluirItemAsync(codigoItemGaleria, codigoUsuario);
                 return Ok(new { message = "Item deletado com sucesso." });
             }
             catch (Exception ex)

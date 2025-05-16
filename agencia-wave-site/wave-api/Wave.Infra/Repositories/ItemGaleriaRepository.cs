@@ -55,10 +55,10 @@ namespace Wave.Infra.Repositories
             }
             catch
             {
-            
+
                 throw new Exception($"Erro ao salvar: {itemGaleria}");
             }
-          
+
         }
 
         public async Task<IEnumerable<ItemGaleria>> FiltrarAsync(string tipoArquivo, bool? exclusivo, string pesquisa)
@@ -83,7 +83,6 @@ namespace Wave.Infra.Repositories
 
         public async Task<ItemGaleria> AtualizarItemAsync(ItemGaleria itemGaleria)
         {
-            // Nada de Update aqui!
             await _context.SaveChangesAsync();
             return itemGaleria;
         }

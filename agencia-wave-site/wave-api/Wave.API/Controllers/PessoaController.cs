@@ -54,7 +54,7 @@ namespace Wave.API.Controllers
             if (result == false)
                 return BadRequest();
             else
-                return CreatedAtAction("Adicionar Pessoa", result);
+                return Ok($"Resultado: {result}\nPessoa criada com sucesso!");
         }
 
         [HttpPut("{codigoPessoa}")]
