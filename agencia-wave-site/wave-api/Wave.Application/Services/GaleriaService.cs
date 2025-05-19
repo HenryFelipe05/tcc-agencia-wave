@@ -42,7 +42,8 @@ namespace Wave.Application.Services
                 Ativo = command.Ativo,
                 DataCadastro = command.DataCadastro == default ? DateTime.UtcNow : command.DataCadastro,
                 CodigoGaleria = command.CodigoGaleria,
-                CodigoUsuario = command.CodigoUsuario
+                CodigoUsuario = command.CodigoUsuario,
+                TipoAssinatura = command.TipoAssinatura,
             };
 
             // Salve o item e retorne
@@ -75,8 +76,9 @@ namespace Wave.Application.Services
             if (!string.IsNullOrEmpty(query.TipoArquivo))
                 itens = itens.Where(i => i.ExtensaoArquivo.Equals(query.TipoArquivo, StringComparison.OrdinalIgnoreCase));
 
-            if (query.Exclusivo.HasValue && query.Exclusivo.Value)
-                itens = itens.Where(i => i.CodigoUsuario != 0); // ou alguma lógica que defina o que é "exclusivo"
+            if (!string.IsNullOrEmpty(query.TipoAssinatura))
+                itens = itens.Where(i =>
+                i.Usuario?.Assinatura?.TipoAssinatura?.Descricao.Equals(query.TipoAssinatura, StringComparison.OrdinalIgnoreCase) == true);
 
             if (!string.IsNullOrWhiteSpace(query.Pesquisa))
                 itens = itens.Where(i => i.Titulo.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase) ||

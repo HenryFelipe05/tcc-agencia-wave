@@ -17,6 +17,10 @@ namespace Wave.Domain.Entities
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
 
+        [ForeignKey("TipoAssinatura")]
+        public int CodigoTipoGaleria { get; set; }
+        public TipoAssinatura TipoAssinatura { get; set; }
+
         [ForeignKey("Galeria")]
         public int CodigoGaleria { get; set; }
         [JsonIgnore]

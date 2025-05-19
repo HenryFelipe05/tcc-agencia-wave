@@ -20,5 +20,7 @@ namespace Wave.Domain.Entities
 
         [ForeignKey("StatusAssinatura")]
         public int CodigoStatusAssinatura { get; set; }
+
+        public virtual TipoAssinatura TipoAssinatura { get; set; }
     }
 }

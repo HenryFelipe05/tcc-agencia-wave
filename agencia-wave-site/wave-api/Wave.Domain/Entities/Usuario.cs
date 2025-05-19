@@ -26,6 +26,8 @@ namespace Wave.Domain.Entities
 
         public  Perfil Perfil { get; set; }
 
+        public virtual Assinatura Assinatura { get; set; }
+
         public static UsuarioQuery MapearDadosUsuario(UsuarioCommand usuarioCommand)
         {
             return new UsuarioQuery
