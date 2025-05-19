@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wave.Application.Services.Interfaces;
+using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Repository;
 
@@ -33,9 +34,9 @@ namespace Wave.Application.Services
             return await _assinaturaRepository.ObterPorIdAsync(codigoAssinatura);
         }
 
-        public async Task<Assinatura> CriarAssinaturaAsync(Assinatura novaAssinatura)
+        public async Task<Assinatura> CriarAssinaturaAsync(AssinaturaCommand assinaturaCommand)
         {
-            var assinaturasDoUsuario = await _assinaturaRepository.ObterPorUsuarioIdAsync(novaAssinatura.CodigoUsuario);
+            var assinaturasDoUsuario = await _assinaturaRepository.ObterPorUsuarioIdAsync(assinaturaCommand.CodigoUsuario);
 
             var assinaturaAtiva = assinaturasDoUsuario.FirstOrDefault(a => a.Ativa);
 
@@ -48,16 +49,37 @@ namespace Wave.Application.Services
                 await _assinaturaRepository.AtualizarAssinaturaAsync(assinaturaAtiva);
             }
 
-            novaAssinatura.Ativa = true;
-            novaAssinatura.DataCadastro = DateTime.UtcNow;
+            assinaturaCommand.Ativa = true;
+            assinaturaCommand.DataCadastro = DateTime.UtcNow;
 
-            return await _assinaturaRepository.CriarAssinaturaAsync(novaAssinatura);         
+            var item = new Assinatura
+            {
+                DataCadastro = assinaturaCommand.DataCadastro,
+                DataCancelamento = assinaturaCommand.DataCancelamento,
+                Ativa = assinaturaCommand.Ativa,
+                CodigoTipoAssinatura = assinaturaCommand.CodigoTipoAssinatura,
+                CodigoUsuario = assinaturaCommand.CodigoUsuario,
+                CodigoStatusAssinatura = assinaturaCommand.CodigoStatusAssinatura
+            };
+
+            return await _assinaturaRepository.CriarAssinaturaAsync(item);         
         }
 
 
-        public async Task<Assinatura> AtualizarAssinaturaAsync(Assinatura assinatura)
+        public async Task<Assinatura> AtualizarAssinaturaAsync(AssinaturaCommand assinaturaCommand)
         {
-            return await _assinaturaRepository.AtualizarAssinaturaAsync(assinatura);
+            var itemAtualizado = new Assinatura
+            {
+                CodigoAssinatura = assinaturaCommand.CodigoAssinatura,
+                DataCadastro = assinaturaCommand.DataCadastro,
+                DataCancelamento = assinaturaCommand.DataCancelamento,
+                Ativa = assinaturaCommand.Ativa,
+                CodigoTipoAssinatura = assinaturaCommand.CodigoTipoAssinatura,
+                CodigoUsuario = assinaturaCommand.CodigoUsuario,
+                CodigoStatusAssinatura = assinaturaCommand.CodigoStatusAssinatura
+            };
+
+            return await _assinaturaRepository.AtualizarAssinaturaAsync(itemAtualizado);
         }
 
 

@@ -39,8 +39,8 @@ namespace Wave.Infra.Repositories
         public async Task<Assinatura> AtualizarAssinaturaAsync(Assinatura assinatura)
         {
             var assinaturaExistente = await _context.Assinaturas.FindAsync(assinatura.CodigoAssinatura);
-            if(assinatura is null)
-                return null;
+            if(assinaturaExistente is null)
+                throw new Exception("Assinatura não encontrada.");
 
             _context.Entry(assinaturaExistente).CurrentValues.SetValues(assinatura);
             await _context.SaveChangesAsync();

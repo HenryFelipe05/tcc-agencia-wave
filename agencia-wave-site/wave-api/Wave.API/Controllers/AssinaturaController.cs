@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
+using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 
 namespace Wave.API.Controllers
@@ -56,19 +57,19 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Assinatura>> CriarAssinatura(Assinatura assinatura)
+        public async Task<ActionResult<Assinatura>> CriarAssinatura(AssinaturaCommand assinaturaCommand)
         {
-            var novaAssinatura = await _assinaturaService.CriarAssinaturaAsync(assinatura);
+            var novaAssinatura = await _assinaturaService.CriarAssinaturaAsync(assinaturaCommand);
             return CreatedAtAction(nameof(ObterAssinaturaPorId), new { codigoAssinatura = novaAssinatura.CodigoAssinatura }, novaAssinatura);
         }
 
         [HttpPut("{codigoAssinatura}")]
-        public async Task<IActionResult> AtualizarAssinatura(Guid codigoAssinatura, Assinatura assinatura)
+        public async Task<IActionResult> AtualizarAssinatura(Guid codigoAssinatura, AssinaturaCommand assinaturaCommand)
         {
-            if (codigoAssinatura != assinatura.CodigoAssinatura)
+            if (codigoAssinatura != assinaturaCommand.CodigoAssinatura)
                 return BadRequest();
 
-            var resultado = await _assinaturaService.AtualizarAssinaturaAsync(assinatura);
+            var resultado = await _assinaturaService.AtualizarAssinaturaAsync(assinaturaCommand);
             if (resultado is null)
                 return NotFound();
 

@@ -1,4 +1,5 @@
-﻿using Wave.Domain.Entities;
+﻿using Wave.Domain.Commands;
+using Wave.Domain.Entities;
 
 namespace Wave.Application.Services.Interfaces
 {
@@ -6,8 +7,8 @@ namespace Wave.Application.Services.Interfaces
     {
         Task<IEnumerable<Assinatura>> ObterTodasAsync();
         Task<Assinatura> ObterPorIdAsync(Guid CodigoAssinatura);
-        Task<Assinatura> CriarAssinaturaAsync(Assinatura assinatura);
-        Task<Assinatura> AtualizarAssinaturaAsync(Assinatura assinatura);
+        Task<Assinatura> CriarAssinaturaAsync(AssinaturaCommand assinaturaCommand);
+        Task<Assinatura> AtualizarAssinaturaAsync(AssinaturaCommand assinaturaCommand);
         Task<Assinatura> RemoverAssinaturaAsync(Guid CodigoAssinatura);
         Task<IEnumerable<Assinatura>> ObterPorUsuarioIdAsync(int CodigoUsuario);
         Task<IEnumerable<Assinatura>> ObterHistoricoDeAssinaturasAsync(int codigoUsuario);
