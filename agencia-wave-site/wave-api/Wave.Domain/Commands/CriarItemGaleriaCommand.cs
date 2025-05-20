@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Numerics;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Wave.Domain.Entities;
 
 namespace Wave.Domain.Commands
 {
@@ -29,6 +24,6 @@ namespace Wave.Domain.Commands
         public DateTime DataCadastro { get; set; }
         public int CodigoGaleria { get; set; }
         public int CodigoUsuario { get; set; }
-        public virtual TipoAssinatura TipoAssinatura { get; set; }
+        public bool Exclusivo { get; set; }
     }
 }

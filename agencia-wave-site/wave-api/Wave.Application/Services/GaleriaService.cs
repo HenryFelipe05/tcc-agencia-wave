@@ -43,7 +43,7 @@ namespace Wave.Application.Services
                 DataCadastro = command.DataCadastro == default ? DateTime.UtcNow : command.DataCadastro,
                 CodigoGaleria = command.CodigoGaleria,
                 CodigoUsuario = command.CodigoUsuario,
-                TipoAssinatura = command.TipoAssinatura,
+                Exclusivo = command.Exclusivo,
             };
 
             // Salve o item e retorne
@@ -77,8 +77,11 @@ namespace Wave.Application.Services
                 itens = itens.Where(i => i.ExtensaoArquivo.Equals(query.TipoArquivo, StringComparison.OrdinalIgnoreCase));
 
             if (!string.IsNullOrEmpty(query.TipoAssinatura))
+            {
                 itens = itens.Where(i =>
-                i.Usuario?.Assinatura?.TipoAssinatura?.Descricao.Equals(query.TipoAssinatura, StringComparison.OrdinalIgnoreCase) == true);
+                    string.Equals(i.Usuario?.Assinatura?.TipoAssinatura?.Descricao, query.TipoAssinatura, StringComparison.OrdinalIgnoreCase));
+            }
+
 
             if (!string.IsNullOrWhiteSpace(query.Pesquisa))
                 itens = itens.Where(i => i.Titulo.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase) ||

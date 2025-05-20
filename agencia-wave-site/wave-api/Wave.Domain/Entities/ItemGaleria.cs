@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Wave.Domain.Enums;
 
 namespace Wave.Domain.Entities
 {
@@ -16,16 +17,14 @@ namespace Wave.Domain.Entities
         public string URLMiniatura { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
-
-        [ForeignKey("TipoAssinatura")]
-        public int CodigoTipoGaleria { get; set; }
-        public TipoAssinatura TipoAssinatura { get; set; }
+        public bool Exclusivo { get; set; }
 
         [ForeignKey("Galeria")]
         public int CodigoGaleria { get; set; }
         [JsonIgnore]
         public Galeria Galeria { get; set; }
 
+        
         [ForeignKey("Usuario")]
         public int CodigoUsuario { get; set; }
         [JsonIgnore]

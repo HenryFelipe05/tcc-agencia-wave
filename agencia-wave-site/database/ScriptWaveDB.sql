@@ -56,7 +56,8 @@ CREATE TABLE ItemGaleria (
     Arquivo VARBINARY(MAX) NOT NULL,
     URLMiniatura VARCHAR(255) NOT NULL,
     Ativo BIT NOT NULL,
-    DataCadastro DATETIME NOT NULL DEFAULT GETDATE()
+    DataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
+    Exclusivo BIT NOT NULL
 );
 
 -- Tabela Favorito
