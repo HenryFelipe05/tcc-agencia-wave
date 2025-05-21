@@ -1,4 +1,5 @@
-﻿using Wave.Application.Services.Interfaces;
+﻿using Microsoft.IdentityModel.Tokens;
+using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Queries;
@@ -76,12 +77,17 @@ namespace Wave.Application.Services
             if (!string.IsNullOrEmpty(query.TipoArquivo))
                 itens = itens.Where(i => i.ExtensaoArquivo.Equals(query.TipoArquivo, StringComparison.OrdinalIgnoreCase));
 
-            if (!string.IsNullOrEmpty(query.TipoAssinatura))
+            if (!string.IsNullOrEmpty(query.TipoItem))
             {
-                itens = itens.Where(i =>
-                    string.Equals(i.Usuario?.Assinatura?.TipoAssinatura?.Descricao, query.TipoAssinatura, StringComparison.OrdinalIgnoreCase));
+                if (query.TipoItem.Equals("exclusivo", StringComparison.OrdinalIgnoreCase))
+                {
+                    itens = itens.Where(i => i.Exclusivo);
+                }
+                else if (query.TipoItem.Equals("gratuito", StringComparison.OrdinalIgnoreCase))
+                {
+                    itens = itens.Where(i => !i.Exclusivo);
+                }
             }
-
 
             if (!string.IsNullOrWhiteSpace(query.Pesquisa))
                 itens = itens.Where(i => i.Titulo.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase) ||

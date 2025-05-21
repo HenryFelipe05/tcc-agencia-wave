@@ -40,7 +40,12 @@ namespace Wave.Application.Services
 
         public async Task<IEnumerable<Favorito>> ListarFavoritosAsync(int codigoUsuario)
         {
-            return await _favoritoRepository.ListarFavoritosPorUsuarioAsync(codigoUsuario);
+            var itens =  await _favoritoRepository.ListarFavoritosPorUsuarioAsync(codigoUsuario);
+
+            if (itens == null || !itens.Any())
+                throw new Exception("Você não possui itens favoritados");
+
+            return itens;
         }
 
         public async Task RemoverFavoritoAsync(int codigoUsuario, int codigoItemGaleria)
