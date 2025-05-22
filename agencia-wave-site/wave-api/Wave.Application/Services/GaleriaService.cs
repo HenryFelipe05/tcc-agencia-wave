@@ -2,6 +2,7 @@
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
+using Wave.Domain.Enums;
 using Wave.Domain.Queries;
 using Wave.Domain.Repositories;
 using Wave.Domain.Repository;
@@ -22,7 +23,6 @@ namespace Wave.Application.Services
 
         public async Task<ItemGaleria> CriarItemGaleriaAsync(CriarItemGaleriaCommand command)
         {
-            // Verifique se as propriedades essenciais não estão nulas
             if (string.IsNullOrEmpty(command.Titulo) || string.IsNullOrEmpty(command.Descricao))
             {
                 throw new ArgumentException("Título e descrição são obrigatórios.");
@@ -38,7 +38,7 @@ namespace Wave.Application.Services
                 Titulo = command.Titulo,
                 Descricao = command.Descricao,
                 ExtensaoArquivo = command.ExtensaoArquivo,
-                Arquivo = command.Arquivo, // Arquivo em byte[]
+                Arquivo = command.Arquivo, 
                 URLMiniatura = command.URLMiniatura,
                 Ativo = command.Ativo,
                 DataCadastro = command.DataCadastro == default ? DateTime.UtcNow : command.DataCadastro,
@@ -47,7 +47,6 @@ namespace Wave.Application.Services
                 Exclusivo = command.Exclusivo,
             };
 
-            // Salve o item e retorne
             return await _itemRepository.CriarItemAsync(itemGaleria);
         }
 
@@ -56,13 +55,14 @@ namespace Wave.Application.Services
         public async Task<byte[]> BaixarItemAsync(ItemGaleriaCommand Command)
         {
             var item = await _itemRepository.ObterPorIdAsync(Command.CodigoItemGaleria);
+
             if (item == null)
                 throw new InvalidOperationException("Item da galeria não encontrado.");
 
             if (item.Arquivo == null || item.Arquivo.Length == 0)
                 throw new InvalidOperationException("Arquivo não disponível para este item.");
 
-            return item.Arquivo; // Agora retornamos o arquivo após verificar se não é nulo
+            return item.Arquivo;
         }
 
         
@@ -73,7 +73,6 @@ namespace Wave.Application.Services
             if (itens is null || !itens.Any())
                 throw new InvalidOperationException("Itens não encontrados");
 
-            // Aplicar filtros opcionais
             if (!string.IsNullOrEmpty(query.TipoArquivo))
                 itens = itens.Where(i => i.ExtensaoArquivo.Equals(query.TipoArquivo, StringComparison.OrdinalIgnoreCase));
 
@@ -99,7 +98,8 @@ namespace Wave.Application.Services
         public async Task AlterarItemAsync(ItemGaleriaCommand command)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(command.CodigoUsuario);
-            if (usuario == null || usuario.Perfil != "Suporte")
+
+            if (usuario == null || usuario.Perfil != PerfilEnum.Perfis.Suporte.ToString())
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
             var item =  await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria) ?? throw new InvalidOperationException("Item não encontrado.");
@@ -118,7 +118,7 @@ namespace Wave.Application.Services
         public async Task <ItemGaleria>ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(codigoUsuario);
-            if(usuario == null || usuario.Perfil != "Suporte")
+            if(usuario == null || usuario.Perfil != PerfilEnum.Perfis.Suporte.ToString())
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
             return await _itemRepository.DeletarItemAsync(codigoItemGaleria);
