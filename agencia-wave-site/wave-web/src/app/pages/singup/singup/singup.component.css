@@ -82,3 +82,23 @@
     text-align: left;
     margin-bottom: 15px;
 }
+
+@media (max-width: 1079px) {
+    .form-container {
+        width: 100vw;
+    } 
+}
+
+
+@media (max-width: 884px) {
+    .logo-container {
+        display: none;
+    }
+}
+
+@media (max-width: 479px) {
+    .user-terms-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
