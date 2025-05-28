@@ -87,6 +87,7 @@
     background-color: #cacaca;
     margin: 0px 10px 0px 10px;
 }
+
 .service-image img {
     width: 100%;
     height: 100%;
@@ -193,4 +194,186 @@
     transform: scale(1.1);
     transition: .3s;
     cursor: pointer;
+}
+
+@media (max-width: 1559px) {
+    .member-container {
+        width: 400px;
+        height: 450px;
+    }
+
+    .member-photo img{
+        width: 80%;
+    }
+}
+
+@media (max-width: 1358px) {
+    .phone {
+        display: none;
+    }
+
+    .orcamento-container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .orcamento-text {
+        width: 70vw;
+    }
+
+    .member-container {
+        width: 380px;
+        height: 420px;
+    }
+
+    .member-photo img{
+        width: 80%;
+    }
+
+    .member-info h2 {
+        font-size: 22pt;
+    }
+
+    .member-social ng-icon {
+        font-size: 30pt;
+    }
+}
+
+@media (max-width: 1279px) {
+    .member-container {
+        width: 330px;
+        height: 380px;
+        border-radius: 40px;
+    }
+
+    .member-photo img{
+        width: 70%;
+    }
+}
+
+@media (max-width: 1119px) {
+    .member-photo img{
+        width: 70%;
+    }
+
+    .member-container {
+        width: 300px;
+        height: 320px;
+    }
+
+    .member-info h2 {
+        font-size: 22pt;
+    }
+
+    .member-social ng-icon {
+        font-size: 26pt;
+    }
+
+    .services-container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .service-container-left,
+    .service-container-right {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .service-text {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .member-container {
+        width: 250px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 909px) {
+    .orcamento-text h2 {
+        font-size: 28pt;
+        text-align: center;
+    }
+
+    .orcamento-text p {
+        text-align: center;
+    }
+
+    .members {
+        flex-direction: column;
+    }
+
+    .member-container {
+        width: 400px;
+        height: 450px;
+        border-radius: 50px;
+    }
+
+    .member-photo img{
+        width: 80%;
+    }
+
+    .member-info h2 {
+        font-size: 26pt;
+    }
+
+    .member-social ng-icon {
+        font-size: 30pt;
+    }
+}
+
+@media (max-width: 689px) {
+    .orcamento-text {
+        width: 90vw;
+        gap: 40px;
+    }
+
+    .orcamento-text h2 {
+        font-size: 26pt;
+    }
+
+    .orcamento-container {
+        height: 90vw;
+    }
+
+    .service-image {
+        width: 60%;
+    }
+}
+
+@media (max-width: 564px) {
+    .orcamento-text h2 {
+        font-size: 18pt;
+    }
+
+    .orcamento-text p {
+        font-size: 10pt;
+    }
+
+    .orcamento-container {
+        height: 100vw;
+    }
+}
+
+@media (max-width: 449px) {
+    .member-container {
+        width: 320px;
+        height: 380px;
+        border-radius: 50px;
+    }
+
+    .orcamento-text h2 {
+        font-size: 12pt;
+    }
+
+    .service-text {
+        width: 90%;
+    }
+
+    .service-text p {
+        font-size: 12pt;
+    }
 }

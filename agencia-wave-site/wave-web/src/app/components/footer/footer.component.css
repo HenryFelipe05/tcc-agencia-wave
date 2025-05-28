@@ -56,3 +56,62 @@
 .logo-footer {
     height: 64px;
 }
+
+@media (max-width: 1319px) {
+    .contato-section h3 {
+        font-size: 20pt;
+    }
+}
+
+@media (max-width: 1204px) {
+    .contato-section h3 {
+        font-size: 18pt;
+    }
+}
+
+@media (max-width: 989px) {
+    .contato-section {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contato-section h3 {
+        display: none;
+    }
+
+    .solicitar-orcamento p{
+        width: 100%;
+        text-align: center;
+    }
+
+    .solicitar-orcamento {
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-itens {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 799px) {
+    .solicitar-orcamento {
+        width: 90%;
+    }
+    .solicitar-orcamento a {
+        width: 90%;
+    }
+
+    .logo-footer {
+        height: 48px;
+    }
+}
+
+@media (max-width: 499px) {
+    .solicitar-orcamento p {
+        font-size: 12pt;
+    }
+}
