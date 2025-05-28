@@ -11,11 +11,7 @@ namespace Wave.Domain.Entities
         public int CodigoPessoa { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
-        public string Documento { get; set; }
         public DateTime DataNascimento { get; set; }
-
-        [ForeignKey("TipoPessoa")]
-        public int CodigoTipoPessoa { get; set; }
 
         [ForeignKey("Genero")]
         public int CodigoGenero { get; set; }

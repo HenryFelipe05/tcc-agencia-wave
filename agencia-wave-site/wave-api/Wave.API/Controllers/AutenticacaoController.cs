@@ -14,10 +14,10 @@ namespace Wave.API.Controllers
         private readonly IUsuarioService _usuararioService;
         private readonly IPessoaService _pessoaService;
 
-        public AutenticacaoController(IUsuarioService usuararioService,
+        public AutenticacaoController(IUsuarioService usuarioService,
                                       IPessoaService pessoaService)
         {
-            _usuararioService = usuararioService;
+            _usuararioService = usuarioService;
             _pessoaService = pessoaService;
         }
 
@@ -48,7 +48,7 @@ namespace Wave.API.Controllers
 
             if (pessoaAdicionada)
             {
-                IEnumerable<PessoaQuery> listaPessoas = await _pessoaService.RecuperarListaPessoasAsync();
+                var listaPessoas = await _pessoaService.RecuperarListaPessoasAsync();
                 var ultimaPessoa = listaPessoas.OrderByDescending(p => p.CodigoPessoa).FirstOrDefault();
 
                 if (ultimaPessoa != null)

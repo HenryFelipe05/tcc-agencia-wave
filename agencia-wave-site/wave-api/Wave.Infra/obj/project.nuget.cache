@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kj311zhnruo=",
+  "dgSpecHash": "9FCGMWf5t2w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\etec\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj",
+  "projectFilePath": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\etec\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\etec\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

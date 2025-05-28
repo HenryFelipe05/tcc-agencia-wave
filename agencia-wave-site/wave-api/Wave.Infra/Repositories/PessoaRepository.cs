@@ -22,18 +22,14 @@ namespace Wave.Infra.Repositories
             #region [ SQL ]
             var sql = new StringBuilder();
 
-            sql.AppendLine(" INSERT INTO Pessoa(Nome, ");
-            sql.AppendLine("					Sobrenome, ");
-            sql.AppendLine("					Documento, ");
-            sql.AppendLine("					DataNascimento, ");
-            sql.AppendLine("					CodigoGenero, ");
-            sql.AppendLine("					CodigoTipoPessoa) ");
-            sql.AppendLine("	  VALUES (@Nome, ");
-            sql.AppendLine("			  @Sobrenome, ");
-            sql.AppendLine("			  @Documento, ");
-            sql.AppendLine("			  @DataNascimento, ");
-            sql.AppendLine("			  @CodigoGenero, ");
-            sql.AppendLine("			  @CodigoTipoPessoa) ");
+            sql.AppendLine("INSERT INTO Pessoa(Nome, ");
+            sql.AppendLine("                   Sobrenome, ");
+            sql.AppendLine("                   DataNascimento, ");
+            sql.AppendLine("                   CodigoGenero) "); 
+            sql.AppendLine("      VALUES (@Nome, ");
+            sql.AppendLine("              @Sobrenome, ");
+            sql.AppendLine("              @DataNascimento, ");
+            sql.AppendLine("              @CodigoGenero)");
             #endregion
 
             using (var connection = _context.GetDbConnection())
@@ -47,8 +43,6 @@ namespace Wave.Infra.Repositories
                     Sobrenome = pessoaCommand.Sobrenome,
                     DataNascimento = pessoaCommand.DataNascimento,
                     CodigoGenero = pessoaCommand.CodigoGenero,
-                    Documento = pessoaCommand.Documento,
-                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
                 });
 
                 return linhasAfetadas > 0;
@@ -80,7 +74,6 @@ namespace Wave.Infra.Repositories
                     Sobrenome = pessoaCommand.Sobrenome,
                     DataNascimento = pessoaCommand.DataNascimento,
                     CodigoGenero = pessoaCommand.CodigoGenero,
-                    CodigoTipoPessoa = pessoaCommand.CodigoTipoPessoa
                 });
 
                 return linhasAfetadas > 0;
@@ -118,13 +111,10 @@ namespace Wave.Infra.Repositories
             sql.AppendLine(" SELECT p.CodigoPessoa,  ");
             sql.AppendLine("		p.Nome, ");
             sql.AppendLine("		p.Sobrenome, ");
-            sql.AppendLine("		p.Documento, ");
             sql.AppendLine("		p.DataNascimento, ");
-            sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
             sql.AppendLine("		g.Descricao AS Genero ");
             sql.AppendLine("   FROM Pessoa p ");
             sql.AppendLine("  INNER JOIN Genero g ON(g.CodigoGenero = p.CodigoGenero) ");
-            sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
             sql.AppendLine("  ORDER BY p.Nome ");
             #endregion
 
@@ -145,13 +135,10 @@ namespace Wave.Infra.Repositories
             sql.AppendLine(" SELECT p.CodigoPessoa,  ");
             sql.AppendLine("		p.Nome, ");
             sql.AppendLine("		p.Sobrenome, ");
-            sql.AppendLine("		p.Documento, ");
             sql.AppendLine("		p.DataNascimento, ");
-            sql.AppendLine("		tp.Descricao AS TipoPessoa, ");
             sql.AppendLine("		g.Descricao AS Genero ");
             sql.AppendLine("   FROM Pessoa p ");
             sql.AppendLine("  INNER JOIN Genero g ON(g.CodigoGenero = p.CodigoGenero) ");
-            sql.AppendLine("  INNER JOIN TipoPessoa tp ON(tp.CodigoTipoPessoa = p.CodigoTipoPessoa) ");
             sql.AppendLine("  WHERE p.CodigoPessoa = @CodigoPessoa ");
             #endregion
 
