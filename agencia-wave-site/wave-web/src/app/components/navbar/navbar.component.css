@@ -84,3 +84,13 @@ nav {
     align-items: center;
     flex-direction: column;
 }
+
+@media (max-width: 1049px) {
+    .opcoes {
+        display: none;
+    }
+
+    .user-menu {
+        display: none;
+    }
+}
