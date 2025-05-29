@@ -7,7 +7,7 @@ using Wave.Domain.Queries;
 namespace Wave.Domain.Entities
 {
     [Table("Usuario")]
-    public class Usuario : IdentityUser
+    public class Usuario
     {
         [Key]
         public int CodigoUsuario { get; set; }
@@ -25,8 +25,6 @@ namespace Wave.Domain.Entities
         public int CodigoPerfil { get; set; }
 
         public  Perfil Perfil { get; set; }
-
-        public virtual Assinatura Assinatura { get; set; }
 
         public static UsuarioQuery MapearDadosUsuario(UsuarioCommand usuarioCommand)
         {

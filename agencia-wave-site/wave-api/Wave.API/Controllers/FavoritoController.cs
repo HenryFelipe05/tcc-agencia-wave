@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 
 namespace Wave.API.Controllers
@@ -15,6 +16,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost("adicionar")]
+        [Authorize]
         public async Task<IActionResult> AdicionarFavorito(int codigoUsuario, int codigoItemGaleria)
         {
             try

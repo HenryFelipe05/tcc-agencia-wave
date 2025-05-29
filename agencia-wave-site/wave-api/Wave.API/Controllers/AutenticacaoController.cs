@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -11,14 +12,17 @@ namespace Wave.API.Controllers
     [ApiController]
     public class AutenticacaoController : ControllerBase
     {
-        private readonly IUsuarioService _usuararioService;
+        private readonly IUsuarioService _usuarioService;
         private readonly IPessoaService _pessoaService;
+        private readonly IJwtService _jwtService;
 
         public AutenticacaoController(IUsuarioService usuarioService,
-                                      IPessoaService pessoaService)
+                                      IPessoaService pessoaService,
+                                      IJwtService jwtService)
         {
-            _usuararioService = usuarioService;
+            _usuarioService = usuarioService;
             _pessoaService = pessoaService;
+            _jwtService = jwtService;
         }
 
         [HttpPost("registrar")]
@@ -57,7 +61,7 @@ namespace Wave.API.Controllers
                     usuarioCommand.CodigoPerfil = (int)PerfilEnum.Perfis.Usuario;
                     usuarioCommand.Ativo = true;
 
-                    var usuarioAdicionado = await _usuararioService.AdicionarUsuarioAsync(usuarioCommand);
+                    var usuarioAdicionado = await _usuarioService.AdicionarUsuarioAsync(usuarioCommand);
                     // Autenticação e autorização 
                     return Ok();
                 }
@@ -70,6 +74,22 @@ namespace Wave.API.Controllers
             {
                 return BadRequest("Erro ao adicionar a pessoa.");
             }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginUserCommand loginUserCommand)
+        {
+            var usuarioExistente = await _usuarioService.BuscarUsuarioPorNomeOuEmailAsync(loginUserCommand.UserName);
+
+            if(usuarioExistente == null)
+                return Unauthorized("Usuário não encontrado");
+
+            if(usuarioExistente.Senha != loginUserCommand.Password)
+                return Unauthorized("Senha incorreta");
+
+            var token = _jwtService.GenerateToken(usuarioExistente.CodigoUsuario.ToString(), usuarioExistente.Perfil?.Descricao ?? "Usuário");
+
+            return Ok(new { token });
         }
     }
 }

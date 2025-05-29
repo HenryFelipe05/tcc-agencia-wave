@@ -1,5 +1,6 @@
 ﻿using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
+using Wave.Domain.Entities;
 using Wave.Domain.Queries;
 using Wave.Domain.Repository;
 
@@ -22,6 +23,11 @@ namespace Wave.Application.Services
         public Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Usuario> BuscarUsuarioPorNomeOuEmailAsync(string identificador)
+        {
+            return await _usuarioRepository.BuscarUsuarioPorNomeOuEmailAsync(identificador);
         }
 
         public async Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync()

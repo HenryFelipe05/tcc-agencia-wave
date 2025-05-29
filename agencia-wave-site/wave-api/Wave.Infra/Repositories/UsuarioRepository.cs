@@ -96,6 +96,11 @@ namespace Wave.Infra.Repositories
             }
         }
 
+        public async Task<Usuario> BuscarUsuarioPorNomeOuEmailAsync(string identificador)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(u => u.NomeUsuario == identificador || u.Email == identificador);
+        }
+
         public async Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync()
         {
             var sql = new StringBuilder();

@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Wave.Domain.Commands;
 using Wave.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,12 +12,28 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
+builder.Services.Configure<JwtSettingCommand>(builder.Configuration.GetSection("JwtSettings"));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettingCommand>();
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.Authority = "https://localhost:5001"; // ou o seu servidor de autenticação
-        options.Audience = "api1"; // o nome da sua API
-    });
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+    };
+});
+
 
 builder.Services.AddAuthorization();
 
