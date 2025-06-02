@@ -85,12 +85,14 @@
     width: 500px;
     height: 250px;
     background-color: #cacaca;
+    border-radius: 15px;
     margin: 0px 10px 0px 10px;
 }
 
 .service-image img {
     width: 100%;
     height: 100%;
+    border-radius: 15px;
 }
 
 .service-text {
@@ -340,7 +342,8 @@
     }
 
     .service-image {
-        width: 60%;
+        width: 80%;
+        height: 80%;
     }
 }
 
