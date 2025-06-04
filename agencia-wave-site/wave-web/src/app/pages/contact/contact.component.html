@@ -14,24 +14,26 @@
             </div>
         </div>
         <div class="contact-right">
-            <form id="formContact">
+            <form id="formContact" action="https://formsubmit.co/henryfbense@gmail.com" method="POST">
                 <div class="input-name input-container">
                     <label for="inputName">Nome Completo</label>
-                    <input type="text" placeholder="e.g João Silva" id="inputName">
+                    <input type="text" placeholder="e.g João Silva" id="inputName" name="nome" required>
                 </div>
                 <div class="input-email input-container">
                     <label for="inputEmail">Email</label>
-                    <input type="email" placeholder="exemplo@email.com" id="inputEmail">
+                    <input type="email" placeholder="exemplo@email.com" id="inputEmail" name="email" required>
                 </div>
                 <div class="input-phone input-container">
                     <label for="inputPhone">Telefone</label>
-                    <input type="text" placeholder="(__) __ _____-____" id="inputPhone">
+                    <input type="text" placeholder="(__) __ _____-____" id="inputPhone" name="telefone" [(ngModel)]="telefone" mask="(00) 00000-0000" placeholder="(__) _____-____" required>
                 </div>
                 <div class="input-message input-container">
                     <label for="inputMessage">Mensagem</label>
-                    <textarea type="text" placeholder="" id="inputMessage"></textarea> 
+                    <textarea type="text" placeholder="" id="inputMessage" name="mensagem" required></textarea> 
                 </div>
-                <button type="button" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="http://localhost:4200/">
             </form>
         </div>
     </div>
