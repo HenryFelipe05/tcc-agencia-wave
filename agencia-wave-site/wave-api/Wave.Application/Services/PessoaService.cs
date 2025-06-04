@@ -14,7 +14,7 @@ namespace Wave.Application.Services
             _pessoaRepository = pessoaRepository;
         }
 
-        public async Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+        public async Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
 		{
 			return await _pessoaRepository.AdicionarPessoaAsync(pessoaCommand);
 		}

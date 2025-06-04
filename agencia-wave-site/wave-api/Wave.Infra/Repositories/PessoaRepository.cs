@@ -17,7 +17,7 @@ namespace Wave.Infra.Repositories
             _context = context;
         }
 
-        public async Task<bool> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
+        public async Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
         {
             #region [ SQL ]
             var sql = new StringBuilder();
@@ -25,11 +25,12 @@ namespace Wave.Infra.Repositories
             sql.AppendLine("INSERT INTO Pessoa(Nome, ");
             sql.AppendLine("                   Sobrenome, ");
             sql.AppendLine("                   DataNascimento, ");
-            sql.AppendLine("                   CodigoGenero) "); 
-            sql.AppendLine("      VALUES (@Nome, ");
-            sql.AppendLine("              @Sobrenome, ");
-            sql.AppendLine("              @DataNascimento, ");
-            sql.AppendLine("              @CodigoGenero)");
+            sql.AppendLine("                   CodigoGenero) ");
+            sql.AppendLine("VALUES (@Nome, ");
+            sql.AppendLine("        @Sobrenome, ");
+            sql.AppendLine("        @DataNascimento, ");
+            sql.AppendLine("        @CodigoGenero);");
+            sql.AppendLine("SELECT CAST(SCOPE_IDENTITY() as int);");
             #endregion
 
             using (var connection = _context.GetDbConnection())
@@ -37,7 +38,7 @@ namespace Wave.Infra.Repositories
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
 
-                var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
+                var codigoPessoa = await connection.ExecuteScalarAsync<int>(sql.ToString(), new
                 {
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
@@ -45,9 +46,22 @@ namespace Wave.Infra.Repositories
                     CodigoGenero = pessoaCommand.CodigoGenero,
                 });
 
-                return linhasAfetadas > 0;
+                if (codigoPessoa > 0)
+                {
+                    return new PessoaQuery
+                    {
+                        CodigoPessoa = codigoPessoa,
+                        Nome = pessoaCommand.Nome,
+                        Sobrenome = pessoaCommand.Sobrenome,
+                        DataNascimento = pessoaCommand.DataNascimento,
+                        Genero = null
+                    };
+                }
+
+                return null;
             }
         }
+
 
         public async Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa)
         {

@@ -44,14 +44,14 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> AdicionarPessoa([FromBody] PessoaCommand pessoaCommand)
+        public async Task<ActionResult<PessoaQuery>> AdicionarPessoa([FromBody] PessoaCommand pessoaCommand)
         {
             if (pessoaCommand == null)
                 return BadRequest("Pessoa inválida.");
 
             var result = await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
 
-            if (result == false)
+            if (result == null)
                 return BadRequest();
             else
                 return Ok($"Resultado: {result}\nPessoa criada com sucesso!");
