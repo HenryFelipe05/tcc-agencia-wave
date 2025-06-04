@@ -13,6 +13,10 @@
         </ul>
     </div>
     <div class="user-menu-mobile">
-        <img src="./hamburger.png">
+        <img src="./hamburger.png" (click)="toggleMobileNav()">
     </div>
 </nav>
+<div class="mobile-nav-container" [style.display]="isMobileNavVisible ? 'flex' : 'none'">
+    <app-navbar-mobile (navItemClicked)="toggleMobileNav()">
+    </app-navbar-mobile>
+</div>
