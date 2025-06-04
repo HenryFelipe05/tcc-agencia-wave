@@ -45,16 +45,34 @@ namespace Wave.API.Controllers
         [HttpPost("registrarUsuario")]
         public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] RegistrarUsuarioCommand registrarUsuarioCommand)
         {
+            if (registrarUsuarioCommand.CodigoPessoa == 0)
+            {
+                return BadRequest("Código da pessoa não pode ser 0 ");
+            }
+
+            var pessoa = await _pessoaService.RecuperarPessoaAsync(registrarUsuarioCommand.CodigoPessoa);
+            if (pessoa == null)
+            {
+                return BadRequest("Codigo pessoa inválido");
+            }
+
+            if (registrarUsuarioCommand.Senha != registrarUsuarioCommand.SenhaConfirmada)
+            {
+                return BadRequest("A senha e a confirmação não coincidem.");
+            }
+
+            string senhaHash = PasswordHasher.HashPassword(registrarUsuarioCommand.Senha);
+
             var usuario = Usuario.MapearCommandUsuario
                 (
                     registrarUsuarioCommand.CodigoPessoa,
                     registrarUsuarioCommand.NomeUsuario,
                     registrarUsuarioCommand.Email,
                     registrarUsuarioCommand.Telefone,
-                    registrarUsuarioCommand.Senha,
-                    registrarUsuarioCommand.SenhaConfirmada,
+                    senhaHash,
+                    senhaHash,
                     registrarUsuarioCommand.Ativo,
-                    registrarUsuarioCommand.CodigoPerfil 
+                    registrarUsuarioCommand.CodigoPerfil
                     );
 
             var usuarioAdicionado = await _usuarioService.AdicionarUsuarioAsync(usuario);
