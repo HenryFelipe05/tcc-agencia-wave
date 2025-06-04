@@ -1,0 +1,29 @@
+.mobile-nav-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #272727;
+}
+
+.opcoes {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 100px;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-item{
+    width: 50%;
+    padding: 10px;
+    font-size: 20pt;
+}
+
+.auth-btn {
+    width: 50%;
+    color: #333;
+    font-size: 20pt;
+    padding: 10px;
+}

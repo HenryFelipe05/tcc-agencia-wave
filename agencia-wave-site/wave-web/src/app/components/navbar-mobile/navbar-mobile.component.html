@@ -1,14 +1,9 @@
-<nav>
+<nav class="mobile-nav-container">
     <div class="opcoes">
-        <a routerLink="/" class="nav-item">Agência</a> 
-        <a routerLink="/galeria" class="nav-item">Galeria</a> 
-        <a routerLink="/contato" class="nav-item">Contato</a> 
-    </div>
-    <div class="user-menu">
-        <img src="/UserAuthComponent.png" class="userIcon" (click)="toggleDropdown()">
-        <ul class="list-dropdown" [style.display]="isDropdownVisible ? 'flex' : 'none'">
-            <li class="list-item"><a routerLink="/login" class="btn btn-secondary">Login</a></li>
-            <li class="list-item"><a routerLink="/criar-conta" class="btn btn-secondary">Criar Conta</a></li>
-        </ul>
+        <a routerLink="/" class="nav-item btn btn-outline" (click)="onNavItemClick()">Agência</a> 
+        <a routerLink="/galeria" class="nav-item btn btn-outline" (click)="onNavItemClick()">Galeria</a> 
+        <a routerLink="/contato" class="nav-item btn btn-outline" (click)="onNavItemClick()">Contato</a> 
+        <a routerLink="/login" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Login</a>
+        <a routerLink="/criar-conta" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Criar Conta</a>
     </div>
 </nav>
