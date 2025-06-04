@@ -27,3 +27,9 @@
     font-size: 20pt;
     padding: 10px;
 }
+
+@media (min-width: 1049px) {
+    .mobile-nav-container {
+        display: none;
+    }
+}

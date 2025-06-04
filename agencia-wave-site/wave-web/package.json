@@ -21,6 +21,7 @@
     "@ng-icons/bootstrap-icons": "^31.3.0",
     "@ng-icons/core": "^31.3.0",
     "@ng-icons/heroicons": "^31.3.0",
+    "ngx-mask": "^19.0.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

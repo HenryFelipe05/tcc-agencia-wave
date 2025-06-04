@@ -48,7 +48,7 @@ li {
 }
 
 .btn-secondary:hover {
-    background-color: #EDEDED;
+    background-color: #9b9b9b;
     cursor: pointer;
     transition: 0.4s;
 }
