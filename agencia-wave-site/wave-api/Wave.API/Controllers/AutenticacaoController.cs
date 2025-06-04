@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
-using Wave.Domain.Enums;
 using Wave.Domain.Queries;
 
 namespace Wave.API.Controllers
@@ -25,43 +23,44 @@ namespace Wave.API.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpPost("registrar")]
-        public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] RegistrarUsuarioCommand registrarUsuarioCommand)
+        [HttpPost("registrarPessoa")]
+        public async Task<ActionResult<PessoaQuery>> RegistrarPessoa([FromBody] PessoaCommand pessoaCommand)
         {
-            // 1. Criar Pessoa
-            var pessoaCommand = Pessoa.MapearCommandPessoa
+            var pessoa = Pessoa.MapearCommandPessoa
             (
-                registrarUsuarioCommand.Nome,
-                registrarUsuarioCommand.Sobrenome,
-                registrarUsuarioCommand.DataNascimento,
-                registrarUsuarioCommand.CodigoGenero
+                pessoaCommand.Nome,
+                pessoaCommand.Sobrenome,
+                pessoaCommand.DataNascimento,
+                pessoaCommand.CodigoGenero
             );
 
-            var pessoaAdicionada = await _pessoaService.AdicionarPessoaAsync(pessoaCommand);
+            var pessoaAdicionada = await _pessoaService.AdicionarPessoaAsync(pessoa);
 
             if (pessoaAdicionada == null)
-            {
                 return BadRequest("Erro ao adicionar a pessoa.");
-            }
 
-            var usuarioCommand = Usuario.MapearCommandUsuario
-            (
-                pessoaAdicionada.CodigoPessoa,
-                registrarUsuarioCommand.NomeUsuario,
-                registrarUsuarioCommand.Email,
-                registrarUsuarioCommand.Telefone,
-                registrarUsuarioCommand.Senha,
-                registrarUsuarioCommand.SenhaConfirmada,
-                true,
-                (int)PerfilEnum.Perfis.Usuario
-            );
+            return Ok(pessoaAdicionada);
+        }
 
-            var usuarioAdicionado = await _usuarioService.AdicionarUsuarioAsync(usuarioCommand);
+        [HttpPost("registrarUsuario")]
+        public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] RegistrarUsuarioCommand registrarUsuarioCommand)
+        {
+            var usuario = Usuario.MapearCommandUsuario
+                (
+                    registrarUsuarioCommand.CodigoPessoa,
+                    registrarUsuarioCommand.NomeUsuario,
+                    registrarUsuarioCommand.Email,
+                    registrarUsuarioCommand.Telefone,
+                    registrarUsuarioCommand.Senha,
+                    registrarUsuarioCommand.SenhaConfirmada,
+                    registrarUsuarioCommand.Ativo,
+                    registrarUsuarioCommand.CodigoPerfil 
+                    );
 
-            if (usuarioAdicionado == null)
-            {
-                return BadRequest("Erro ao adicionar o usuário.");
-            }
+            var usuarioAdicionado = await _usuarioService.AdicionarUsuarioAsync(usuario);
+
+            if (usuarioAdicionado is null)
+                return BadRequest("Erro ao adicionar o usuario");
 
             return Ok(usuarioAdicionado);
         }

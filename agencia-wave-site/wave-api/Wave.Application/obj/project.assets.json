@@ -3903,23 +3903,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\etec\\.nuget\\packages\\": {},
+    "C:\\Users\\botiv\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
+      "projectUniqueName": "C:\\Users\\botiv\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
       "projectName": "Wave.Application",
-      "projectPath": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
-      "packagesPath": "C:\\Users\\etec\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\obj\\",
+      "projectPath": "C:\\Users\\botiv\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
+      "packagesPath": "C:\\Users\\botiv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\botiv\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\etec\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\botiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3934,8 +3934,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
-              "projectPath": "C:\\Users\\etec\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
+            "C:\\Users\\botiv\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
+              "projectPath": "C:\\Users\\botiv\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
             }
           }
         }

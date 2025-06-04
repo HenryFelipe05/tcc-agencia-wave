@@ -31,50 +31,41 @@ namespace Wave.Infra.Repositories
             sql.AppendLine("                     Senha, ");
             sql.AppendLine("                     CodigoPerfil, ");
             sql.AppendLine("                     CodigoPessoa, ");
-            sql.AppendLine("                     Ativo) ");
-            sql.AppendLine("VALUES (@NomeUsuario, ");
-            sql.AppendLine("        @Email, ");
-            sql.AppendLine("        @Telefone, ");
-            sql.AppendLine("        @Senha, ");
-            sql.AppendLine("        @CodigoPerfil, ");
-            sql.AppendLine("        @CodigoPessoa, ");
-            sql.AppendLine("        @Ativo); ");
-            sql.AppendLine("SELECT CAST(SCOPE_IDENTITY() as int);");
+            sql.AppendLine("                     Ativo)");
+            sql.AppendLine("	  VALUES (@NomeUsuario, ");
+            sql.AppendLine("              @Email, ");
+            sql.AppendLine("              @Telefone, ");
+            sql.AppendLine("              @Senha, ");
+            sql.AppendLine("              @CodigoPerfil, ");
+            sql.AppendLine("              @CodigoPessoa, ");
+            sql.AppendLine("              @Ativo);");
             #endregion
 
-            var pessoaCommand = new PessoaCommand
+
+
+            using (var connection = _context.GetDbConnection())
             {
-                Nome = "Boti",
-                CodigoGenero = 1,
-                DataNascimento = DateTime.Now,
-                Sobrenome = usuarioCommand.NomeUsuario
-            };
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
 
-            _context.Add(pessoaCommand);
+                var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
+                {
+                    NomeUsuario = usuarioCommand.NomeUsuario,
+                    Email = usuarioCommand.Email,
+                    Telefone = usuarioCommand.Telefone,
+                    Senha = usuarioCommand.Senha,
+                    CodigoPerfil = usuarioCommand.CodigoPerfil,
+                    CodigoPessoa = usuarioCommand.CodigoPessoa,
+                    Ativo = usuarioCommand.Ativo
+                });
 
-            //using (var connection = _context.GetDbConnection())
-            //{
-            //    if (connection.State == ConnectionState.Closed)
-            //        connection.Open();
-
-            //    var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
-            //    {
-            //        NomeUsuario = usuarioCommand.NomeUsuario,
-            //        Email = usuarioCommand.Email,
-            //        Telefone = usuarioCommand.Telefone,
-            //        Senha = usuarioCommand.Senha,
-            //        CodigoPerfil = usuarioCommand.CodigoPerfil,
-            //        CodigoPessoa = usuarioCommand.CodigoPessoa,
-            //        Ativo = usuarioCommand.Ativo
-            //    });
-
-            //    if (linhasAfetadas > 0)
-            //    {
-            //        var usuarioCriado = Usuario.MapearDadosUsuario(usuarioCommand);
-            //        return usuarioCriado;
-            //    }
-            //    else return null;
-            //}
+                if (linhasAfetadas > 0)
+                {
+                    var usuarioCriado = Usuario.MapearDadosUsuario(usuarioCommand);
+                    return usuarioCriado;
+                }
+                else return null;
+            }
         }
 
         public async Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario)

@@ -10,5 +10,6 @@ namespace Wave.Application.Services.Interfaces
         Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand);
         Task<bool> AlterarPessoaAsync(PessoaCommand pessoaCommand, int codigoPessoa);
         Task<bool> DeletarPessoaAsync(int codigoPessoa);
+        Task<int?> RecuperarUltimoCodigoPessoaAsync();
     }
 }

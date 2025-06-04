@@ -38,5 +38,10 @@ namespace Wave.Application.Services
 		{
 			return await _pessoaRepository.RecuperarPessoaAsync(codigoPessoa);
 		}
-	}
+
+        public async Task<int?> RecuperarUltimoCodigoPessoaAsync()
+        {
+            return await _pessoaRepository.RecuperarUltimoCodigoPessoaAsync();
+        }
+    }
 }

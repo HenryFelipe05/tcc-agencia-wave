@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Text;
 using Wave.Domain.Commands;
@@ -164,5 +165,14 @@ namespace Wave.Infra.Repositories
                 return await connection.QueryFirstOrDefaultAsync<PessoaQuery>(sql.ToString(), new { CodigoPessoa = codigoPessoa });
             }
         }
+
+        public async Task<int?> RecuperarUltimoCodigoPessoaAsync()
+        {
+            return await _context.Pessoas
+                .OrderByDescending(p => p.CodigoPessoa)
+                .Select(p => (int?)p.CodigoPessoa)
+                .FirstOrDefaultAsync();
+        }
+
     }
 }
