@@ -13,14 +13,18 @@ namespace Wave.API.Controllers
         private readonly IUsuarioService _usuarioService;
         private readonly IPessoaService _pessoaService;
         private readonly IJwtService _jwtService;
+        private readonly IPasswordHasher _passwordHasher;
 
         public AutenticacaoController(IUsuarioService usuarioService,
                                       IPessoaService pessoaService,
-                                      IJwtService jwtService)
+                                      IJwtService jwtService,
+                                      IPasswordHasher passwordHasher)
         {
             _usuarioService = usuarioService;
             _pessoaService = pessoaService;
             _jwtService = jwtService;
+            _passwordHasher = passwordHasher;
+
         }
 
         [HttpPost("registrarPessoa")]
@@ -74,8 +78,9 @@ namespace Wave.API.Controllers
             if (usuarioExistente == null)
                 return Unauthorized("Usuário não encontrado");
 
-            if (usuarioExistente.Senha != loginUserCommand.Password)
-                return Unauthorized("Senha incorreta");
+            bool senhaValida = _passwordHasher.VerifyPassword(loginUserCommand.Password, usuarioExistente.Senha);
+            if (!senhaValida)
+                return Unauthorized("Senha inválida");
 
             var token = _jwtService.GenerateToken(usuarioExistente.CodigoUsuario.ToString(), usuarioExistente.Perfil?.Descricao ?? "Usuário");
 
