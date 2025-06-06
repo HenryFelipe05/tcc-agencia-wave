@@ -9,20 +9,47 @@ namespace Wave.Application.Services
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IPessoaService _pessoaService;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, IPessoaService pessoaService, IPasswordHasher passwordHasher)
         {
             _usuarioRepository = usuarioRepository;
+            _pessoaService = pessoaService;
+            _passwordHasher = passwordHasher;
         }
 
-        public async Task<UsuarioQuery> AdicionarUsuarioAsync(UsuarioCommand usuarioCommand)
+        public async Task<UsuarioQuery> AdicionarUsuarioAsync(RegistrarUsuarioCommand command)
         {
-            return await _usuarioRepository.AdicionarUsuarioAsync(usuarioCommand);
+            if (command.CodigoPessoa == 0)
+                throw new ValidacaoException("Código da pessoa não pode ser zero.");
+
+            if (command.Senha != command.SenhaConfirmada)
+                throw new ValidacaoException("A senha e a confirmação não coincidem.");
+
+            var pessoa = await _pessoaService.RecuperarPessoaAsync(command.CodigoPessoa);
+            if (pessoa == null)
+                throw new ValidacaoException("Código da pessoa inválido.");
+
+            string senhaHash = _passwordHasher.HashPassword(command.Senha);
+
+            var usuario = Usuario.MapearCommandUsuario
+            (
+                command.CodigoPessoa,
+                command.NomeUsuario,
+                command.Email,
+                command.Telefone,
+                senhaHash,
+                command.Ativo,
+                command.CodigoPerfil
+                );
+
+            return await _usuarioRepository.AdicionarUsuarioAsync(usuario);
         }
 
-        public Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario)
+        public async Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario)
         {
-            throw new NotImplementedException();
+            await _usuarioRepository.AtualizarUsuarioAsync(usuarioCommand, codigoUsuario);
         }
 
         public async Task<Usuario> BuscarUsuarioPorNomeOuEmailAsync(string identificador)

@@ -45,42 +45,23 @@ namespace Wave.API.Controllers
         [HttpPost("registrarUsuario")]
         public async Task<ActionResult<UsuarioQuery>> RegistrarUsuario([FromBody] RegistrarUsuarioCommand registrarUsuarioCommand)
         {
-            if (registrarUsuarioCommand.CodigoPessoa == 0)
+            try
             {
-                return BadRequest("Código da pessoa não pode ser 0 ");
-            }
+                var usuarioAdicionado = await _usuarioService.AdicionarUsuarioAsync(registrarUsuarioCommand);
 
-            var pessoa = await _pessoaService.RecuperarPessoaAsync(registrarUsuarioCommand.CodigoPessoa);
-            if (pessoa == null)
+                if (usuarioAdicionado is null)
+                    return BadRequest("Erro ao adicionar o usuário.");
+
+                return Ok(usuarioAdicionado);
+            }
+            catch (ValidacaoException ex)
             {
-                return BadRequest("Codigo pessoa inválido");
+                return BadRequest(ex.Message);
             }
-
-            if (registrarUsuarioCommand.Senha != registrarUsuarioCommand.SenhaConfirmada)
+            catch (Exception ex)
             {
-                return BadRequest("A senha e a confirmação não coincidem.");
+                return StatusCode(500, "Erro inesperado. Contate o suporte.");
             }
-
-            string senhaHash = PasswordHasher.HashPassword(registrarUsuarioCommand.Senha);
-
-            var usuario = Usuario.MapearCommandUsuario
-                (
-                    registrarUsuarioCommand.CodigoPessoa,
-                    registrarUsuarioCommand.NomeUsuario,
-                    registrarUsuarioCommand.Email,
-                    registrarUsuarioCommand.Telefone,
-                    senhaHash,
-                    senhaHash,
-                    registrarUsuarioCommand.Ativo,
-                    registrarUsuarioCommand.CodigoPerfil
-                    );
-
-            var usuarioAdicionado = await _usuarioService.AdicionarUsuarioAsync(usuario);
-
-            if (usuarioAdicionado is null)
-                return BadRequest("Erro ao adicionar o usuario");
-
-            return Ok(usuarioAdicionado);
         }
 
 

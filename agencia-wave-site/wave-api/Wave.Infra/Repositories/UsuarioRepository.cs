@@ -3,6 +3,7 @@ using System.Text;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Queries;
@@ -14,10 +15,12 @@ namespace Wave.Infra.Repositories
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly WaveDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public UsuarioRepository(WaveDbContext context)
+        public UsuarioRepository(WaveDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<UsuarioQuery> AdicionarUsuarioAsync(UsuarioCommand usuarioCommand)
@@ -43,10 +46,9 @@ namespace Wave.Infra.Repositories
 
 
 
-            using (var connection = _context.GetDbConnection())
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
+                await connection.OpenAsync();
 
                 var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
                 {

@@ -36,6 +36,7 @@ namespace Wave.Infra
             services.AddScoped<IGaleriaService, GaleriaService>();
             services.AddScoped<IFavoritoService, FavoritoService>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
             #endregion
 
             return services;

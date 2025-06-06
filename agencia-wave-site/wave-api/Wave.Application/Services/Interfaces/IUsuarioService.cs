@@ -13,7 +13,7 @@ namespace Wave.Application.Services.Interfaces
     {
         Task<UsuarioQuery> RecuperarUsuarioAsync(int codigoUsuario);
         Task<IEnumerable<UsuarioQuery>> RecuperarTodosUsuariosAsync();
-        Task<UsuarioQuery> AdicionarUsuarioAsync(UsuarioCommand usuarioCommand);
+        Task<UsuarioQuery> AdicionarUsuarioAsync(RegistrarUsuarioCommand command);
         Task AtualizarUsuarioAsync(UsuarioCommand usuarioCommand, int codigoUsuario);
         Task<Usuario> BuscarUsuarioPorNomeOuEmailAsync(string identificador);
     }
