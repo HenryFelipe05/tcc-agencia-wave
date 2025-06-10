@@ -37,6 +37,16 @@ namespace Wave.Application.Services
             var nomeArquivo = $"{Guid.NewGuid()}{extensao}";
             var pastaUploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
 
+            if (!Directory.Exists(pastaUploads))
+                Directory.CreateDirectory(pastaUploads);
+
+            var caminhoArquivo = Path.Combine(pastaUploads, nomeArquivo);
+
+            using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
+            {
+                await command.Arquivo.CopyToAsync(stream);
+            }
+
 
             var itemGaleria = new ItemGaleria
             {

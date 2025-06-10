@@ -23,7 +23,6 @@ namespace Wave.Infra.Repositories
 
             if (itens == null || itens.Count == 0)
             {
-                // Verifica se o retorno está vazio
                 Console.WriteLine("Nenhum item encontrado.");
             }
             return itens;
@@ -59,11 +58,11 @@ namespace Wave.Infra.Repositories
 
                 return itemGaleria;
             }
-            catch
+            catch (Exception ex)
             {
-
-                throw new Exception($"Erro ao salvar: {itemGaleria}");
+                throw new Exception($"Erro ao salvar ItemGaleria: {ex.Message}", ex);
             }
+
 
         }
 
