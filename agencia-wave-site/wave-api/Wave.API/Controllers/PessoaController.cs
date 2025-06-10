@@ -30,6 +30,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet("{codigoPessoa}")]
+        [Authorize]
         public async Task<ActionResult<PessoaQuery>> RecuperarPessoa([FromRoute] int codigoPessoa)
         {
             if (codigoPessoa == 0)
@@ -44,6 +45,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<PessoaQuery>> AdicionarPessoa([FromBody] PessoaCommand pessoaCommand)
         {
             if (pessoaCommand == null)
@@ -58,6 +60,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPut("{codigoPessoa}")]
+        [Authorize]
         public async Task<ActionResult<bool>> AlterarPessoa([FromRoute] int codigoPessoa, [FromBody] PessoaCommand pessoaCommand)
         {
             if (codigoPessoa == 0)
@@ -75,6 +78,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpDelete("{codigoPessoa}")]
+        [Authorize]
         public async Task<ActionResult<bool>> DeletarPessoa([FromRoute] int codigoPessoa)
         {
             if (codigoPessoa == 0)

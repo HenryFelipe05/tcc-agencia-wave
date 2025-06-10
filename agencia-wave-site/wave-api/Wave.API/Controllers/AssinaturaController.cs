@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -17,6 +18,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet("Usuario/{codigoUsuario}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Assinatura>>> ObterPorUsuario(int codigoUsuario)
         {
             var assinaturas = await _assinaturaService.ObterPorUsuarioIdAsync(codigoUsuario);
@@ -27,6 +29,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet("Usuario/{codigoUsuario}/historico")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Assinatura>>> ObterGHistorico(int codigoUsuario)
         {
             var historico = await _assinaturaService.ObterHistoricoDeAssinaturasAsync(codigoUsuario);
@@ -37,6 +40,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Assinatura>>> ObterAssinaturas()
         {
             var assinaturas = await _assinaturaService.ObterTodasAsync();
@@ -47,6 +51,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet("{codigoAssinatura}")]
+        [Authorize]
         public async Task<ActionResult> ObterAssinaturaPorId(Guid codigoAssinatura)
         {
             var assinatura = await _assinaturaService.ObterPorIdAsync(codigoAssinatura);
@@ -57,6 +62,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Assinatura>> CriarAssinatura(AssinaturaCommand assinaturaCommand)
         {
             var novaAssinatura = await _assinaturaService.CriarAssinaturaAsync(assinaturaCommand);
@@ -64,6 +70,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPut("{codigoAssinatura}")]
+        [Authorize]
         public async Task<IActionResult> AtualizarAssinatura(Guid codigoAssinatura, AssinaturaCommand assinaturaCommand)
         {
             if (codigoAssinatura != assinaturaCommand.CodigoAssinatura)
@@ -77,6 +84,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPut("{codigoAssinatura}/cancelar-assinatura")]
+        [Authorize]
         public async Task<IActionResult> CancelamentoAssinatura(Guid codigoAssinatura)
         {
             var mensagem = await _assinaturaService.CancelarAssinaturaAsync(codigoAssinatura);
@@ -85,6 +93,7 @@ namespace Wave.API.Controllers
 
 
         [HttpDelete("{codigoAssinatura}")]
+        [Authorize]
         public async Task<IActionResult> RemoverAssinatura(Guid codigoAssinatura)
         {
             var resultado = await _assinaturaService.RemoverAssinaturaAsync(codigoAssinatura);

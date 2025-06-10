@@ -33,12 +33,17 @@ namespace Wave.Application.Services
                 throw new ArgumentException("Arquivo não pode ser nulo ou vazio.");
             }
 
+            var extensao = Path.GetExtension(command.Arquivo.FileName);
+            var nomeArquivo = $"{Guid.NewGuid()}{extensao}";
+            var pastaUploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+
+
             var itemGaleria = new ItemGaleria
             {
                 Titulo = command.Titulo,
                 Descricao = command.Descricao,
                 ExtensaoArquivo = command.ExtensaoArquivo,
-                Arquivo = command.Arquivo, 
+                Arquivo = nomeArquivo,
                 URLMiniatura = command.URLMiniatura,
                 Ativo = command.Ativo,
                 DataCadastro = command.DataCadastro == default ? DateTime.UtcNow : command.DataCadastro,
@@ -52,20 +57,27 @@ namespace Wave.Application.Services
 
 
 
-        public async Task<byte[]> BaixarItemAsync(ItemGaleriaCommand Command)
+        public async Task<string> BaixarItemAsync(ItemGaleriaCommand command)
         {
-            var item = await _itemRepository.ObterPorIdAsync(Command.CodigoItemGaleria);
+            var item = await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria);
 
             if (item == null)
                 throw new InvalidOperationException("Item da galeria não encontrado.");
 
-            if (item.Arquivo == null || item.Arquivo.Length == 0)
+            if (string.IsNullOrEmpty(item.Arquivo))
                 throw new InvalidOperationException("Arquivo não disponível para este item.");
 
-            return item.Arquivo;
+            var pastaUploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+            var caminhoArquivo = Path.Combine(pastaUploads, item.Arquivo);
+
+            if (!File.Exists(caminhoArquivo))
+                throw new FileNotFoundException("Arquivo não encontrado no servidor.");
+
+            return caminhoArquivo;
         }
 
-        
+
+
         public async Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query)
         {
             var itens = await _itemRepository.ListarTodosAsync();
@@ -123,6 +135,28 @@ namespace Wave.Application.Services
 
             return await _itemRepository.DeletarItemAsync(codigoItemGaleria);
            
+        }
+
+        public async Task<ItemGaleriaCommand> ObterItemAsync(int codigoItemGaleria)
+        {
+            var item = await _itemRepository.ObterPorIdAsync(codigoItemGaleria);
+
+            if (item == null)
+                throw new UnauthorizedAccessException("Item não encontrado");
+
+            return new ItemGaleriaCommand
+            {
+                CodigoItemGaleria = item.CodigoItemGaleria,
+                Titulo = item.Titulo,
+                Descricao = item.Descricao,
+                ExtensaoArquivo = item.ExtensaoArquivo,
+                Arquivo = item.Arquivo,
+                URLMiniatura = item.URLMiniatura,
+                Ativo = item.Ativo,
+                DataCadastro = item.DataCadastro,
+                CodigoGaleria = item.CodigoGaleria,
+                CodigoUsuario = item.CodigoUsuario
+            };
         }
     }
 }

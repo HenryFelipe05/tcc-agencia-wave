@@ -31,6 +31,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet("listar")]
+        [Authorize]
         public async Task<IActionResult> ListarFavoritos(int codigoUsuario)
         {
             try
@@ -45,6 +46,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpDelete("remover")]
+        [Authorize]
         public async Task<IActionResult> RemoverFavorito(int codigoUsuario, int codigoItemGaleria)
         {
             try

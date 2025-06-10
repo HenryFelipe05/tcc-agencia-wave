@@ -35,9 +35,15 @@ namespace Wave.Infra.Repositories
             if (codigoItemGaleria <= 0)
                 throw new ArgumentException("O código do item deve ser maior que zero.", nameof(codigoItemGaleria));
 
-            return await _context.ItemGalerias
+            var item = await _context.ItemGalerias
                 .FirstOrDefaultAsync(x => x.CodigoItemGaleria == codigoItemGaleria);
+
+            if (item == null)
+                throw new KeyNotFoundException($"Item com código {codigoItemGaleria} não foi encontrado.");
+
+            return item;
         }
+
 
         public async Task<ItemGaleria> CriarItemAsync(ItemGaleria itemGaleria)
         {

@@ -1183,6 +1183,7 @@
         "dependencies": {
           "Dapper": "2.1.35",
           "Dapper.Contrib": "2.0.78",
+          "Microsoft.AspNetCore.Http.Features": "2.3.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8"
         },

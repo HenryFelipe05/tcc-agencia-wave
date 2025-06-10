@@ -14,11 +14,6 @@ namespace Wave.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Configura o tipo da coluna 'Arquivo' para VARBINARY(MAX)
-            modelBuilder.Entity<ItemGaleria>()
-                .Property(i => i.Arquivo)
-                .HasColumnType("VARBINARY(MAX)");
         }
 
         public virtual DbSet<Genero> Generos { get; set; }
