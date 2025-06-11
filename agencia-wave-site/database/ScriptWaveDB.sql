@@ -53,7 +53,7 @@ CREATE TABLE ItemGaleria (
     Titulo VARCHAR(255) NOT NULL,
 	Descricao VARCHAR(255) NULL,
     ExtensaoArquivo VARCHAR(10) NOT NULL,
-    Arquivo VARBINARY(MAX) NOT NULL,
+    Arquivo VARCHAR(255) NOT NULL,
     URLMiniatura VARCHAR(255) NOT NULL,
     Ativo BIT NOT NULL,
     DataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
@@ -114,7 +114,7 @@ INSERT INTO Genero (Descricao) VALUES ('Não Binário');
 INSERT INTO Genero (Descricao) VALUES ('Não Informar');
 
 INSERT INTO Perfil (Descricao) VALUES ('Administrador');
-INSERT INTO Perfil (Descricao) VALUES ('Operador');
+INSERT INTO Perfil (Descricao) VALUES ('Suporte');
 INSERT INTO Perfil (Descricao) VALUES ('Usuario');
 
 INSERT INTO StatusAssinatura (Descricao) VALUES ('Ativa');
