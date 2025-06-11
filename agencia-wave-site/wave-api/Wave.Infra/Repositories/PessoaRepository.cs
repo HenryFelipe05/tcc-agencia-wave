@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Text;
 using Wave.Domain.Commands;
@@ -12,10 +14,12 @@ namespace Wave.Infra.Repositories
     public class PessoaRepository : IPessoaRepository
     {
         private readonly WaveDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public PessoaRepository(WaveDbContext context)
+        public PessoaRepository(WaveDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<PessoaQuery> AdicionarPessoaAsync(PessoaCommand pessoaCommand)
@@ -157,10 +161,9 @@ namespace Wave.Infra.Repositories
             sql.AppendLine("  WHERE p.CodigoPessoa = @CodigoPessoa ");
             #endregion
 
-            using (var connection = _context.GetDbConnection())
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                if (connection.State == ConnectionState.Closed)
-                    connection.Open();
+                await connection.OpenAsync();
 
                 return await connection.QueryFirstOrDefaultAsync<PessoaQuery>(sql.ToString(), new { CodigoPessoa = codigoPessoa });
             }
