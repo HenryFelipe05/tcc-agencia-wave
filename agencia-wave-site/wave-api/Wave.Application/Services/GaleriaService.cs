@@ -56,7 +56,7 @@ namespace Wave.Application.Services
                 Arquivo = nomeArquivo,
                 URLMiniatura = command.URLMiniatura,
                 Ativo = command.Ativo,
-                DataCadastro = command.DataCadastro == default ? DateTime.UtcNow : command.DataCadastro,
+                DataCadastro = DateTime.UtcNow,
                 CodigoGaleria = command.CodigoGaleria,
                 CodigoUsuario = command.CodigoUsuario,
                 Exclusivo = command.Exclusivo,
