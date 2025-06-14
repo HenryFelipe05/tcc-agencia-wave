@@ -92,7 +92,7 @@ namespace Wave.Application.Services
         public async Task<IEnumerable<ItemGaleria>> BuscarItensAsync(ItemGaleriaQuery query)
         {
             var itens = await _itemRepository.ListarTodosAsync();
-
+            
             if (itens is null || !itens.Any())
                 throw new InvalidOperationException("Itens não encontrados");
 
@@ -103,7 +103,12 @@ namespace Wave.Application.Services
                 itens = itens.Where(i => i.Titulo.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase) ||
                                          i.Descricao.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase));
 
-            return itens.ToList();
+            var resultado = itens.ToList();
+
+            if(!resultado.Any())
+                throw new InvalidOperationException("Nenhum item encontrado com os filtros aplicados.");
+
+            return resultado;
         }
 
         public async Task AlterarItemAsync(AlteraItemGaleriaCommand command)
