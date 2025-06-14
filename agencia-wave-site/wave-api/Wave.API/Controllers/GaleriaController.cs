@@ -57,7 +57,7 @@ namespace Wave.API.Controllers
 
 
         [HttpGet("Filtrar")]
-        [Authorize]
+
         public async Task<IActionResult> BuscarItensAsync([FromQuery] ItemGaleriaQuery itemGaleriaQuery)
         {
             try
@@ -72,8 +72,8 @@ namespace Wave.API.Controllers
         }
 
         [HttpPut("Alterar Item")]
-        [Authorize]
-        public async Task<IActionResult> AlterarItemAsync([FromBody] ItemGaleriaCommand command)
+
+        public async Task<IActionResult> AlterarItemAsync([FromForm] AlteraItemGaleriaCommand command)
         {
             try
             {
@@ -88,7 +88,6 @@ namespace Wave.API.Controllers
 
 
         [HttpDelete("Excluir Item")]
-        [Authorize]
         public async Task<IActionResult> DeletarItemAsync(int codigoItemGaleria, int codigoUsuario)
         {
             try

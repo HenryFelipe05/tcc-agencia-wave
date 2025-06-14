@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.IdentityModel.Tokens;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -117,7 +118,7 @@ namespace Wave.Application.Services
             return itens.ToList();
         }
 
-        public async Task AlterarItemAsync(ItemGaleriaCommand command)
+        public async Task AlterarItemAsync(AlteraItemGaleriaCommand command)
         {
             var usuario = await _usuarioRepository.RecuperarUsuarioAsync(command.CodigoUsuario);
 
@@ -125,16 +126,26 @@ namespace Wave.Application.Services
                 throw new UnauthorizedAccessException("Apenas usuários com perfil de suporte podem gerenciar a galeria.");
 
             var item =  await _itemRepository.ObterPorIdAsync(command.CodigoItemGaleria) ?? throw new InvalidOperationException("Item não encontrado.");
-      
+
+            var extensao = Path.GetExtension(command.Arquivo.FileName);
+            var pastaUploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+            var nomeArquivo = $"{Guid.NewGuid()}{extensao}";
+
+            var caminhoArquivo = Path.Combine(pastaUploads, nomeArquivo);
+
+            using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
+            {
+                await command.Arquivo.CopyToAsync(stream);
+            }
+
             item.Titulo = command.Titulo;
             item.Descricao = command.Descricao;
             item.ExtensaoArquivo = command.ExtensaoArquivo;
-            item.Arquivo = command.Arquivo;
+            item.Arquivo = nomeArquivo;
             item.URLMiniatura = command.URLMiniatura;
             item.Ativo = command.Ativo;
-            item.CodigoGaleria = command.CodigoGaleria;
 
-            await _itemRepository.AtualizarItemAsync(item);  
+          await _itemRepository.AtualizarItemAsync(item);  
         }
 
         public async Task <ItemGaleria>ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario)

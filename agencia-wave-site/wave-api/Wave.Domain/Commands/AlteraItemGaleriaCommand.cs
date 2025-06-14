@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
 namespace Wave.Domain.Commands
 {
-    public class ItemGaleriaCommand
+    public class AlteraItemGaleriaCommand
     {
         public int CodigoItemGaleria { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string ExtensaoArquivo { get; set; }
-        public string Arquivo { get; set; }
+        public IFormFile Arquivo { get; set; }
         public string URLMiniatura { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
