@@ -14,6 +14,5 @@ namespace Wave.Domain.Commands
         public DateTime DataCadastro { get; set; }
         public int CodigoGaleria { get; set; }
         public int CodigoUsuario { get; set; }
-        public bool Exclusivo { get; set; }
     }
 }

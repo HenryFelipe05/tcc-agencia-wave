@@ -70,7 +70,7 @@ namespace Wave.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return StatusCode(500, "Erro inesperado. Contate o suporte.");
             }

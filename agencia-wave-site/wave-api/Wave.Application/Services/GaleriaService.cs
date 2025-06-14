@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.IdentityModel.Tokens;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
@@ -60,7 +61,6 @@ namespace Wave.Application.Services
                 DataCadastro = DateTime.UtcNow,
                 CodigoGaleria = command.CodigoGaleria,
                 CodigoUsuario = command.CodigoUsuario,
-                Exclusivo = command.Exclusivo,
             };
 
             return await _itemRepository.CriarItemAsync(itemGaleria);
@@ -98,18 +98,6 @@ namespace Wave.Application.Services
 
             if (!string.IsNullOrEmpty(query.TipoArquivo))
                 itens = itens.Where(i => i.ExtensaoArquivo.Equals(query.TipoArquivo, StringComparison.OrdinalIgnoreCase));
-
-            if (!string.IsNullOrEmpty(query.TipoItem))
-            {
-                if (query.TipoItem.Equals("exclusivo", StringComparison.OrdinalIgnoreCase))
-                {
-                    itens = itens.Where(i => i.Exclusivo);
-                }
-                else if (query.TipoItem.Equals("gratuito", StringComparison.OrdinalIgnoreCase))
-                {
-                    itens = itens.Where(i => !i.Exclusivo);
-                }
-            }
 
             if (!string.IsNullOrWhiteSpace(query.Pesquisa))
                 itens = itens.Where(i => i.Titulo.Contains(query.Pesquisa, StringComparison.OrdinalIgnoreCase) ||

@@ -25,6 +25,7 @@ namespace Wave.Infra.Repositories
             {
                 Console.WriteLine("Nenhum item encontrado.");
             }
+            
             return itens;
         }
 

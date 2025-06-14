@@ -17,7 +17,6 @@ namespace Wave.Domain.Entities
         public string URLMiniatura { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
-        public bool Exclusivo { get; set; }
 
         [ForeignKey("Galeria")]
         public int CodigoGaleria { get; set; }
