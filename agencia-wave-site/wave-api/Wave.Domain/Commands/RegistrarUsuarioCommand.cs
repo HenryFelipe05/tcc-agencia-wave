@@ -1,4 +1,6 @@
-﻿namespace Wave.Domain.Commands
+﻿using System.Text.Json.Serialization;
+
+namespace Wave.Domain.Commands
 {
     public class RegistrarUsuarioCommand
     {
@@ -6,6 +8,8 @@
         public string Sobrenome { get; set; }
         public DateTime DataNascimento { get; set; }
         public int CodigoGenero { get; set; }
+
+        [JsonIgnore]
         public int CodigoPessoa { get; set; }
         public string NomeUsuario { get; set; }
         public string Email { get; set; }
