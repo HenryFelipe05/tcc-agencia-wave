@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TitleService } from '../../core/services/title.service';
 import { GaleryItemComponent } from '../../components/galery-item/galery-item.component';
+import { GaleryNavComponent } from '../../components/galery-nav/galery-nav.component';
 
 @Component({
   selector: 'app-galery',
   standalone: true,
-  imports: [CommonModule, GaleryItemComponent],
+  imports: [CommonModule, GaleryItemComponent, GaleryNavComponent],
   templateUrl: './galery.component.html',
   styleUrl: './galery.component.css'
 })
