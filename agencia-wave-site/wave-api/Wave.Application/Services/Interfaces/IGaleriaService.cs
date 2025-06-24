@@ -12,5 +12,6 @@ namespace Wave.Application.Services.Interfaces
         Task<ItemGaleriaCommand> ObterItemAsync(int codigoItemGaleria);
         Task<string> BaixarItemAsync(ItemGaleriaCommand itemGaleriaCommand);
         Task<ItemGaleria> ExcluirItemAsync(int codigoItemGaleria, int codigoUsuario);
+        Task<IEnumerable<ItemGaleria>> ObterTodosAsync();
     }
 }

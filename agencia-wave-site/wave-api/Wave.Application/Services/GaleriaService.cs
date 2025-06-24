@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Http.Internal;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using Microsoft.IdentityModel.Tokens;
-using Wave.Application.Services.Interfaces;
+﻿using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
 using Wave.Domain.Enums;
 using Wave.Domain.Queries;
 using Wave.Domain.Repositories;
 using Wave.Domain.Repository;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Wave.Application.Services
 {
@@ -171,6 +167,11 @@ namespace Wave.Application.Services
                 CodigoGaleria = item.CodigoGaleria,
                 CodigoUsuario = item.CodigoUsuario
             };
+        }
+
+        public async Task<IEnumerable<ItemGaleria>> ObterTodosAsync()
+        {
+            return await _itemRepository.ListarTodosAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Abstractions;
 using Wave.Application.Services.Interfaces;
 using Wave.Domain.Commands;
 using Wave.Domain.Entities;
@@ -99,6 +100,17 @@ namespace Wave.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("Pegar todos os itens")]
+        public async Task<IActionResult> ObterTodosAsync()
+        {
+                var itens = await _galeriaService.ObterTodosAsync();
+                if (itens == null)
+                    throw new Exception("Nenhum Item encontrado");
+                else
+                return Ok(itens);
+
         }
     }
 }
