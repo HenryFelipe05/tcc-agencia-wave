@@ -6,6 +6,19 @@ using Wave.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularLocalhost",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:4200") // Angular
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials(); // use isso apenas se for usar cookies/autenticação
+        });
+});
+
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
@@ -48,6 +61,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseCors("AllowAngularLocalhost");
 app.UseAuthorization();
 
 app.MapControllers();

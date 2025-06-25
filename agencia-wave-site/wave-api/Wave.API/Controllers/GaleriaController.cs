@@ -110,7 +110,6 @@ namespace Wave.API.Controllers
                     throw new Exception("Nenhum Item encontrado");
                 else
                 return Ok(itens);
-
         }
     }
 }

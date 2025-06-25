@@ -6,25 +6,25 @@
                 <p>Já possui uma conta? </p><a routerLink="/login">Login</a>
             </div>
         </header>
-        <form id="formSingup">
+        <form (ngSubmit)="onCreateAcountSubmit($event)" id="formSingup">
             <div class="input-name input-container">
                 <label for="inputName">Nome completo</label>
-                <input type="text" placeholder="e.g João da Silva" id="inputName">
+                <input type="text" placeholder="e.g João da Silva" id="inputName" required>
             </div>
             <div class="input-email input-container">
                 <label for="inputEmail">Email</label>
-                <input type="email" placeholder="exemplo@email.com" id="inputEmail">
+                <input type="email" placeholder="exemplo@email.com" id="inputEmail" required>
             </div>
             <div class="input-password input-container">
                 <label for="inputPassword">Senha</label>
-                <input type="password" id="inputPassword">
+                <input type="password" id="inputPassword" required>
             </div>
             <div class="input-password input-container">
                 <label for="inputConfirmPassword">Confirmar senha</label>
-                <input type="password" id="inputConfirmPassword">
+                <input type="password" id="inputConfirmPassword" required>
             </div>
 
-            <button type="button" (click)="onCreateAcountSubmit()" class="btn btn-primary">Criar Conta</button>
+            <button type="submit" class="btn btn-primary">Criar Conta</button>
         </form>
         <div class="user-terms-container">
             <p>Ao acessar, você concorda com nossos</p>
