@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'https://localhost:44314/api/Autenticacao/registrarUsuario/Pessoa';
-
   constructor(private http: HttpClient) {}
 
   registrarUsuario(dados: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, dados);
+    return this.http.post<any>(`${environment.baseUrl}/Autenticacao/registrarUsuario/Pessoa`, dados);
+  }
+
+  autenticarUsuario(dados: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/Autenticacao/login`, dados);
   }
 }

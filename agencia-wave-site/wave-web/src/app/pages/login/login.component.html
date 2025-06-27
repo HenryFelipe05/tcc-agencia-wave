@@ -6,17 +6,17 @@
                 <p>Não possui uma conta? </p><a routerLink="/criar-conta">Criar Conta</a>
             </div>
         </header>
-        <form id="formLogin">
+        <form id="formLogin" (ngSubmit)="onLoginSubmit($event)">
             <div class="input-user input-container">
                 <label for="inputEmail">Email</label>
-                <input type="email" placeholder="exemplo@email.com" id="inputEmail">
+                <input type="email" placeholder="exemplo@email.com" id="inputEmail" required>
             </div>
             <div class="input-password input-container">
                 <label for="inputPassword">Senha</label>
-                <input type="password" id="inputPassword">
+                <input type="password" id="inputPassword" required>
             </div>
 
-            <button type="button" (click)="onLoginSubmit()" class="btn btn-primary">Entrar</button>
+            <button type="submit" class="btn btn-primary">Entrar</button>
             <a href="/login" class="forgot-password">Esqueceu sua senha?</a>
         </form>
         <div class="user-terms-container">

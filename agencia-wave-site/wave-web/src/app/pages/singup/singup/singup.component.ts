@@ -16,11 +16,17 @@ export class SingupComponent {
   constructor(
     private router: Router,
     private usuarioService: UsuarioService
-  ) {}
+  ) { }
 
   onCreateAcountSubmit(event: Event): void {
+    const form = document.getElementById('formSingup') as HTMLFormElement;
+
+    if (!form.checkValidity()) {
+      form.reportValidity(); 
+      return;
+    }
+
     event.preventDefault();
-    console.log('Submit chamado');
 
     const nomeCompleto = (document.getElementById('inputName') as HTMLInputElement).value;
     const email = (document.getElementById('inputEmail') as HTMLInputElement).value;
@@ -47,7 +53,7 @@ export class SingupComponent {
     this.usuarioService.registrarUsuario(dadosCadastro).subscribe({
       next: (res) => {
         alert('Cadastro realizado com sucesso!');
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error('Erro ao registrar usuário:', err);
@@ -56,3 +62,4 @@ export class SingupComponent {
     });
   }
 }
+
