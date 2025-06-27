@@ -18,7 +18,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        
         public async Task<ActionResult<IEnumerable<PessoaQuery>>> RecuperarListaPessoas()
         {
             var pessoas = await _pessoaService.RecuperarListaPessoasAsync();
@@ -30,7 +30,6 @@ namespace Wave.API.Controllers
         }
 
         [HttpGet("{codigoPessoa}")]
-        [Authorize]
         public async Task<ActionResult<PessoaQuery>> RecuperarPessoa([FromRoute] int codigoPessoa)
         {
             if (codigoPessoa == 0)
@@ -45,7 +44,7 @@ namespace Wave.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+       
         public async Task<ActionResult<PessoaQuery>> AdicionarPessoa([FromBody] PessoaCommand pessoaCommand)
         {
             if (pessoaCommand == null)
@@ -59,8 +58,7 @@ namespace Wave.API.Controllers
                 return Ok($"Resultado: {result}\nPessoa criada com sucesso!");
         }
 
-        [HttpPut("{codigoPessoa}")]
-        [Authorize]
+        [HttpPut("{codigoPessoa}")] 
         public async Task<ActionResult<bool>> AlterarPessoa([FromRoute] int codigoPessoa, [FromBody] PessoaCommand pessoaCommand)
         {
             if (codigoPessoa == 0)
@@ -77,8 +75,7 @@ namespace Wave.API.Controllers
 				return Ok($"Resultado: {result}\nPessoa alterada com sucesso!");
         }
 
-        [HttpDelete("{codigoPessoa}")]
-        [Authorize]
+        [HttpDelete("{codigoPessoa}")]      
         public async Task<ActionResult<bool>> DeletarPessoa([FromRoute] int codigoPessoa)
         {
             if (codigoPessoa == 0)

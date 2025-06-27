@@ -76,8 +76,7 @@ namespace Wave.Infra.Repositories
             sql.AppendLine(" UPDATE Pessoa ");
             sql.AppendLine("    SET Nome = @Nome, ");
             sql.AppendLine("        Sobrenome = @Sobrenome, ");
-            sql.AppendLine("        DataNascimento = @DataNascimento, ");
-            sql.AppendLine("        CodigoTipoPessoa = @CodigoTipoPessoa ");
+            sql.AppendLine("        DataNascimento = @DataNascimento ");          
             sql.AppendLine("  WHERE CodigoPessoa = @CodigoPessoa ");
             #endregion
 
@@ -87,7 +86,7 @@ namespace Wave.Infra.Repositories
                     connection.Open();
 
                 var linhasAfetadas = await connection.ExecuteAsync(sql.ToString(), new
-                {
+                {                  
                     CodigoPessoa = codigoPessoa,
                     Nome = pessoaCommand.Nome,
                     Sobrenome = pessoaCommand.Sobrenome,
