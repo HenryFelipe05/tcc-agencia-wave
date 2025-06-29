@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario-service/usuario-service.service';
 import { RouterModule, Router } from '@angular/router';
 import { NotificationService } from '../../core/services/notification.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
     private titleService: TitleService,
     private router: Router,
     private usuarioService: UsuarioService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authService: AuthService 
   ) {
     this.titleService.updateTitle('Login');
   }
@@ -43,6 +45,10 @@ export class LoginComponent {
 
     this.usuarioService.autenticarUsuario(dadosAutenticacao).subscribe({
       next: (res) => {
+        const token = res.token;
+        const userCode = this.decodeUserCodeFromToken(token); 
+
+        this.authService.login(token, userCode);
         this.notificationService.show('Login realizado com sucesso!', 'success');
         this.router.navigate(['/']);
       },
@@ -51,5 +57,14 @@ export class LoginComponent {
         this.notificationService.show(err.error || 'Erro ao autenticar. Tente novamente.', 'error');
       }
     });
+  }
+
+  decodeUserCodeFromToken(token: string): string {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.sub; 
+    } catch {
+      return '';
+    }
   }
 }

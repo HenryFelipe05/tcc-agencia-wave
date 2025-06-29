@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavbarMobileComponent } from '../../components/navbar-mobile/navbar-mobile.component';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,13 @@ import { NavbarMobileComponent } from '../../components/navbar-mobile/navbar-mob
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isDropdownVisible: boolean = false;
-  isMobileNavVisible: boolean = false;
+  isDropdownVisible = false;
+  isMobileNavVisible = false;
+
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) {}
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
@@ -20,11 +26,15 @@ export class NavbarComponent {
 
   toggleMobileNav() {
     this.isMobileNavVisible = !this.isMobileNavVisible;
+    document.body.style.overflow = this.isMobileNavVisible ? 'hidden' : '';
+  }
 
-    if (this.isMobileNavVisible) {
-      document.body.style.overflow = 'hidden'; 
-    } else {
-      document.body.style.overflow = '';
-    }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }
