@@ -5,11 +5,18 @@
         <a routerLink="/galeria" class="nav-item">Galeria</a> 
         <a routerLink="/contato" class="nav-item">Contato</a> 
     </div>
-    <div class="user-menu">
+    <div class="user-menu" style="display: none;">
         <img src="/UserAuthComponent.png" class="userIcon" (click)="toggleDropdown()">
         <ul class="list-dropdown" [style.display]="isDropdownVisible ? 'flex' : 'none'">
             <li class="list-item"><a routerLink="/login" class="btn btn-secondary">Login</a></li>
             <li class="list-item"><a routerLink="/criar-conta" class="btn btn-secondary">Criar Conta</a></li>
+        </ul>
+    </div>
+    <div class="user-auth-menu">
+        <img src="/UserAuthComponent.png" class="userIcon" (click)="toggleDropdown()">
+        <ul class="list-dropdown" [style.display]="isDropdownVisible ? 'flex' : 'none'">
+            <li class="list-item"><a routerLink="/detalhes-usuario" class="btn btn-secondary">Alterar Dados</a></li>
+            <li class="list-item"><a routerLink="/login" class="btn btn-secondary">Logout</a></li>
         </ul>
     </div>
     <div class="user-menu-mobile">

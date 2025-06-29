@@ -16,4 +16,8 @@ export class UsuarioService {
   autenticarUsuario(dados: any): Observable<any> {
     return this.http.post<any>(`${environment.baseUrl}/Autenticacao/login`, dados);
   }
+
+  alterarUsuario(dados: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/Autenticacao/login`, dados);
+  }
 }

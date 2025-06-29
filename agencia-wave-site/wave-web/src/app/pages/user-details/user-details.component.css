@@ -1,0 +1,45 @@
+.user-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0 50px 0;
+}
+
+.user-details-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-details-container form button {
+    width: 80%;
+    height: 50px;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-data h1 {
+    color: #333;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0 30px 0;
+}
+
+.inputs-left, .inputs-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
