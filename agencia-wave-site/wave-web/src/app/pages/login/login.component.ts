@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario-service/usuario-service.service';
 import { RouterModule, Router } from '@angular/router';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(
     private titleService: TitleService,
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private notificationService: NotificationService
   ) {
     this.titleService.updateTitle('Login');
   }
@@ -25,7 +27,7 @@ export class LoginComponent {
     const form = document.getElementById('formLogin') as HTMLFormElement;
 
     if (!form.checkValidity()) {
-      form.reportValidity(); 
+      form.reportValidity();
       return;
     }
 
@@ -41,11 +43,12 @@ export class LoginComponent {
 
     this.usuarioService.autenticarUsuario(dadosAutenticacao).subscribe({
       next: (res) => {
-        this.router.navigate(['/']); 
+        this.notificationService.show('Login realizado com sucesso!', 'success');
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.error('Erro ao autenticar usuário:', err);
-        alert(err.error || 'Erro ao autenticar. Tente novamente.');
+        this.notificationService.show(err.error || 'Erro ao autenticar. Tente novamente.', 'error');
       }
     });
   }
