@@ -4,6 +4,7 @@ import { UsuarioService } from '../../../services/usuario-service/usuario-servic
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-singup',
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
 export class SingupComponent {
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private notificationService: NotificationService
   ) { }
 
   onCreateAcountSubmit(event: Event): void {
@@ -52,12 +54,12 @@ export class SingupComponent {
 
     this.usuarioService.registrarUsuario(dadosCadastro).subscribe({
       next: (res) => {
-        alert('Cadastro realizado com sucesso!');
+        this.notificationService.show('Cadastro realizado com sucesso!', 'success');
         this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error('Erro ao registrar usuário:', err);
-        alert(err.error || 'Erro ao registrar. Tente novamente.');
+        this.notificationService.show(err.error || 'Erro ao registrar. Tente novamente.', 'error');
       }
     });
   }
