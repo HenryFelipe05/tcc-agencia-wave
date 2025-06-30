@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar-mobile',
@@ -12,7 +13,21 @@ import { RouterModule } from '@angular/router';
 export class NavbarMobileComponent {
   @Output() navItemClicked = new EventEmitter<void>();
 
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) { }
+
   onNavItemClick() {
     this.navItemClicked.emit();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

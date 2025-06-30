@@ -1,9 +1,15 @@
 <nav class="mobile-nav-container">
     <div class="opcoes">
-        <a routerLink="/" class="nav-item btn btn-outline" (click)="onNavItemClick()">Agência</a> 
-        <a routerLink="/galeria" class="nav-item btn btn-outline" (click)="onNavItemClick()">Galeria</a> 
-        <a routerLink="/contato" class="nav-item btn btn-outline" (click)="onNavItemClick()">Contato</a> 
-        <a routerLink="/login" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Login</a>
-        <a routerLink="/criar-conta" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Criar Conta</a>
+        <a routerLink="/" class="nav-item btn btn-outline" (click)="onNavItemClick()">Agência</a>
+        <a routerLink="/galeria" class="nav-item btn btn-outline" (click)="onNavItemClick()">Galeria</a>
+        <a routerLink="/contato" class="nav-item btn btn-outline" (click)="onNavItemClick()">Contato</a>
+        <div class="user-options" *ngIf="!isLoggedIn">
+            <a routerLink="/login" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Login</a>
+            <a routerLink="/criar-conta" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Criar Conta</a>
+        </div>
+        <div class="user-auth-options" *ngIf="isLoggedIn">
+            <a routerLink="/detalhes-usuario" class="btn btn-secondary" (click)="onNavItemClick()">Alterar Dados</a>
+            <a (click)="logout()" (click)="onNavItemClick()" class="btn btn-secondary">Logout</a>
+        </div>
     </div>
 </nav>

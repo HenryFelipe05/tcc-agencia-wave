@@ -28,6 +28,15 @@
     padding: 10px;
 }
 
+.user-options, .user-auth-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-direction: column;
+    width: 100%;
+}
+
 @media (min-width: 1049px) {
     .mobile-nav-container {
         display: none;
