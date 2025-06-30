@@ -30,6 +30,7 @@
 }
 
 .inputs {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -39,7 +40,14 @@
 }
 
 .inputs-left, .inputs-right {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+@media (max-width: 1039px) {
+    .inputs {
+        flex-direction: column;
+    }
 }

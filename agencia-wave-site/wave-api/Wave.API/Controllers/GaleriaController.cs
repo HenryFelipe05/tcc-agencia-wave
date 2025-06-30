@@ -102,7 +102,7 @@ namespace Wave.API.Controllers
             }
         }
 
-        [HttpGet("Pegar todos os itens")]
+        [HttpGet("recuperar-itens")]
         public async Task<IActionResult> ObterTodosAsync()
         {
                 var itens = await _galeriaService.ObterTodosAsync();

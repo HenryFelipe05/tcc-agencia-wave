@@ -1,5 +1,11 @@
-.galery-container {
-    width: 30%;
+.galery-card:hover .item {
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 0.3s ease-out;
+}
+
+.galery-card {
+    width: 300px;
     height: 250px;
     border-radius: 30px;
     background-image: url("/GaleryItemTemplate.png");
@@ -8,13 +14,7 @@
     background-size: cover;
     overflow: hidden;
     position: relative;
-    box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.100);
-}
-
-.galery-container:hover .item {
-    opacity: 1;
-    cursor: pointer;
-    transition: opacity 0.3s ease-out;
+    box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
 .item {

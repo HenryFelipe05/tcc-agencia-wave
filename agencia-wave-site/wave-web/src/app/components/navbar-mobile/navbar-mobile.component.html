@@ -8,8 +8,8 @@
             <a routerLink="/criar-conta" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Criar Conta</a>
         </div>
         <div class="user-auth-options" *ngIf="isLoggedIn">
-            <a routerLink="/detalhes-usuario" class="btn btn-secondary" (click)="onNavItemClick()">Alterar Dados</a>
-            <a (click)="logout()" (click)="onNavItemClick()" class="btn btn-secondary">Logout</a>
+            <a routerLink="/detalhes-usuario" class="btn btn-secondary auth-btn" (click)="onNavItemClick()">Alterar Dados</a>
+            <a (click)="logout()" (click)="onNavItemClick()" class="btn btn-secondary auth-btn">Logout</a>
         </div>
     </div>
 </nav>

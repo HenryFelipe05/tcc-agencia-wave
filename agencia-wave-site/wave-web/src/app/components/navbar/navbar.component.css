@@ -104,7 +104,7 @@ nav {
         display: none;
     }
 
-    .user-menu {
+    .user-menu, .user-auth-menu {
         display: none;
     }
 
