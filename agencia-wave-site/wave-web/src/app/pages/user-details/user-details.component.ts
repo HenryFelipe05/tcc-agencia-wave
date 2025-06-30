@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { TitleService } from '../../core/services/title.service';
-import { HttpClient, HttpHeaders   } from '@angular/common/http';
-import { AuthService } from '../../core/services/auth.service';
+import { UsuarioService } from '../../services/usuario-service/usuario-service.service';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'app-user-details',
@@ -16,51 +16,35 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './user-details.component.css'
 })
 export class UserDetailsComponent implements OnInit {
-  usuario = {
-    nome: '',
-    email: '',
-    telefone: '',
-    dataNascimento: ''
-  };
+  usuario: any = {};
 
   constructor(
     private titleService: TitleService,
-    private http: HttpClient,
-    private authService: AuthService
+    private usuarioService: UsuarioService,
+    private notificationService: NotificationService
   ) {
     this.titleService.updateTitle('Detalhes do Usuário');
   }
 
-ngOnInit(): void {
-  const token = this.authService.getToken();
-
-  if (!token) {
-    console.warn('Token não encontrado. Usuário não autenticado.');
-    return;
+  ngOnInit(): void {
+    this.usuarioService.recuperarDadosUsuario().subscribe({
+      next: (res) => {
+        console.log('Dados do usuário logado:', res);
+        this.usuario = res;
+        this.usuario.dataNascimento = this.formatarData(res.dataNascimento);
+      },
+      error: (err) => {
+        this.notificationService.show(err.error || 'Erro ao recuperar dados do usuário.', 'error');
+      }
+    });
   }
 
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token}`
-  });
-
-  this.http.get<any>('https://localhost:7261/Usuario/Recuperar-Dados', { headers }).subscribe({
-    next: (res) => {
-      console.log('Resposta da API:', res);
-      this.usuario.nome = res.nome;
-      this.usuario.email = res.email;
-      this.usuario.telefone = res.telefone;
-      this.usuario.dataNascimento = res.dataNascimento?.substring(0, 10);
-      console.log('Usuário carregado:', this.usuario);
-    },
-    error: (err) => {
-      console.error('Erro ao carregar dados do usuário:', err);
-    }
-  });
-}
-
-
-  salvar(): void {
-    console.log('Dados salvos:', this.usuario);
-    // Aqui você pode enviar os dados com um PUT/PATCH
+  private formatarData(dataISO: string): string {
+    const data = new Date(dataISO);
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
   }
+
 }

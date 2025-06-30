@@ -141,14 +141,20 @@ namespace Wave.Infra.Repositories
             #region[SQL]
 
             sql.AppendLine("SELECT ");
-            sql.AppendLine("    u.CodigoUsuario, ");
-            sql.AppendLine("    u.NomeUsuario, ");
-            sql.AppendLine("    u.Email, ");
-            sql.AppendLine("    u.CodigoPerfil, ");
-            sql.AppendLine("    p.Descricao AS Perfil, ");  // <- aqui traz o nome do perfil
-            sql.AppendLine("    u.Ativo ");
-            sql.AppendLine("FROM Usuario u ");
-            sql.AppendLine("INNER JOIN Perfil p ON u.CodigoPerfil = p.CodigoPerfil ");
+            sql.AppendLine("     u.CodigoUsuario,");
+            sql.AppendLine("     u.NomeUsuario,");
+            sql.AppendLine("     u.Email,");
+            sql.AppendLine("     u.CodigoPerfil,");
+            sql.AppendLine("     pf.Descricao AS Perfil,");
+            sql.AppendLine("     u.Ativo,");
+            sql.AppendLine("     p.CodigoPessoa,");
+            sql.AppendLine("     p.Nome,");
+            sql.AppendLine("     p.Sobrenome,");
+            sql.AppendLine("     p.DataNascimento,");
+            sql.AppendLine("     p.CodigoGenero");
+            sql.AppendLine("FROM Usuario u");
+            sql.AppendLine("INNER JOIN Perfil pf ON u.CodigoPerfil = pf.CodigoPerfil");
+            sql.AppendLine("INNER JOIN Pessoa p ON u.CodigoPessoa = p.CodigoPessoa");
             sql.AppendLine("WHERE u.CodigoUsuario = @CodigoUsuario");
             #endregion
 

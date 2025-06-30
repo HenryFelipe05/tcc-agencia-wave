@@ -58,7 +58,7 @@ namespace Wave.API.Controllers
                 return Ok($"Resultado: {result}\nPessoa criada com sucesso!");
         }
 
-        [HttpPut("{codigoPessoa}")] 
+        [HttpPut("Alterar/{codigoPessoa}")] 
         public async Task<ActionResult<bool>> AlterarPessoa([FromRoute] int codigoPessoa, [FromBody] PessoaCommand pessoaCommand)
         {
             if (codigoPessoa == 0)
