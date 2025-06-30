@@ -6,6 +6,8 @@ export class AuthService {
   private tokenKey = 'authToken';
   private userCodeKey = 'userCode';
 
+  constructor(private notificationService: NotificationService) {}
+
   login(token: string, userCode: string): void {
     localStorage.setItem(this.tokenKey, token);
     localStorage.setItem(this.userCodeKey, userCode);
@@ -14,7 +16,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userCodeKey);
-    this.notificationService.show('Cadastro realizado com sucesso!', 'success');
+    this.notificationService.show('Sessão encerrada.', 'error');
   }
 
   isLoggedIn(): boolean {
