@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TitleService } from '../../core/services/title.service';
 import { GaleryItemComponent } from '../../components/galery-item/galery-item.component';
 import { GaleryNavComponent } from '../../components/galery-nav/galery-nav.component';
@@ -12,14 +12,20 @@ import { GaleriaService } from '../../services/galeria-service/galeria.service';
   templateUrl: './galery.component.html',
   styleUrl: './galery.component.css'
 })
-export class GaleryComponent {
-  constructor(private titleService: TitleService, private galeriaService: GaleriaService) {
+export class GaleryComponent implements OnInit {
+  itensGaleria: any[] = [];
+
+  constructor(
+    private titleService: TitleService,
+    private galeriaService: GaleriaService
+  ) {
     this.titleService.updateTitle('Galeria');
   }
 
   ngOnInit(): void {
     this.galeriaService.recuperarItensGaleria().subscribe({
       next: (itens) => {
+        this.itensGaleria = itens;
         console.log('Itens da galeria:', itens);
       },
       error: (err) => {

@@ -1,2 +1,6 @@
 <app-galery-nav></app-galery-nav>
-<app-galery-item></app-galery-item>
+<div class="galery-container">
+    <app-galery-item *ngFor="let item of itensGaleria" [titulo]="item.titulo" [descricao]="item.descricao"
+        [dataPublicacao]="item.dataPublicacao" [arquivo]="item.arquivo"
+        [extensaoArquivo]="item.extensaoArquivo"></app-galery-item>
+</div>
