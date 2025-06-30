@@ -9,11 +9,12 @@
     height: 80vh;
     width: 80vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
     border-radius: 30px;
-    gap: 100px;
-    margin: 50px 0 50px 0;
+    gap: 50px;
+    margin: 20px 0 20px 0;
     background-image: linear-gradient(to right, #AC8FD1, #5CA3DA);
 }
 
@@ -22,7 +23,8 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 0 50px;
+    text-align: center;
+    padding: 0 20px;
     gap: 60px;
 }
 
@@ -39,10 +41,6 @@
     height: 80px;
     font-size: 15pt;
     border-radius: 20px;
-}
-
-.phone img {
-    width: 70%;
 }
 
 #sectionServices {
@@ -295,9 +293,8 @@
 }
 
 @media (max-width: 909px) {
-    .orcamento-text h2 {
-        font-size: 28pt;
-        text-align: center;
+    .logo-orcamento img{
+        width: 50%;
     }
 
     .orcamento-text p {
