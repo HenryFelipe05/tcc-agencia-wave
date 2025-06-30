@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NotificationService } from './notification.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userCodeKey);
+    this.notificationService.show('Cadastro realizado com sucesso!', 'success');
   }
 
   isLoggedIn(): boolean {

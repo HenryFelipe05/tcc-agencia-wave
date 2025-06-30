@@ -1,9 +1,9 @@
 <div class="user-details-container">
   <div class="user-data">
     <img src="/UserAuthComponent.png" class="userIcon" />
-    <h1>{{ usuario.nome ? usuario.nome : 'User Name' }}</h1>
+    <h1 *ngIf="usuario.nome">{{ usuario.nome }} {{ usuario.sobrenome }}</h1>
   </div>
-  <form id="formUpdate">
+  <form id="formUpdate" #formUpdate="ngForm">
     <div class="inputs">
       <div class="inputs-left">
         <div class="input-name input-container">
@@ -11,8 +11,8 @@
           <input
             type="text"
             id="inputName"
-            [(ngModel)]="usuario.nome"
             name="nome"
+            [(ngModel)]="usuario.nome"
             required
           />
         </div>
@@ -21,8 +21,8 @@
           <input
             type="email"
             id="inputEmail"
-            [(ngModel)]="usuario.email"
             name="email"
+            [(ngModel)]="usuario.email"
             required
           />
         </div>
@@ -33,9 +33,9 @@
           <input
             type="text"
             id="inputPhone"
-            [(ngModel)]="usuario.telefone"
             name="telefone"
             mask="(00) 00000-0000"
+            [(ngModel)]="usuario.telefone"
             required
           />
         </div>
@@ -44,9 +44,9 @@
           <input
             type="text"
             id="inputData"
-            [(ngModel)]="usuario.dataNascimento"
             name="dataNascimento"
             mask="00/00/0000"
+            [(ngModel)]="usuario.dataNascimento"
             required
           />
         </div>

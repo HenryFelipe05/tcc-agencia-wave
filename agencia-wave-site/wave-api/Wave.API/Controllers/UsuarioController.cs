@@ -8,7 +8,7 @@ using Wave.Domain.Entities;
 namespace Wave.API.Controllers
 {
     [ApiController]
-    [Route("Usuario")]
+    [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
