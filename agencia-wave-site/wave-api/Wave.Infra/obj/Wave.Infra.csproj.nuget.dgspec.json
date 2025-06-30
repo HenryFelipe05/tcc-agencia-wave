@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj": {}
+    "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj": {
+    "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
+        "projectUniqueName": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
         "projectName": "Wave.Application",
-        "projectPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
-        "packagesPath": "C:\\Users\\botiv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\obj\\",
+        "projectPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj",
+        "packagesPath": "C:\\Users\\henry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\botiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
-                "projectPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
+              "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
+                "projectPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
               }
             }
           }
@@ -48,7 +48,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -83,24 +83,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
+    "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
         "projectName": "Wave.Domain",
-        "projectPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
-        "packagesPath": "C:\\Users\\botiv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\obj\\",
+        "projectPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj",
+        "packagesPath": "C:\\Users\\henry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\botiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -127,7 +127,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -182,24 +182,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj": {
+    "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj",
+        "projectUniqueName": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj",
         "projectName": "Wave.Infra",
-        "projectPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj",
-        "packagesPath": "C:\\Users\\botiv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\obj\\",
+        "projectPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\Wave.Infra.csproj",
+        "packagesPath": "C:\\Users\\henry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\botiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -214,11 +214,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj": {
-                "projectPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj"
+              "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj": {
+                "projectPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Application\\Wave.Application.csproj"
               },
-              "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
-                "projectPath": "C:\\Users\\botiv\\Source\\Repos\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
+              "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj": {
+                "projectPath": "C:\\Users\\henry\\Desktop\\tcc-agencia-wave\\agencia-wave-site\\wave-api\\Wave.Domain\\Wave.Domain.csproj"
               }
             }
           }
@@ -233,7 +233,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -300,7 +300,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
