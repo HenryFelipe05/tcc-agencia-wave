@@ -54,9 +54,6 @@ namespace Wave.API.Controllers
             }
         }
 
-
-
-
         [HttpGet("Filtrar")]
 
         public async Task<IActionResult> BuscarItensAsync([FromQuery] ItemGaleriaQuery itemGaleriaQuery)

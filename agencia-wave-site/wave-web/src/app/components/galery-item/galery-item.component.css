@@ -40,3 +40,39 @@
     flex-direction: column;
     gap: 5px;
 }
+
+.bottom-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-item ng-icon {
+    font-size: 18pt;
+    transition: .2s;
+}
+
+.bottom-item ng-icon:hover {
+    transform: scale(1.15);
+    transition: .2s;
+}
+
+@media (max-width: 549px) {
+    .galery-card {
+        width: 300px;
+        height: 150px;
+    }
+
+    .item-header h2 {
+        font-size: 12pt;
+    }
+
+    .bottom-item p {
+        display: none;
+    }
+
+    .bottom-item ng-icon {
+        font-size: 24pt;
+    }
+}
+

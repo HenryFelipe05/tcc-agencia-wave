@@ -14,4 +14,10 @@ export class GaleriaService {
   recuperarItensGaleria(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/recuperar-itens`);
   }
+
+  baixarArquivoPorCodigo(codigoItemGaleria: number): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/baixar/${codigoItemGaleria}`, {
+      responseType: 'blob'
+    });
+  }
 }

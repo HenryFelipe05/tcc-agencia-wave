@@ -1,13 +1,13 @@
-<div
-  class="galery-card"
-  [style.backgroundImage]="'url(' + urlMiniatura + ')'"
->
-  <div class="item">
-    <div class="item-header">
-      <h2>{{ titulo }}</h2>
-      <p>{{ descricao }}</p>
+<div class="galery-card" [style.backgroundImage]="'url(' + urlMiniatura + ')'">
+    <div class="item">
+        <div class="item-header">
+            <h2>{{ titulo }}</h2>
+            <p>{{ descricao }}</p>
+        </div>
+
+        <div class="bottom-item">
+            <p>Publicado em {{ dataCadastro ? (dataCadastro | date: 'dd/MM/yyyy HH:mm') : 'Data não informada' }}</p>
+            <ng-icon name="bootstrapDownload" (click)="baixar()" title="Baixar arquivo"></ng-icon>
+        </div>
     </div>
-    
-    <p>Publicado em {{ dataCadastro ? (dataCadastro | date: 'dd/MM/yyyy HH:mm') : 'Data não informada' }}</p>
-  </div>
 </div>
