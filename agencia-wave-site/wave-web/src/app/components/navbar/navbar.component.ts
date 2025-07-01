@@ -15,6 +15,7 @@ import { UsuarioService } from '../../services/usuario-service/usuario-service.s
 export class NavbarComponent {
   isDropdownVisible = false;
   isMobileNavVisible = false;
+  nomeUsuarioLogado = "";
 
   constructor(
     private authService: AuthService,
@@ -40,11 +41,11 @@ export class NavbarComponent {
     return this.authService.isLoggedIn();
   }
 
-  // ngOnInit(): void {
-  //   this.usuarioService.recuperarDadosUsuario().subscribe({
-  //     next: (res) => {
-  //       console.log('Dados do usuário logado:', res);
-  //     }
-  //   });
-  // }
+  ngOnInit(): void {
+    this.usuarioService.recuperarDadosUsuario().subscribe({
+      next: (res) => {
+        this.nomeUsuarioLogado = res.nome;
+      }
+    });
+  }
 }

@@ -32,6 +32,7 @@ export class UserDetailsComponent implements OnInit {
         console.log('Dados do usuário logado:', res);
         this.usuario = res;
         this.usuario.dataNascimento = this.formatarData(res.dataNascimento);
+        this.usuario.telefone = res.telefone
       },
       error: (err) => {
         this.notificationService.show(err.error || 'Erro ao recuperar dados do usuário.', 'error');
@@ -46,5 +47,4 @@ export class UserDetailsComponent implements OnInit {
     const ano = data.getFullYear();
     return `${dia}/${mes}/${ano}`;
   }
-
 }

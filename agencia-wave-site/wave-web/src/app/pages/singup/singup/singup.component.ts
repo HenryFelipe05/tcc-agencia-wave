@@ -5,15 +5,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../../core/services/notification.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-singup',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxMaskDirective],
+  providers: [provideNgxMask()],
   templateUrl: './singup.component.html',
   styleUrl: './singup.component.css'
 })
 export class SingupComponent {
+  telefone: any = '';
+
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
@@ -34,6 +38,8 @@ export class SingupComponent {
     const email = (document.getElementById('inputEmail') as HTMLInputElement).value;
     const senha = (document.getElementById('inputPassword') as HTMLInputElement).value;
     const confirmarSenha = (document.getElementById('inputConfirmPassword') as HTMLInputElement).value;
+    const telefone = (document.getElementById('inputPhone') as HTMLInputElement).value;
+
 
     const nome = nomeCompleto.split(' ')[0];
     const sobrenome = nomeCompleto.split(' ').slice(1).join(' ');
@@ -45,7 +51,7 @@ export class SingupComponent {
       codigoGenero: 1,
       nomeUsuario: email,
       email: email,
-      telefone: '',
+      telefone: telefone,
       senha: senha,
       senhaConfirmada: confirmarSenha,
       ativo: true,

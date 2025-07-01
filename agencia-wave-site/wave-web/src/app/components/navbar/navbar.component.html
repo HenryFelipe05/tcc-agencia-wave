@@ -15,7 +15,10 @@
 
     <!-- Navbar logado -->
     <div class="user-auth-menu" *ngIf="isLoggedIn">
-        <img src="/UserAuthComponent.png" class="userIcon" (click)="toggleDropdown()">
+        <div class="user-sect">
+            <img src="/UserAuthComponent.png" class="userIcon" (click)="toggleDropdown()">
+            <p>{{ nomeUsuarioLogado }}</p>
+        </div>
         <ul class="list-dropdown" [style.display]="isDropdownVisible ? 'flex' : 'none'">
             <li class="list-item"><a routerLink="/detalhes-usuario" class="btn btn-secondary">Alterar Dados</a></li>
             <li class="list-item"><a (click)="logout()" class="btn btn-secondary">Logout</a></li>
