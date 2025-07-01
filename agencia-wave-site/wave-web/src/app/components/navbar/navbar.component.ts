@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { NavbarMobileComponent } from '../../components/navbar-mobile/navbar-mobile.component';
 import { AuthService } from '../../core/services/auth.service';
+import { UsuarioService } from '../../services/usuario-service/usuario-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,9 +17,10 @@ export class NavbarComponent {
   isMobileNavVisible = false;
 
   constructor(
-    public authService: AuthService,
+    private authService: AuthService,
+    private usuarioService: UsuarioService,
     private router: Router
-  ) {}
+  ) { }
 
   toggleDropdown() {
     this.isDropdownVisible = !this.isDropdownVisible;
@@ -37,4 +39,12 @@ export class NavbarComponent {
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
+
+  // ngOnInit(): void {
+  //   this.usuarioService.recuperarDadosUsuario().subscribe({
+  //     next: (res) => {
+  //       console.log('Dados do usuário logado:', res);
+  //     }
+  //   });
+  // }
 }
