@@ -12,11 +12,9 @@ import { environment } from '../../../environment';
 export class GaleryItemComponent {
   @Input() titulo: string = '';
   @Input() descricao: string = '';
-  @Input() dataPublicacao?: string;
+  @Input() urlMiniatura?: string;
+  @Input() dataCadastro?: any;
   @Input() arquivo!: string;
   @Input() extensaoArquivo: string = '';
 
- get imagemUrl(): string {
-  return `${environment.baseUrl}/uploads/${this.arquivo}`;
-}
 }

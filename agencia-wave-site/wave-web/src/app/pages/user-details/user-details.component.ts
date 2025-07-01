@@ -84,7 +84,7 @@ export class UserDetailsComponent implements OnInit {
     this.usuarioService.alterarUsuario(dadosAtualizados).subscribe({
       next: (res) => {
         this.notificationService.show(res?.message || 'Dados atualizados com sucesso!', 'success');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.notificationService.show('Dados atualizados com sucesso!', 'success');
