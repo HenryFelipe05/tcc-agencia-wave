@@ -41,5 +41,28 @@ namespace Wave.API.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPut("Atualizar")]
+        [Authorize]
+        public async Task<IActionResult> AtualizarUsuario([FromBody] UsuarioCommand usuarioCommand)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier) ?? User.FindFirst("sub");
+
+            if (userIdClaim == null)
+                return Unauthorized("Token inválido: claim de ID não encontrada.");
+
+            if (!int.TryParse(userIdClaim.Value, out int codigoUsuario))
+                return BadRequest("ID do usuário no token é inválido.");
+
+            try
+            {
+                await _usuarioService.AtualizarUsuarioAsync(usuarioCommand, codigoUsuario);
+                return Ok(new { message = "Usuário atualizado com sucesso." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Erro ao atualizar o usuário: {ex.Message}" });
+            }
+        }
     }
 }

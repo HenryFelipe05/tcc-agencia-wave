@@ -76,13 +76,19 @@ namespace Wave.Infra.Repositories
 
             #region[SQL]
             sql.AppendLine("UPDATE Usuario SET ");
-            sql.AppendLine("    NomeUsuario = @NomeUsuario, ");
             sql.AppendLine("    Email = @Email, ");
-            sql.AppendLine("    Telefone = @Telefone, ");
-            sql.AppendLine("    Senha = @Senha, ");
-            sql.AppendLine("    CodigoPerfil = @CodigoPerfil, ");
-            sql.AppendLine("    Ativo = @Ativo ");
-            sql.AppendLine("WHERE CodigoUsuario = @CodigoUsuario");
+            sql.AppendLine("    Telefone = @Telefone ");
+            sql.AppendLine("WHERE CodigoUsuario = @CodigoUsuario;");
+
+            sql.AppendLine("UPDATE Pessoa SET ");
+            sql.AppendLine("    Nome = @Nome, ");
+            sql.AppendLine("    Sobrenome = @Sobrenome, ");
+            sql.AppendLine("    DataNascimento = @DataNascimento ");
+            sql.AppendLine("WHERE CodigoPessoa = ( ");
+            sql.AppendLine("    SELECT CodigoPessoa ");
+            sql.AppendLine("    FROM Usuario ");
+            sql.AppendLine("    WHERE CodigoUsuario = @CodigoUsuario ");
+            sql.AppendLine(");");
             #endregion
 
             using (var connection = _context.GetDbConnection())
@@ -92,12 +98,11 @@ namespace Wave.Infra.Repositories
 
                 await connection.ExecuteAsync(sql.ToString(), new
                 {
-                    NomeUsuario = usuarioCommand.NomeUsuario,
                     Email = usuarioCommand.Email,
                     Telefone = usuarioCommand.Telefone,
-                    Senha = usuarioCommand.Senha,
-                    CodigoPerfil = usuarioCommand.CodigoPerfil,
-                    Ativo = usuarioCommand.Ativo,
+                    Nome = usuarioCommand.Nome,
+                    Sobrenome = usuarioCommand.Sobrenome,
+                    DataNascimento = usuarioCommand.DataNascimento,
                     CodigoUsuario = codigoUsuario
                 });
             }
