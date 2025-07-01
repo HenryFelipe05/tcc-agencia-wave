@@ -144,6 +144,7 @@ namespace Wave.Infra.Repositories
             sql.AppendLine("     u.CodigoUsuario,");
             sql.AppendLine("     u.NomeUsuario,");
             sql.AppendLine("     u.Email,");
+            sql.AppendLine("     u.Telefone,");
             sql.AppendLine("     u.CodigoPerfil,");
             sql.AppendLine("     pf.Descricao AS Perfil,");
             sql.AppendLine("     u.Ativo,");
