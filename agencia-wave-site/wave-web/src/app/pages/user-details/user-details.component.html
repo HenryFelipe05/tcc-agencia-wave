@@ -1,9 +1,9 @@
 <div class="user-details-container">
   <div class="user-data">
     <img src="/UserAuthComponent.png" class="userIcon" />
-    <h1 *ngIf="usuario.nome">{{ usuario.nome }} {{ usuario.sobrenome }}</h1>
+    <h1 *ngIf="usuario.nome">{{ usuario.nome }}</h1>
   </div>
-  <form id="formUpdate" #formUpdate="ngForm">
+  <form id="formUpdate" #formUpdate="ngForm" (ngSubmit)="salvar()">
     <div class="inputs">
       <div class="inputs-left">
         <div class="input-name input-container">

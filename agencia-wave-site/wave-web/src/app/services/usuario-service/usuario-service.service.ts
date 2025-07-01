@@ -27,6 +27,10 @@ export class UsuarioService {
   }
 
   alterarUsuario(dados: any): Observable<any> {
-    return this.http.post<any>(`${environment.baseUrl}/Autenticacao/login`, dados);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.put<any>(`${environment.baseUrl}/Usuario/Atualizar`, dados, { headers });
   }
 }

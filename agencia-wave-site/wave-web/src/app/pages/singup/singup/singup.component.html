@@ -17,7 +17,13 @@
             </div>
             <div class="input-phone input-container">
                 <label for="inputPhone">Telefone</label>
-                <input type="text" placeholder="(__) __ _____-____" id="inputPhone" name="telefone" [(ngModel)]="telefone" mask="(00) 00000-0000" required>
+                <input type="text" placeholder="(__) __ _____-____" id="inputPhone" name="telefone"
+                    [(ngModel)]="telefone" mask="(00) 00000-0000" required>
+            </div>
+            <div class="input-data input-container">
+                <label for="inputData">Data de Nascimento</label>
+                <input type="text" id="inputData" placeholder="DD/MM/YYYY" name="dataNascimento" mask="00/00/0000"
+                    [(ngModel)]="dataNascimento" required />
             </div>
             <div class="input-password input-container">
                 <label for="inputPassword">Senha</label>

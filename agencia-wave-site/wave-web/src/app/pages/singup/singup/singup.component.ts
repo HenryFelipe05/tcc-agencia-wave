@@ -17,6 +17,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 })
 export class SingupComponent {
   telefone: any = '';
+  dataNascimento: any = '';
 
   constructor(
     private router: Router,
@@ -28,7 +29,7 @@ export class SingupComponent {
     const form = document.getElementById('formSingup') as HTMLFormElement;
 
     if (!form.checkValidity()) {
-      form.reportValidity(); 
+      form.reportValidity();
       return;
     }
 
@@ -39,7 +40,15 @@ export class SingupComponent {
     const senha = (document.getElementById('inputPassword') as HTMLInputElement).value;
     const confirmarSenha = (document.getElementById('inputConfirmPassword') as HTMLInputElement).value;
     const telefone = (document.getElementById('inputPhone') as HTMLInputElement).value;
+    const dataNascimentoStr = (document.getElementById('inputData') as HTMLInputElement).value;
 
+    const partes = dataNascimentoStr.split('/');
+    const dia = parseInt(partes[0], 10);
+    const mes = parseInt(partes[1], 10) - 1; 
+    const ano = parseInt(partes[2], 10);
+
+    const dataNascimento = new Date(ano, mes, dia);
+    const dataNascimentoISO = dataNascimento.toISOString();
 
     const nome = nomeCompleto.split(' ')[0];
     const sobrenome = nomeCompleto.split(' ').slice(1).join(' ');
@@ -47,7 +56,7 @@ export class SingupComponent {
     const dadosCadastro = {
       nome: nome,
       sobrenome: sobrenome,
-      dataNascimento: '2000-01-01',
+      dataNascimento: dataNascimentoISO,
       codigoGenero: 1,
       nomeUsuario: email,
       email: email,
