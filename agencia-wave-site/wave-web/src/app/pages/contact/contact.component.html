@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="contact-right">
-            <form id="formContact" action="https://formsubmit.co/henryfbense@gmail.com" method="POST">
+            <form #formContact id="formContact">
                 <div class="input-name input-container">
                     <label for="inputName">Nome Completo</label>
                     <input type="text" placeholder="e.g João Silva" id="inputName" name="nome" required>
@@ -32,8 +32,6 @@
                     <textarea type="text" placeholder="" id="inputMessage" name="mensagem" required></textarea> 
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="http://localhost:4200/">
             </form>
         </div>
     </div>

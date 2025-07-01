@@ -23,9 +23,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 15px;
 }
 
 .user-data h1 {
+    text-align: center;
     color: #333;
 }
 
@@ -49,5 +51,11 @@
 @media (max-width: 1039px) {
     .inputs {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 599px) {
+    .user-data h1 {
+        font-size: 14pt;
     }
 }
