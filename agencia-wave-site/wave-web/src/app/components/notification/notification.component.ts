@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
 export class NotificationComponent {
   visible = false;
   message = '';
-  type: 'success' | 'error' = 'success';
+  type: 'success' | 'error' | 'warn' = 'success';
 
-  show(message: string, type: 'success' | 'error' = 'success') {
+  show(message: string, type: 'success' | 'error' | 'warn' = 'success') {
     this.message = message;
     this.type = type;
     this.visible = true;

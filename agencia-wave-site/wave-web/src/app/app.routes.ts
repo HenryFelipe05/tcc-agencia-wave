@@ -5,11 +5,12 @@ import { GaleryComponent } from './pages/galery/galery.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SingupComponent } from './pages/singup/singup/singup.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { AuthGuard } from '../app/core/guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'contato', component: ContactComponent },
-    { path: 'galeria', component: GaleryComponent },
+    { path: 'galeria', component: GaleryComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'criar-conta', component: SingupComponent },
     { path: 'detalhes-usuario', component: UserDetailsComponent },

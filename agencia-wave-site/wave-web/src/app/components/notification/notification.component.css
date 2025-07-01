@@ -1,6 +1,6 @@
 .notification {
   position: fixed;
-  top: 100px;
+  top: 20px;
   right: 20px;
   padding: 16px 24px;
   border-radius: 8px;
@@ -17,6 +17,10 @@
 
 .notification.success {
   background-color: #2ecc71;
+}
+
+.notification.warn {
+  background-color: #e1d11d;
 }
 
 @keyframes fadeInOut {
