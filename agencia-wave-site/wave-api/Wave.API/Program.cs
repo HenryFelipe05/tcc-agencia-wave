@@ -15,10 +15,10 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200") // Angular
+                .WithOrigins("http://localhost:4200") 
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowCredentials(); // use isso apenas se for usar cookies/autenticação
+                .AllowCredentials(); 
         });
 });
 
@@ -123,8 +123,8 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseCors("AllowAngularLocalhost");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
